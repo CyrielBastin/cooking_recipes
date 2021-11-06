@@ -55,6 +55,7 @@ class CreateModels < ActiveRecord::Migration[6.1]
     create_join_table :recipes, :ingredients do |t|
       t.integer :quantity
       t.references :measure
+      t.string :comment
     end
 
     create_join_table :recipes, :kitchenwares

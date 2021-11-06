@@ -16,7 +16,7 @@
 # created_at:       datetime
 # updated_at:       datetime
 class Recipe < ApplicationRecord
-  
+
   belongs_to :user
   belongs_to :category
   has_many :ingredients_recipes
@@ -29,9 +29,9 @@ class Recipe < ApplicationRecord
   validates :preparation_time,
             :cooking_time,
             :number_of_people,
-                allow_nil: true, numericality: { greater_than: 0 }
-  enum difficulty: %i[easy regular hard]
-  enum price: %i[low medium high]
+            allow_nil: true, numericality: { greater_than: 0 }
+  enum difficulty: %i[easy normal hard], _prefix: :difficulty
+  enum price: %i[low medium high], _suffix: true
   validates_presence_of :image, :preparation
 
 end

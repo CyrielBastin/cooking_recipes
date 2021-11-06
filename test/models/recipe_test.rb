@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class RecipeTest < ActiveSupport::TestCase
@@ -49,7 +51,7 @@ class RecipeTest < ActiveSupport::TestCase
   test 'preparation time should be > 0' do
     r = get_recipe
     r.preparation_time = 0
-    
+
     assert_not r.save
     r.preparation_time = -25
     assert_not r.save
@@ -65,7 +67,7 @@ class RecipeTest < ActiveSupport::TestCase
   test 'cooking time should be > 0' do
     r = get_recipe
     r.cooking_time = 0
-    
+
     assert_not r.save
     r.cooking_time = -25
     assert_not r.save
@@ -81,18 +83,18 @@ class RecipeTest < ActiveSupport::TestCase
   test 'number of people should be > 0' do
     r = get_recipe
     r.number_of_people = 0
-    
+
     assert_not r.save
     r.number_of_people = -25
     assert_not r.save
   end
- 
-  test 'difficulty should be `easy` | `regular` | `hard`' do
+
+  test 'difficulty should be `easy` | `normal` | `hard`' do
     r = get_recipe
 
     r.difficulty = 'easy'
     assert r.save
-    r.difficulty = 'regular'
+    r.difficulty = 'normal'
     assert r.save
     r.difficulty = 'hard'
     assert r.save
@@ -133,7 +135,7 @@ class RecipeTest < ActiveSupport::TestCase
     r = recipes(:blanquette)
     salt_r = r.ingredients.filter { |i| i.name == 'Salt' }
     parsley_r = r.ingredients.filter { |i| i.name = 'Parsley' }
-    
+
     assert salt_r
     assert parsley_r
   end
@@ -149,7 +151,7 @@ class RecipeTest < ActiveSupport::TestCase
     r = recipes(:bolognese)
     pan_r = r.kitchenwares.filter { |k| k.name == 'Pan' }
     whisk_r = r.kitchenwares.filter { |k| k.name = 'Whisk' }
-    
+
     assert pan_r
     assert whisk_r
   end

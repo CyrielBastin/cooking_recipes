@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_194356) do
     t.bigint "ingredient_id", null: false
     t.integer "quantity"
     t.bigint "measure_id"
+    t.string "comment"
     t.index ["measure_id"], name: "index_ingredients_recipes_on_measure_id"
   end
 

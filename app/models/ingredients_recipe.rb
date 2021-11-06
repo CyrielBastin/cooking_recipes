@@ -6,6 +6,7 @@
 # ingredient: ApplicationRecord::Ingredient
 # quantity:   integer
 # measure:    ApplicationRecord::Measure
+# comment:    string
 class IngredientsRecipe < ApplicationRecord
   
   belongs_to :recipe

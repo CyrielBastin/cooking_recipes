@@ -27,13 +27,6 @@ class CountryTest < ActiveSupport::TestCase
     assert_not i2.save
   end
 
-  test 'should not save ingredient without image' do
-    i = get_ingredient
-    i.image = nil
-
-    assert_not i.save
-  end
-
   test '`salt` should have 3 recipes' do
     i = ingredients(:salt)
 

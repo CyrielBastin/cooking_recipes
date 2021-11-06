@@ -12,6 +12,5 @@ class Ingredient < ApplicationRecord
   has_many :recipes, through: :ingredients_recipes
 
   validates :name, presence: true, uniqueness: true
-  validates :image, presence: true
 
 end
