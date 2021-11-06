@@ -51,7 +51,7 @@ class CategoryTest < ActiveSupport::TestCase
     assert_equal 'Tartiflette', c.recipes[0].name
   end
 
-  test '`meat` should not have any recipes' do
+  test '`meat` should not have any recipe' do
     c = categories(:meat)
 
     assert c.recipes.empty?
