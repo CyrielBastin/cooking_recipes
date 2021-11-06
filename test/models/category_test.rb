@@ -15,7 +15,7 @@ class CategoryTest < ActiveSupport::TestCase
 
   test 'category should have a unique name' do
     c = get_category
-    c2 = Category.new { |c| c.name = 'Drink' }
+    c2 = Category.new { |c_| c_.name = 'Drink' }
 
     assert c.save
     assert_not c2.save
