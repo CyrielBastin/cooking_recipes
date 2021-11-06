@@ -1,0 +1,15 @@
+salt:
+  name: Salt
+  image: ingredients/salt.png
+
+potato:
+  name: Potato
+  image: ingredients/potato.png
+
+tomato:
+  name: Tomato
+  image: ingredients/tomato.png
+
+parsley:
+  name: Parsley
+  image: ingredients/parsley.png

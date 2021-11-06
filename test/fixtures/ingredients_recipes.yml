@@ -1,0 +1,5 @@
+for_bolo:
+  recipe: bolognese
+  ingredient: tomato
+  measure: unit
+  quantity: 6

@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_194356) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
+    t.string "image"
     t.text "content"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -35,9 +36,9 @@ ActiveRecord::Schema.define(version: 2021_11_04_194356) do
     t.string "image"
   end
 
-  create_table "images", force: :cascade do |t|
-    t.string "name"
-    t.string "category"
+  create_table "countries_recipes", id: false, force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "country_id", null: false
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -45,44 +46,32 @@ ActiveRecord::Schema.define(version: 2021_11_04_194356) do
     t.string "image"
   end
 
+  create_table "ingredients_recipes", id: false, force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.integer "quantity"
+    t.bigint "measure_id"
+    t.index ["measure_id"], name: "index_ingredients_recipes_on_measure_id"
+  end
+
   create_table "kitchenwares", force: :cascade do |t|
     t.string "name"
     t.string "image"
+  end
+
+  create_table "kitchenwares_recipes", id: false, force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "kitchenware_id", null: false
   end
 
   create_table "measures", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "recipe_countries", force: :cascade do |t|
-    t.bigint "recipe_id"
-    t.bigint "country_id"
-    t.index ["country_id"], name: "index_recipe_countries_on_country_id"
-    t.index ["recipe_id"], name: "index_recipe_countries_on_recipe_id"
-  end
-
   create_table "recipe_images", force: :cascade do |t|
     t.bigint "recipe_id"
-    t.bigint "image_id"
-    t.index ["image_id"], name: "index_recipe_images_on_image_id"
+    t.string "name"
     t.index ["recipe_id"], name: "index_recipe_images_on_recipe_id"
-  end
-
-  create_table "recipe_ingredients", force: :cascade do |t|
-    t.bigint "recipe_id"
-    t.bigint "ingredient_id"
-    t.integer "quantity"
-    t.bigint "measure_id"
-    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
-    t.index ["measure_id"], name: "index_recipe_ingredients_on_measure_id"
-    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
-  end
-
-  create_table "recipe_kitchenwares", force: :cascade do |t|
-    t.bigint "recipe_id"
-    t.bigint "kitchenware_id"
-    t.index ["kitchenware_id"], name: "index_recipe_kitchenwares_on_kitchenware_id"
-    t.index ["recipe_id"], name: "index_recipe_kitchenwares_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -92,8 +81,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_194356) do
     t.integer "preparation_time"
     t.integer "cooking_time"
     t.integer "number_of_people"
-    t.string "difficulty"
-    t.string "price"
+    t.integer "difficulty"
+    t.integer "price"
     t.string "image"
     t.text "preparation"
     t.string "user_comment"

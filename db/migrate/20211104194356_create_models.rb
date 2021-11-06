@@ -17,6 +17,7 @@ class CreateModels < ActiveRecord::Migration[6.1]
 
     create_table :articles do |t|
       t.string :title
+      t.string :image
       t.text :content
       t.references :user
       t.timestamps
@@ -31,11 +32,6 @@ class CreateModels < ActiveRecord::Migration[6.1]
       t.string :name
     end
 
-    create_table :images do |t|
-      t.string :name
-      t.string :category
-    end
-
     create_table :recipes do |t|
       t.string :name
       t.references :category
@@ -43,34 +39,26 @@ class CreateModels < ActiveRecord::Migration[6.1]
       t.integer :preparation_time
       t.integer :cooking_time
       t.integer :number_of_people
-      t.string :difficulty
-      t.string :price
+      t.integer :difficulty
+      t.integer :price
       t.string :image
       t.text :preparation
       t.string :user_comment
       t.timestamps
     end
 
-    create_table :recipe_ingredients do |t|
+    create_table :recipe_images do |t|
       t.references :recipe
-      t.references :ingredient
+      t.string :name
+    end
+
+    create_join_table :recipes, :ingredients do |t|
       t.integer :quantity
       t.references :measure
     end
 
-    create_table :recipe_kitchenwares do |t|
-      t.references :recipe
-      t.references :kitchenware
-    end
+    create_join_table :recipes, :kitchenwares
 
-    create_table :recipe_images do |t|
-      t.references :recipe
-      t.references :image
-    end
-
-    create_table :recipe_countries do |t|
-      t.references :recipe
-      t.references :country
-    end
+    create_join_table :recipes, :countries
   end
 end

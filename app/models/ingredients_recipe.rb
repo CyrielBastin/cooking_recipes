@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+##
+# == Fields
+# recipe:     ApplicationRecord::Recipe
+# ingredient: ApplicationRecord::Ingredient
+# quantity:   integer
+# measure:    ApplicationRecord::Measure
+class IngredientsRecipe < ApplicationRecord
+  
+  belongs_to :recipe
+  belongs_to :ingredient
+  belongs_to :measure
+
+  validates :quantity, numericality: { greater_than: 0 }, allow_nil: true
+
+end
