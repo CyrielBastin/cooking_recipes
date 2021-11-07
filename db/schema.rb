@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_06_201518) do
+ActiveRecord::Schema.define(version: 2021_11_04_194356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,11 @@ ActiveRecord::Schema.define(version: 2021_11_06_201518) do
     t.index ["measure_id"], name: "index_ingredients_recipes_on_measure_id"
   end
 
+  create_table "ingredients_recipes_preparation", id: false, force: :cascade do |t|
+    t.bigint "recipes_preparation_id", null: false
+    t.bigint "ingredient_id", null: false
+  end
+
   create_table "kitchenwares", force: :cascade do |t|
     t.string "name"
     t.string "image"
@@ -69,12 +74,6 @@ ActiveRecord::Schema.define(version: 2021_11_06_201518) do
     t.string "name"
   end
 
-  create_table "recipe_images", force: :cascade do |t|
-    t.bigint "recipe_id"
-    t.string "name"
-    t.index ["recipe_id"], name: "index_recipe_images_on_recipe_id"
-  end
-
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.bigint "category_id"
@@ -85,12 +84,24 @@ ActiveRecord::Schema.define(version: 2021_11_06_201518) do
     t.integer "difficulty"
     t.integer "price"
     t.string "image"
-    t.text "preparation"
     t.string "user_comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
+
+  create_table "recipes_images", force: :cascade do |t|
+    t.bigint "recipe_id"
+    t.string "name"
+    t.index ["recipe_id"], name: "index_recipes_images_on_recipe_id"
+  end
+
+  create_table "recipes_preparation", force: :cascade do |t|
+    t.bigint "recipe_id"
+    t.integer "step"
+    t.string "detail"
+    t.index ["recipe_id"], name: "index_recipes_preparation_on_recipe_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -105,18 +116,7 @@ ActiveRecord::Schema.define(version: 2021_11_06_201518) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer "invitation_limit"
-    t.string "invited_by_type"
-    t.bigint "invited_by_id"
-    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

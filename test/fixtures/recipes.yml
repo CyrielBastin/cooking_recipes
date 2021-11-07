@@ -11,7 +11,6 @@ tartiflette:
   price: medium
   image: recipes/tartiflette.png
   number_of_people: 3
-  preparation: Pour everything into the pan and blitz !!!
   user_comment: In Tartiflette we trust !
 
 blanquette:
@@ -27,7 +26,6 @@ blanquette:
   price: medium
   image: recipes/blanquette.png
   number_of_people: 4
-  preparation: Just cook it !
   user_comment: Delicious 'blanquette de veau'
 
 bolognese:
@@ -43,5 +41,4 @@ bolognese:
   price: low
   image: recipes/bolognese.png
   number_of_people: 8
-  preparation: Pour everything into the pan and blitz !!!
   user_comment: Delicious bolognese sauce

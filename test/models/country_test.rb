@@ -27,12 +27,12 @@ class CountryTest < ActiveSupport::TestCase
     assert_not c2.save
   end
 
-  test 'should not save a country without image' do
-    c = get_country
-    c.image = nil
-
-    assert_not c.save
-  end
+  # test 'should not save a country without image' do
+  #   c = get_country
+  #   c.image = nil
+  #
+  #   assert_not c.save
+  # end
 
   test '`france` should have 2 recipes' do
     c = countries(:france)

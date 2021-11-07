@@ -19,11 +19,12 @@ class Recipe < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
-  has_many :ingredients_recipes
+  has_many :ingredients_recipes, dependent: :destroy
   has_many :ingredients, through: :ingredients_recipes
+  has_many :recipes_preparation, dependent: :destroy
   has_and_belongs_to_many :kitchenwares
   has_and_belongs_to_many :countries
-  has_many :recipe_images
+  has_many :recipe_images, dependent: :destroy
 
   validates :name, presence: true
   validates :preparation_time,
@@ -32,6 +33,6 @@ class Recipe < ApplicationRecord
             allow_nil: true, numericality: { greater_than: 0 }
   enum difficulty: %i[easy normal hard], _prefix: :difficulty
   enum price: %i[low medium high], _suffix: true
-  validates_presence_of :image, :preparation
+  validates_presence_of :image
 
 end

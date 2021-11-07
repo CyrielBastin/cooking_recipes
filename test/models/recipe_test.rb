@@ -15,7 +15,6 @@ class RecipeTest < ActiveSupport::TestCase
       r.difficulty = 'easy'
       r.price = 'low'
       r.image = 'recipes/lasagna.png'
-      r.preparation = 'Quite a long preparation'
       r.user_comment = 'This lasagna is a beast'
     end
   end
@@ -118,13 +117,6 @@ class RecipeTest < ActiveSupport::TestCase
     assert_not r.save
   end
 
-  test 'should not save a recipe without preparation' do
-    r = get_recipe
-    r.preparation = nil
-
-    assert_not r.save
-  end
-
   test '`blanquette` number of people should be 4' do
     r = recipes(:blanquette)
 
@@ -154,6 +146,34 @@ class RecipeTest < ActiveSupport::TestCase
 
     assert pan_r
     assert whisk_r
+  end
+
+  test '`bolognese` should have 2 steps in its preparation' do
+    r = recipes(:bolognese)
+
+    assert_equal 2, r.recipes_preparation.count
+  end
+
+  test '`bolognese` first step should be to wash hands' do
+    r = recipes(:bolognese)
+    step1 = r.recipes_preparation.filter { |s| s.step == 1 }.at(0)
+
+    assert step1
+    assert_equal 'Wash your hands, you dirty PIG !', step1.detail
+  end
+
+  test '`bolognese` step 2 should contain `onion` & `tomato`' do
+    r = recipes(:bolognese)
+    step2 = r.recipes_preparation.filter { |s| s.step == 2 }.at(0)
+
+    assert step2
+    assert_equal 2, step2.ingredients.count
+    onion = step2.ingredients.filter { |i| i.name == 'Onion' }.at(0)
+    tomato = step2.ingredients.filter { |i| i.name == 'Tomato' }.at(0)
+    assert onion
+    assert tomato
+    assert_equal 'Onion', onion.name
+    assert_equal 'Tomato', tomato.name
   end
 
 end

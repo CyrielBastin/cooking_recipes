@@ -42,12 +42,11 @@ class CreateModels < ActiveRecord::Migration[6.1]
       t.integer :difficulty
       t.integer :price
       t.string :image
-      t.text :preparation
       t.string :user_comment
       t.timestamps
     end
 
-    create_table :recipe_images do |t|
+    create_table :recipes_images do |t|
       t.references :recipe
       t.string :name
     end
@@ -58,8 +57,14 @@ class CreateModels < ActiveRecord::Migration[6.1]
       t.string :comment
     end
 
-    create_join_table :recipes, :kitchenwares
+    create_table :recipes_preparation do |t|
+      t.references :recipe
+      t.integer :step
+      t.string :detail
+    end
 
+    create_join_table :recipes_preparation, :ingredients
+    create_join_table :recipes, :kitchenwares
     create_join_table :recipes, :countries
   end
 end
