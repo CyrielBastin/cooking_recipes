@@ -157,16 +157,16 @@ id, image, name_en, name_fr
 156, yellow_onion.webp, "Yellow onion", "Oignon jaune"
 157, yogurt.webp, Yogurt, Yaourt
 158, zucchini.webp, Zucchini, Courgette
-159, no_image.webp, Cointreau, Cointreau
+159, _no_image.webp, Cointreau, Cointreau
 160, orange.webp, Orange, Orange
-161, no_image.webp, Cervelas, Cervelas
+161, _no_image.webp, Cervelas, Cervelas
 162, corn.webp, Corn, Maïs
 163, mayonnaise.webp, Mayonnaise, Mayonnaise
-164, no_image.webp, Saindoux, Saindoux
+164, _no_image.webp, Saindoux, Saindoux
 165, rosemary.webp, Rosemary, Romarin
 166, sage.webp, Sage, Sauge
 167, pizza_dough.webp, "Pizza dough", "Pâte à pizza"
-168, "", Pepperoni, Pepperoni
+168, _no_image.webp, Pepperoni, Pepperoni
 169, harissa.webp, Harissa, Harissa
 170, salmon_fillet.webp, "Salmon fillet", "Filet de saumon"
 171, reblochon.webp, Reblochon, Reblochon
