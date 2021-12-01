@@ -18,9 +18,9 @@ class CountryTest < ActiveSupport::TestCase
 
   test 'country should have a unique name' do
     c = get_country
-    c2 = Country.new do |c|
-      c.name = 'New Zealand'
-      c.image = '...'
+    c2 = Country.new do |c_|
+      c_.name = 'New Zealand'
+      c_.image = '...'
     end
 
     assert c.save

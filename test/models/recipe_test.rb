@@ -126,7 +126,7 @@ class RecipeTest < ActiveSupport::TestCase
   test '`blanquette` ingredients should contain `salt` & `parsley`' do
     r = recipes(:blanquette)
     salt_r = r.ingredients.filter { |i| i.name == 'Salt' }
-    parsley_r = r.ingredients.filter { |i| i.name = 'Parsley' }
+    parsley_r = r.ingredients.filter { |i| i.name == 'Parsley' }
 
     assert salt_r
     assert parsley_r
@@ -142,7 +142,7 @@ class RecipeTest < ActiveSupport::TestCase
   test '`bolognese` kitchenware should contain `pan` & `whisk`' do
     r = recipes(:bolognese)
     pan_r = r.kitchenwares.filter { |k| k.name == 'Pan' }
-    whisk_r = r.kitchenwares.filter { |k| k.name = 'Whisk' }
+    whisk_r = r.kitchenwares.filter { |k| k.name == 'Whisk' }
 
     assert pan_r
     assert whisk_r

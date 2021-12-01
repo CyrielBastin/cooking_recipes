@@ -11,14 +11,14 @@ class IngredientsRecipeTest < ActiveSupport::TestCase
     end
   end
 
-  test 'ingredient\' quantity is optional' do
+  test 'ingredient\'s quantity is optional' do
     i = get_ingredient
     i.quantity = nil
 
     assert i.save
   end
 
-  test 'ingredient\' quantity should be a number' do
+  test 'ingredient\'s quantity should be a number' do
     i = get_ingredient
     i.quantity = 'not a number'
     assert_not i.save
@@ -27,7 +27,7 @@ class IngredientsRecipeTest < ActiveSupport::TestCase
     assert i.save
   end
 
-  test 'ingredient\' quantity should be > 0' do
+  test 'ingredient\'s quantity should be > 0' do
     i = get_ingredient
     i.quantity = 0
     assert_not i.save

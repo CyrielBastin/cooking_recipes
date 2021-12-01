@@ -14,8 +14,8 @@ class MeasureTest < ActiveSupport::TestCase
 
   test 'measure name should be unique' do
     m = get_measure
-    m2 = Measure.new { |m| m.name = 'Tablespoon' }
-    
+    m2 = Measure.new { |m_| m_.name = 'Tablespoon' }
+
     assert m.save
     assert_not m2.save
   end
