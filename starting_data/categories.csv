@@ -107,4 +107,5 @@ id, parent_id, name_en, name_fr
 106, 60, "Tomato sauces", "Sauces tomate"
 107, 66, "Mashed potatoes", Purées
 108, 1, Rillettes, Rillettes
+109, 35, "Mac & Cheese", "Macaronis aux fromage"
 

@@ -17,7 +17,7 @@ id, category_id, user_id, preparation_time, cooking_time, nb_of_people, difficul
 16, 101, 1, 10, 120, 4, easy, medium, blanquette.jpg, "Cette blanquette de veau deviendra votre repas préféré", "Blanquette de Veau", "Blanquette de Veau"
 17, 102, 1, 10, 25, 2, easy, low, hamburger.jpg, "Hamburger 'The American Way'", Hamburger, Hamburger
 18, 103, 1, 85, 25, 4, easy, low, lasagna.jpg, "Traditional Italian lasagna", Lasagna, Lasagne
-19, 35, 1, 20, 25, 4, easy, low, mac_and_cheese.webp, "This Mac 'n' Cheese will become your best friend", "Mac 'n' Cheese", "Macaronis au Fromage"
+19, 109, 1, 20, 25, 4, easy, low, mac_and_cheese.webp, "This Mac 'n' Cheese will become your best friend", "Mac 'n' Cheese", "Macaronis au Fromage"
 20, 104, 1, 15, 20, 2, easy, low, pizza_margherita.webp, "La pizza basique mais délicieuse", "Pizza Margherita", "Pizza Margherita"
 21, 104, 1, 15, 20, 2, easy, low, pizza_pepperoni.webp, "", "Pizza Pepperoni", "Pizza Pepperoni"
 22, 38, 1, 80, 25, 4, easy, medium, shepherd_pie.jpg, "Best pie in the World !!!", "Shepherd's pie", "Hachis parmentier"
