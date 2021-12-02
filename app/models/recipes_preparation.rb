@@ -17,6 +17,6 @@ class RecipesPreparation < ApplicationRecord
   has_many :ingredients, through: :ingredients_recipes_preparations
 
   validates :step, presence: true, numericality: { greater_than: 0 }
-  validates_presence_of :detail
+  validates :detail, presence: true, length: { maximum: 255 }
 
 end

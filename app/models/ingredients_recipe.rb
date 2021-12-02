@@ -8,7 +8,7 @@
 # measure:    ApplicationRecord::Measure
 # comment:    string
 class IngredientsRecipe < ApplicationRecord
-  
+
   belongs_to :recipe
   belongs_to :ingredient
   belongs_to :measure

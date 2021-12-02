@@ -26,7 +26,7 @@ class Recipe < ApplicationRecord
   has_and_belongs_to_many :countries
   has_many :recipe_images, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 100 }
   validates :preparation_time,
             :cooking_time,
             :number_of_people,

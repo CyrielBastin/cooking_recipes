@@ -7,9 +7,9 @@
 # == Fields
 # name: string
 class Measure < ApplicationRecord
-  
+
   has_many :ingredients_recipes
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
 
 end
