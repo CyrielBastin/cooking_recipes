@@ -11,11 +11,15 @@
 # created_at: datetime
 # updated_at: datetime
 class Article < ApplicationRecord
-  
+
   belongs_to :user
 
   validates :title, presence: true
   validates :image, presence: true
   validates :content, presence: true
+
+  extend Mobility
+  translates :title, type: :string
+  translates :content, type: :text
 
 end
