@@ -1,5 +1,4 @@
-require "test_helper"
-require_relative '../fixtures/users'
+require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
@@ -16,13 +15,22 @@ class UserTest < ActiveSupport::TestCase
     assert_not u.save
   end
 
-  test '`grimm` email should be `grimm@grimm.io`' do
-    u = Fixtures::Users.grimm
-    pp '----------------------------------------'
-    pp u
-    pp '----------------------------------------'
+  test 'user email should be unique' do
+    u1 = users(:grimm)
+    u2 = User.new do |u|
+      u.email = 'grimm@grimm.com'
+      u.password = '123456'
+      u.password_confirmation = '123456'
+    end
 
-    assert_equal 'grimm@grimm.io', u.email
+    assert u1.save
+    assert_not u2.save
+  end
+
+  test '`grimm` email should be `grimm@grimm.com`' do
+    u = users(:grimm)
+
+    assert_equal 'grimm@grimm.com', u.email
   end
 
 end

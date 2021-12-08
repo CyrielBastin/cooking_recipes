@@ -1,5 +1,4 @@
 require 'test_helper'
-require_relative '../fixtures/kitchenwares'
 
 class KitchenwareTest < ActiveSupport::TestCase
 
@@ -45,27 +44,21 @@ class KitchenwareTest < ActiveSupport::TestCase
   # end
 
   test '`pan` name should be `Pan`' do
-    k = Fixtures::Kitchenwares.pan
+    k = kitchenwares(:pan)
 
-    if assert k
-      assert_equal 'Pan', k.name
-    end
+    assert_equal 'Pan', k.name
   end
 
   test '`oven` image should be `kitchenwares/oven.png`' do
-    k = Fixtures::Kitchenwares.oven
+    k = kitchenwares(:oven)
 
-    if assert k
-      assert_equal 'kitchenwares/oven.png', k.image
-    end
+    assert_equal 'kitchenwares/oven.png', k.image
   end
 
   test '`whisk` should not have an image' do
-    k = Fixtures::Kitchenwares.whisk
+    k = kitchenwares(:whisk)
 
-    if assert k
-      assert_nil k.image
-    end
+    assert_nil k.image
   end
 
 end

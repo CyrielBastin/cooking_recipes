@@ -1,5 +1,4 @@
 require 'test_helper'
-require_relative '../fixtures/ingredients'
 
 class CountryTest < ActiveSupport::TestCase
 
@@ -29,13 +28,13 @@ class CountryTest < ActiveSupport::TestCase
   end
 
   test '`salt` should have 3 recipes' do
-    i = Fixtures::Ingredients.salt
+    i = ingredients(:salt)
 
     assert_equal 3, i.recipes.count
   end
 
   test '`tomato` should have recipe `bolognese`' do
-    i = Fixtures::Ingredients.tomato
+    i = ingredients(:tomato)
     bolognese = i.recipes.filter { |r| r.name == 'Bolognese' }.at(0)
 
     assert bolognese

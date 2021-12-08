@@ -1,6 +1,4 @@
 require 'test_helper'
-require_relative '../fixtures/articles'
-require_relative '../fixtures/users'
 
 class ArticleTest < ActiveSupport::TestCase
 
@@ -9,7 +7,7 @@ class ArticleTest < ActiveSupport::TestCase
       a.title = 'New article'
       a.image = 'articles/1.png'
       a.content = 'This is a great content'
-      a.user = Fixtures::Users.grimm
+      a.user = users(:grimm)
     end
   end
 
@@ -51,13 +49,13 @@ class ArticleTest < ActiveSupport::TestCase
   end
 
   test 'article `belgian_cuisine` should have title = `Belgian Cuisine`' do
-    a = Fixtures::Articles.belgian_cuisine
+    a = articles(:belgian_cuisine)
 
     assert_equal 'Belgian Cuisine', a.title
   end
 
   test 'article `belgian_cuisine` should have content = `Try out belgian cuisine, it can be fabulous !`' do
-    a = Fixtures::Articles.belgian_cuisine
+    a = articles(:belgian_cuisine)
 
     assert_equal 'Try out belgian cuisine, it can be fabulous !', a.content
   end

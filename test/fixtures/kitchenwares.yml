@@ -1,6 +1,6 @@
 whisk:
   name: Whisk
-  image: kitchenwares/whisk.png
+  image:
 
 oven:
   name: Oven
