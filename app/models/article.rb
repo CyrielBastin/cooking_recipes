@@ -14,12 +14,8 @@ class Article < ApplicationRecord
 
   belongs_to :user
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 150 }
   validates :image, presence: true
   validates :content, presence: true
-
-  extend Mobility
-  translates :title, type: :string
-  translates :content, type: :text
 
 end

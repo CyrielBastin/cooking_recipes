@@ -14,5 +14,6 @@ class IngredientsRecipe < ApplicationRecord
   belongs_to :measure
 
   validates :quantity, numericality: { greater_than: 0 }, allow_nil: true
+  validates :comment, length: { maximum: 150 }, allow_nil: true
 
 end

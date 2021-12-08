@@ -1,4 +1,5 @@
 require 'test_helper'
+require_relative '../fixtures/countries'
 
 class CountryTest < ActiveSupport::TestCase
 
@@ -35,13 +36,13 @@ class CountryTest < ActiveSupport::TestCase
   # end
 
   test '`france` should have 2 recipes' do
-    c = countries(:france)
+    c = Fixtures::Countries.france
 
     assert_equal 2, c.recipes.count
   end
 
   test '`france` should have recipe `blanquette`' do
-    c = countries(:france)
+    c = Fixtures::Countries.france
     blanquettes = c.recipes.filter { |r| r.name == 'Blanquette' }
 
     assert blanquettes

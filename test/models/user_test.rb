@@ -1,4 +1,5 @@
 require "test_helper"
+require_relative '../fixtures/users'
 
 class UserTest < ActiveSupport::TestCase
 
@@ -15,8 +16,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not u.save
   end
 
-  test 'should save fixture `grimm`' do
-    assert users(:grimm).save
+  test '`grimm` email should be `grimm@grimm.io`' do
+    u = Fixtures::Users.grimm
+    pp '----------------------------------------'
+    pp u
+    pp '----------------------------------------'
+
+    assert_equal 'grimm@grimm.io', u.email
   end
 
 end

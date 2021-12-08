@@ -1,4 +1,5 @@
 require 'test_helper'
+require_relative '../fixtures/kitchenwares'
 
 class KitchenwareTest < ActiveSupport::TestCase
 
@@ -27,11 +28,44 @@ class KitchenwareTest < ActiveSupport::TestCase
     assert_not k2.save
   end
 
-  test 'should not save kitchenware without image' do
+  test 'name should be <= 50 characters' do
     k = get_kitchenware
-    k.image = nil
+    k.name = 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' # 51 chars
 
     assert_not k.save
+    k.name = 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' # 50 chars
+    assert k.save
+  end
+
+  # test 'should not save kitchenware without image' do
+  #   k = get_kitchenware
+  #   k.image = nil
+  #
+  #   assert_not k.save
+  # end
+
+  test '`pan` name should be `Pan`' do
+    k = Fixtures::Kitchenwares.pan
+
+    if assert k
+      assert_equal 'Pan', k.name
+    end
+  end
+
+  test '`oven` image should be `kitchenwares/oven.png`' do
+    k = Fixtures::Kitchenwares.oven
+
+    if assert k
+      assert_equal 'kitchenwares/oven.png', k.image
+    end
+  end
+
+  test '`whisk` should not have an image' do
+    k = Fixtures::Kitchenwares.whisk
+
+    if assert k
+      assert_nil k.image
+    end
   end
 
 end
