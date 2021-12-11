@@ -16,17 +16,19 @@
 # created_at:       datetime
 # updated_at:       datetime
 class Recipe < ApplicationRecord
+  extend Mobility
+  translates :name
 
   belongs_to :user
   belongs_to :category
   has_many :ingredients_recipes, dependent: :destroy
   has_many :ingredients, through: :ingredients_recipes
-  has_many :recipes_preparation, dependent: :destroy
+  has_many :recipes_preparations, dependent: :destroy
   has_and_belongs_to_many :kitchenwares
   has_and_belongs_to_many :countries
   has_many :recipe_images, dependent: :destroy
 
-  validates :name, presence: true, length: { maximum: 100 }
+  # validates :name, presence: true, length: { maximum: 100 }
   validates :preparation_time,
             :cooking_time,
             :number_of_people,

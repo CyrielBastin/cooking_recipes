@@ -1,7 +1,7 @@
-bolo_onion:
-  recipes_preparation: bolo_two
-  ingredient: onion
-
-bolo_tomato:
-  recipes_preparation: bolo_two
-  ingredient: tomato
+#bolo_onion:
+#  recipes_preparation: bolo_two
+#  ingredient: onion
+#
+#bolo_tomato:
+#  recipes_preparation: bolo_two
+#  ingredient: tomato

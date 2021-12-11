@@ -1,11 +1,7 @@
 belgian_cuisine:
-  title: Belgian Cuisine
   image: path/to/image.png
-  content: Try out belgian cuisine, it can be fabulous !
   user: grimm
 
 cheese_for_christmas:
-  title: Cheese for Christmas
   image: path/to/image2.png
-  content: Here, you will find our selection of great cheese to eat on Christmas
   user: grimm

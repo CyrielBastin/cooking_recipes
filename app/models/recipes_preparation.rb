@@ -10,13 +10,14 @@
 # step:   integer
 # detail: string
 class RecipesPreparation < ApplicationRecord
-  self.table_name = 'recipes_preparation'
+  extend Mobility
+  translates :detail
 
   belongs_to :recipe
   has_many :ingredients_recipes_preparations, dependent: :destroy
   has_many :ingredients, through: :ingredients_recipes_preparations
 
   validates :step, presence: true, numericality: { greater_than: 0 }
-  validates :detail, presence: true, length: { maximum: 255 }
+  # validates :detail, presence: true, length: { maximum: 255 }
 
 end

@@ -7,9 +7,11 @@
 # == Fields
 # name: string
 class Measure < ApplicationRecord
+  extend Mobility
+  translates :name
 
   has_many :ingredients_recipes
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
+  # validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
 
 end

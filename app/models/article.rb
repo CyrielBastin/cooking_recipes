@@ -5,17 +5,19 @@
 #
 # == Fields
 # title:      string
-# image:      string
 # content:    text
+# image:      string
 # user:       ApplicationRecord::User
 # created_at: datetime
 # updated_at: datetime
 class Article < ApplicationRecord
+  extend Mobility
+  translates :title, :content
 
   belongs_to :user
 
-  validates :title, presence: true, length: { maximum: 150 }
   validates :image, presence: true
-  validates :content, presence: true
+  # validates :title, presence: true, length: { maximum: 150 }
+  # validates :content, presence: true
 
 end
