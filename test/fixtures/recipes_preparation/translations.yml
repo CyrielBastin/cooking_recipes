@@ -1,0 +1,19 @@
+bolo_step_one_t_en:
+  translated_model: bolo_step_one
+  locale: en
+  detail: Wash your hands, you dirty PIG !
+
+bolo_step_one_t_fr:
+  translated_model: bolo_step_one
+  locale: fr
+  detail: Lave toi les mains, gros PORC !
+
+bolo_step_two_t_en:
+  translated_model: bolo_step_two
+  locale: en
+  detail: Cut onions and tomatoes
+
+bolo_step_two_t_fr:
+  translated_model: bolo_step_two
+  locale: fr
+  detail: Couper les oignons et les tomates

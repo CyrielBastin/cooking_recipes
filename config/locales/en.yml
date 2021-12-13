@@ -30,4 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      recipe:
+        difficulty:
+          easy: easy
+          normal: normal
+          hard: hard
+        price:
+          low: low
+          medium: medium
+          high: high

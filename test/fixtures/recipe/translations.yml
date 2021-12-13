@@ -1,0 +1,29 @@
+tartiflette_t_en:
+  translated_model: tartiflette
+  locale: en
+  name: Tartiflette
+
+tartiflette_t_fr:
+  translated_model: tartiflette
+  locale: fr
+  name: Tartiflette
+
+blanquette_t_en:
+  translated_model: blanquette
+  locale: en
+  name: Blanquette
+
+blanquette_t_fr:
+  translated_model: blanquette
+  locale: fr
+  name: Blanquette
+
+bolognese_t_en:
+  translated_model: bolognese
+  locale: en
+  name: Bolognese
+
+bolognese_t_fr:
+  translated_model: bolognese
+  locale: fr
+  name: Bolognaise

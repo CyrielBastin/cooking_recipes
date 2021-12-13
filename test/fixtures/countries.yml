@@ -1,7 +1,5 @@
-#france:
-#  name: France
-#  image: countries/france.png
-#
-#italy:
-#  name: Italy
-#  image: countries/italy.png
+france:
+  image: countries/france.png
+
+italy:
+  image: countries/italy.png

@@ -1,0 +1,29 @@
+gram_t_en:
+  translated_model: gram
+  locale: en
+  name: g
+
+gram_t_fr:
+  translated_model: gram
+  locale: fr
+  name: g
+
+teaspoon_t_en:
+  translated_model: teaspoon
+  locale: en
+  name: teaspoon
+
+teaspoon_t_fr:
+  translated_model: teaspoon
+  locale: fr
+  name: cuillère à café
+
+unit_t_en:
+  translated_model: unit
+  locale: en
+  name:
+
+unit_t_fr:
+  translated_model: unit
+  locale: fr
+  name:

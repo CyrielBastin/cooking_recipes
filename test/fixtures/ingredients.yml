@@ -1,19 +1,14 @@
-#salt:
-#  name: Salt
-#  image: ingredients/salt.png
-#
-#potato:
-#  name: Potato
-#  image: ingredients/potato.png
-#
-#onion:
-#  name: Onion
-#  image: ingredients/onion.png
-#
-#tomato:
-#  name: Tomato
-#  image: ingredients/tomato.png
-#
-#parsley:
-#  name: Parsley
-#  image: ingredients/parsley.png
+salt:
+  image: ingredients/salt.png
+
+potato:
+  image: ingredients/potato.png
+
+onion:
+  image: ingredients/onion.png
+
+tomato:
+  image: ingredients/tomato.png
+
+parsley:
+  image:

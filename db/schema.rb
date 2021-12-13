@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2021_12_11_014351) do
 
   create_table "categories", force: :cascade do |t|
     t.bigint "parent_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
@@ -53,6 +55,8 @@ ActiveRecord::Schema.define(version: 2021_12_11_014351) do
 
   create_table "countries", force: :cascade do |t|
     t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "countries_recipes", id: false, force: :cascade do |t|
@@ -86,6 +90,19 @@ ActiveRecord::Schema.define(version: 2021_12_11_014351) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ingredients_recipe_translations", force: :cascade do |t|
+    t.string "comment"
+    t.string "locale", null: false
+    t.bigint "ingredients_recipe_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment", "locale"], name: "index_ingredients_recipe_translations"
+    t.index ["ingredients_recipe_id", "locale"], name: "index_97f25a69a629607a86f03beb8445978af3a95d73", unique: true
+    t.index ["locale"], name: "index_ingredients_recipe_translations_on_locale"
   end
 
   create_table "ingredients_recipes", force: :cascade do |t|
@@ -103,17 +120,6 @@ ActiveRecord::Schema.define(version: 2021_12_11_014351) do
     t.index ["recipes_preparation_id"], name: "recipes_preparation_id_index"
   end
 
-  create_table "ingredients_recipes_translations", force: :cascade do |t|
-    t.string "comment"
-    t.string "locale", null: false
-    t.bigint "ingredients_recipes_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment", "locale"], name: "index_ingredients_recipes_translations"
-    t.index ["ingredients_recipes_id", "locale"], name: "index_97f25a69a629607a86f03beb8445978af3a95d73", unique: true
-    t.index ["locale"], name: "index_ingredients_recipes_translations_on_locale"
-  end
-
   create_table "kitchenware_translations", force: :cascade do |t|
     t.string "name"
     t.string "locale", null: false
@@ -127,6 +133,8 @@ ActiveRecord::Schema.define(version: 2021_12_11_014351) do
 
   create_table "kitchenwares", force: :cascade do |t|
     t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "kitchenwares_recipes", id: false, force: :cascade do |t|
@@ -148,6 +156,8 @@ ActiveRecord::Schema.define(version: 2021_12_11_014351) do
   end
 
   create_table "measures", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "recipe_translations", force: :cascade do |t|
@@ -180,6 +190,8 @@ ActiveRecord::Schema.define(version: 2021_12_11_014351) do
   create_table "recipes_images", force: :cascade do |t|
     t.bigint "recipe_id"
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_recipes_images_on_recipe_id"
   end
 
@@ -197,6 +209,8 @@ ActiveRecord::Schema.define(version: 2021_12_11_014351) do
   create_table "recipes_preparations", force: :cascade do |t|
     t.bigint "recipe_id"
     t.integer "step"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_recipes_preparations_on_recipe_id"
   end
 
@@ -220,7 +234,7 @@ ActiveRecord::Schema.define(version: 2021_12_11_014351) do
   add_foreign_key "category_translations", "categories"
   add_foreign_key "country_translations", "countries"
   add_foreign_key "ingredient_translations", "ingredients"
-  add_foreign_key "ingredients_recipes_translations", "ingredients_recipes", column: "ingredients_recipes_id"
+  add_foreign_key "ingredients_recipe_translations", "ingredients_recipes"
   add_foreign_key "kitchenware_translations", "kitchenwares"
   add_foreign_key "measure_translations", "measures"
   add_foreign_key "recipe_translations", "recipes"

@@ -1,0 +1,23 @@
+belgian_cuisine_t_en:
+  translated_model: belgian_cuisine
+  locale: en
+  title: Belgian Cuisine
+  content: Try out belgian cuisine, it can be fabulous !
+
+belgian_cuisine_t_fr:
+  translated_model: belgian_cuisine
+  locale: fr
+  title: Cuisine Belge
+  content: Essayez la cuisine belge, ça déchire le slip !
+
+cheese_for_christmas_t_en:
+  translated_model: cheese_for_christmas
+  locale: en
+  title: Cheese for Christmas
+  content: Here, you will find our selection of great cheese to eat on Christmas
+
+cheese_for_christmas_t_fr:
+  translated_model: cheese_for_christmas
+  locale: fr
+  title: Du fromage pour Noël
+  content: Ici, vous trouverez notre sélection gourmaise de fromages à manger pour Noël

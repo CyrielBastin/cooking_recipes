@@ -12,6 +12,6 @@ class Kitchenware < ApplicationRecord
 
   has_and_belongs_to_many :recipes
 
-  # validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
 
 end

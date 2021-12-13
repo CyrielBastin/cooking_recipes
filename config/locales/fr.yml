@@ -1,2 +1,12 @@
 fr:
-  hello: "Bonjour le Monde"
+  activerecord:
+    attributes:
+      recipe:
+        difficulty:
+          easy: facile
+          normal: normale
+          hard: difficile
+        price:
+          low: bas
+          medium: moyen
+          high: haut

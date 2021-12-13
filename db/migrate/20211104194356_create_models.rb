@@ -2,14 +2,17 @@ class CreateModels < ActiveRecord::Migration[6.1]
   def change
     create_table :ingredients do |t|
       t.string :image
+      t.timestamps
     end
 
     create_table :kitchenwares do |t|
       t.string :image
+      t.timestamps
     end
 
     create_table :categories do |t|
       t.references :parent, reference: :category
+      t.timestamps
     end
 
     create_table :articles do |t|
@@ -20,9 +23,10 @@ class CreateModels < ActiveRecord::Migration[6.1]
 
     create_table :countries do |t|
       t.string :image
+      t.timestamps
     end
 
-    create_table :measures
+    create_table :measures, &:timestamps
 
     create_table :recipes do |t|
       t.references :category
@@ -40,9 +44,10 @@ class CreateModels < ActiveRecord::Migration[6.1]
     create_table :recipes_images do |t|
       t.references :recipe
       t.string :name
+      t.timestamps
     end
 
-    create_join_table :recipes, :ingredients, primary_key: :id do |t|
+    create_join_table :recipes, :ingredients do |t|
       t.integer :quantity
       t.references :measure
     end
@@ -51,6 +56,7 @@ class CreateModels < ActiveRecord::Migration[6.1]
     create_table :recipes_preparations do |t|
       t.references :recipe
       t.integer :step
+      t.timestamps
     end
 
     create_join_table :recipes_preparations, :ingredients do |t|

@@ -6,8 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user1 = User.new(email: 'root@root.io', password: '123456', password_confirmation: '123456')
-user2 = User.new(email: 'grimm@grimm.io', password: '123456', password_confirmation: '123456')
+# Save an Array of +users+ in the database without throwing an error
+#
+# @param [Array<User>] users
+# @note catches [ActionView::Template::Error, ActionController::UrlGenerationError]
+# @return [Array<User>] users
+def save_users(users)
+  users.each do |user|
+    user.save
+  # There is a bug with the +Devise+ gem and a +locale+ variable scoped in the path (http://mysite.com/+en+/rest/of/path).
+  # The +Devise/confirmations+ controller actions don't seem to recognise the +params[:locale]+ in the request.
+  # Those error occured after a user is saved into the database. By catching those 2 errors we can safely save users
+  # into the database without throwing an error.
+  rescue ActionView::Template::Error, ActionController::UrlGenerationError
+    # Ignored
+  end
+end
 
-user1.save
-user2.save
+users = [
+  User.new(email: 'root@root.com', password: '123456', password_confirmation: '123456'),
+  User.new(email: 'grimm@grimm.com', password: '123456', password_confirmation: '123456')
+]
+save_users(users)
+puts '2 users created !'
