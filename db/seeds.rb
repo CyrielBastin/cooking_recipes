@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require_relative 'starting_data/import_data'
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -24,8 +28,10 @@ def save_users(users)
 end
 
 users = [
-  User.new(email: 'root@root.com', password: '123456', password_confirmation: '123456'),
-  User.new(email: 'grimm@grimm.com', password: '123456', password_confirmation: '123456')
+  User.new(email: 'grimm@grimm.io', password: '123456', password_confirmation: '123456'),
+  User.new(email: 'toto@toto.com', password: '123456', password_confirmation: '123456')
 ]
 save_users(users)
 puts '2 users created !'
+
+ImportData.import_csv

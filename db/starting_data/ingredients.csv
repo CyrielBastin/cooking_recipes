@@ -1,0 +1,173 @@
+id  | image                   | name_en            | name_fr
+1   | almonds.webp            | Almond             | Amande
+2   | anchovy.webp            | Anchovy            | Anchois
+3   | apple.webp              | Apple              | Pomme
+4   | asparagus.webp          | Asparagus          | Asperge
+5   | bacon.webp              | Bacon              | Bacon
+6   | baguette.webp           | Baguette           | Baguette
+7   | baking_powder.webp      | Baking Powder      | Levure chimique
+8   | banana_juice.webp       | Banana juice       | Jus de bananes
+9   | banana.webp             | Banana             | Banane
+10  | basil.webp              | Basil              | Basilique
+11  | bayleaf.webp            | Bayleaf            | Feuille de laurier
+12  | beef_stock.webp         | Beef Stock         | Fond de Veau
+13  | beef.webp               | Beef               | Boeuf
+14  | black_chocolate.webp    | Black chocolate    | Chocolat noir
+15  | bouquet_garni.webp      | Bouquet garni      | Bouquet garni
+16  | bread.webp              | Bread              | Pain
+17  | breadcrumbs.webp        | Breadcrumbs        | Croutons de pain
+18  | butter.webp             | Butter             | Beurre
+19  | cane_sugar.webp         | Cane sugar         | Sucre de canne
+20  | caper.webp              | Caper              | Câpre
+21  | carrot.webp             | Carrot             | Carotte
+22  | cauliflower.webp        | Cauliflower        | Chou-fleur
+23  | cayenne_pepper.webp     | Cayenne pepper     | Poivre de cayenne
+24  | celery.webp             | Celery             | Célerie
+25  | cheddar.webp            | Cheddar            | Cheddar
+26  | chicken_breast.webp     | Chicken breast     | Poitrine de poulet
+27  | chicken_escalope.webp   | Chicken escalope   | Escalope de poulet
+28  | chicken_stock           | Chicken Stock      | Fond de poulet
+29  | chicken_thigh.webp      | Chicken thigh      | Cuisse de poulet
+30  | chicken.webp            | Chicken            | Poulet
+31  | chickpea.webp           | Chickpea           | Pois chiche
+32  | chili_pepper.webp       | Chili pepper       | Piment
+33  | chili.webp              | Chili              | Chili
+34  | chive.webp              | Chive              | Ciboulette
+35  | chorizo.webp            | Chorizo            | Chorizo
+36  | cinnamon.webp           | Cinnamon           | Cannelle
+37  | clove.webp              | Clove              | Cloux de girofle
+38  | coarse_salt.webp        | Coarse salt        | Gros sel
+39  | coconut_milk.webp       | Coconut milk       | Lait de coco
+40  | cognac.webp             | Cognac             | Cognac
+41  | comte_cheese.webp       | Comte cheese       | Fromage de comté
+42  | coriander.webp          | Coriander          | Coriandre
+43  | cream.webp              | Cream              | Crème
+44  | cucumber.webp           | Cucumber           | Concombre
+45  | cumin.webp              | Cumin              | Cumin
+46  | curaçao.webp            | Curacao            | Curaçao
+47  | curry.webp              | Curry              | Curry
+48  | double_cream.webp       | Double cream       | Crème épaisse
+49  | dry_white_wine.webp     | Dry white wine     | Vin blanc sec
+50  | egg_yolk.webp           | Egg yolk           | Jaune d'oeuf
+51  | egg.webp                | Egg                | Oeuf
+52  | eggplant.webp           | Eggplant           | Aubergine
+53  | fish_stock.webp         | Fish Stock         | Fond de poissons
+54  | flour.webp              | Flour              | Farine
+55  | fresh_cheese.webp       | Fresh cheese       | Fromage frais
+56  | garlic.webp             | Garlic             | Aïl
+57  | gin.webp                | Gin                | Gin
+58  | ginger.webp             | Ginger             | Gingembre
+59  | goat_cheese.webp        | Goat cheese        | Fromage de chèvre
+60  | gorgonzola.webp         | Gorgonzola         | Gorgonzola
+61  | grated_cheese.webp      | Grated cheese      | Fromage rapé
+62  | green_pepper.webp       | Green pepper       | Poivron vert
+63  | gruyere.webp            | Gruyere            | Gruyère
+64  | ham.webp                | Ham                | Jambom
+65  | hamburger_bread.webp    | Hamburger bread    | Pain pour hamburger
+66  | herbes_de_provence.webp | Herbes de provence | Herbes de provence
+67  | honey.webp              | Honey              | Miel
+68  | ice_cube.webp           | Ice cube           | Glaçon
+69  | icing_sugar.webp        | Icing sugar        | Sucre glace
+70  | ketchup.webp            | Ketchup            | Ketchup
+71  | lardon.webp             | Lardon             | Lardon
+72  | lasagna.webp            | Lasagna            | Lasagne
+73  | leek.webp               | Leek               | Poireau
+74  | lemon_juice.webp        | Lemon juice        | Jus de citron
+75  | lemon.webp              | Lemon              | Citron
+76  | lettuce.webp            | Lettuce            | Laitue
+77  | lime.webp               | Lime               | Citron vert
+78  | macaroni.webp           | Macaroni           | Macaroni
+79  | mashed_potato.webp      | Mashed potatoes    | Purée
+80  | milk.webp               | Milk               | Lait
+81  | minced_beef.webp        | Minced beef        | Boeuf haché
+82  | minced_meat.webp        | Minced meat        | Viande hachée
+83  | mint.webp               | Mint               | Menthe
+84  | mozzarella.webp         | Mozzarella         | Mozzarella
+85  | agaricus_bisporus.webp  | Agaricus bisporus  | Champignons de paris
+86  | mushroom.webp           | Mushroom           | Champignon
+87  | mustard.webp            | Mustard            | Moutarde
+88  | nutmeg.webp             | Nutmeg             | Noix de muscade
+89  | olive_oil.webp          | Olive oil          | Huile d'olive
+90  | onion.webp              | Onion              | Oignon
+91  | orange_juice.webp       | Orange juice       | Jus d'orange
+92  | oregano.webp            | Oregano            | Origan
+93  | paprika.webp            | Paprika            | Paprika
+94  | parmesan.webp           | Parmesan           | Parmesan
+95  | parsley.webp            | Parsley            | Persil
+96  | pasta.webp              | Pasta              | Pâte
+97  | peach.webp              | Peach              | Pêche
+98  | peanut_oil.webp         | Peanut oil         | Huile d'arachide
+99  | pecorino.webp           | Pecorino           | Pecorino
+100 | peeled_tomato.webp      | Peeled tomatoes    | Tomates pelées
+101 | pepper.webp             | Pepper             | Poivre
+102 | pineapple_juice.webp    | Pineapple juice    | Jus d'ananas
+103 | pink_shrimp.webp        | Pink shrimp        | Crevette rose
+104 | pork_chop.webp          | Pork chop          | Côte de porc
+105 | pork.webp               | Pork               | Porc
+106 | potato.webp             | Potato             | Pommes de terre
+107 | puff_pastry.webp        | Puff pastry        | Pâte feuilletée
+108 | raclette_cheese.webp    | Raclette cheese    | Fromage à raclette
+109 | raisins.webp            | Raisins            | Raisins secs
+110 | rapeseed_oil.webp       | Rapeseed oil       | Huile de colza
+111 | red_bean.webp           | Red bean           | Haricot rouge
+112 | red_onion.webp          | Red onion          | Oignon rouge
+113 | red_pepper.webp         | Red pepper         | Poivron rouge
+114 | red_wine.webp           | Red wine           | Vin rouge
+115 | rum.webp                | Rum                | Rhum
+116 | rice.webp               | Rice               | Riz
+117 | risotto.webp            | Risotto            | Risotto
+118 | rosé_wine.webp          | Rosé wine          | Vin rosé
+119 | saint_moret.webp        | Saint Môret        | Saint Môret
+120 | salmon.webp             | Salmon             | Saumon
+121 | salt.webp               | Salt               | Sel
+122 | sardine.webp            | Sardine            | Sardine
+123 | semolina.webp           | Semolina           | Semoule
+124 | sesame_oil.webp         | Sesame oil         | Huile de sésame
+125 | shallot.webp            | Shallot            | Echalote
+126 | shrimp.webp             | Shrimp             | Crevette
+127 | sour_cream.webp         | Sour cream         | Crème fraîche
+128 | spaghetti.webp          | Spaghetti          | Spaghetti
+129 | sparkling_water.webp    | Sparkling water    | Eau pétillante
+130 | stock_cube.webp         | Stock cube         | Cube de bouillon
+131 | sugar.webp              | Sugar              | Sucre
+132 | tabasco.webp            | Tabasco            | Tabasco
+133 | tagliatelle.webp        | Tagliatelle        | Tagliatelle
+134 | tequila.webp            | Tequila            | Tequila
+135 | thyme.webp              | Thyme              | Thym
+136 | tomato_concasse.webp    | Tomato concasse    | Concassé de tomates
+137 | tomato_paste.webp       | Tomato paste       | Concentré de tomates
+138 | tomato_puree.webp       | Tomato puree       | Purée de tomates
+139 | tomato_sauce.webp       | Tomato sauce       | Sauce tomate
+140 | tomato.webp             | Tomato             | Tomate
+141 | tuna.webp               | Tuna               | Thon
+142 | turkey.webp             | Turkey             | Dinde
+143 | vanilla.webp            | Vanilla            | Vanille
+144 | veal_jarret.webp        | Veal jarret        | Jarret de veau
+145 | veal.webp               | Veal               | Veau
+146 | vegetable_oil.webp      | Vegetable oil      | Huile végétale
+147 | vegetable_stock.webp    | Vegetable Stock    | Fond de légumes
+148 | vinaigrette.webp        | Vinaigrette        | Vinaigrette
+149 | vinegar.webp            | Vinegar            | Vinaigre
+150 | water.webp              | Water              | Eau
+151 | white_onion.webp        | White onion        | Oignon blanc
+152 | white_pepper.webp       | White pepper       | Poivre blanc
+153 | white_wine.webp         | White wine         | Vin blanc
+154 | wine_vinegar.webp       | Wine vinegar       | Vinaigre de vin
+155 | yeast.webp              | Yeast              | Levure
+156 | yellow_onion.webp       | Yellow onion       | Oignon jaune
+157 | yogurt.webp             | Yogurt             | Yaourt
+158 | zucchini.webp           | Zucchini           | Courgette
+159 | _no_image.webp          | Cointreau          | Cointreau
+160 | orange.webp             | Orange             | Orange
+161 | _no_image.webp          | Cervelas           | Cervelas
+162 | corn.webp               | Corn               | Maïs
+163 | mayonnaise.webp         | Mayonnaise         | Mayonnaise
+164 | _no_image.webp          | Saindoux           | Saindoux
+165 | rosemary.webp           | Rosemary           | Romarin
+166 | sage.webp               | Sage               | Sauge
+167 | pizza_dough.webp        | Pizza dough        | Pâte à pizza
+168 | _no_image.webp          | Pepperoni          | Pepperoni
+169 | harissa.webp            | Harissa            | Harissa
+170 | salmon_fillet.webp      | Salmon fillet      | Filet de saumon
+171 | reblochon.webp          | Reblochon          | Reblochon
+172 | cooking_oil.webp        | Cooking oil        | Huile de friture
