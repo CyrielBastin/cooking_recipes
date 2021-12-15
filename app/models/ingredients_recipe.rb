@@ -13,7 +13,7 @@ class IngredientsRecipe < ApplicationRecord
 
   belongs_to :recipe
   belongs_to :ingredient
-  belongs_to :measure
+  belongs_to :measure, optional: true
 
   validates :quantity, numericality: { greater_than: 0 }, allow_nil: true
   validates :comment, length: { maximum: 150 }, allow_nil: true

@@ -1,4 +1,4 @@
-id  | recipe_id | ingredient_id | qty  | measure_id | comment_en| comment_fr
+id  | recipe_id | ingredient_id | qty  | measure_id | comment_en     | comment_fr
 1   | 1         | 56            | 4    | 9          |                |
 2   | 1         | 95            | 1    | 10         |                |
 3   | 1         | 6             | 1    | 1          |                |
@@ -266,11 +266,11 @@ id  | recipe_id | ingredient_id | qty  | measure_id | comment_en| comment_fr
 265 | 30        | 66            |      |            |                |
 266 | 30        | 130           | 1    | 1          |                |
 267 | 30        | 131           |      |            |                |
-268 | 30        | 137           | 1    | 23         |                |
+268 | 30        | 137           | 1    | 11         |                |
 269 | 30        | 101           |      |            |                |
 270 | 30        | 121           |      |            |                |
 271 | 30        | 89            |      |            |                |
-272 | 30        | 100           | 2    | 23         |                |
+272 | 30        | 100           | 2    | 11         |                |
 273 | 30        | 151           | 1    | 1          |                |
 274 | 31        | 106           | 1000 | 2          |                |
 275 | 31        | 172           |      |            |                |

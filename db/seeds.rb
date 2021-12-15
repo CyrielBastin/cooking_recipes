@@ -28,8 +28,8 @@ def save_users(users)
 end
 
 users = [
-  User.new(email: 'grimm@grimm.io', password: '123456', password_confirmation: '123456'),
-  User.new(email: 'toto@toto.com', password: '123456', password_confirmation: '123456')
+  User.new(id: 1, email: 'grimm@grimm.io', password: '123456', password_confirmation: '123456'),
+  User.new(id: 2, email: 'toto@toto.com', password: '123456', password_confirmation: '123456')
 ]
 save_users(users)
 puts '2 users created !'
