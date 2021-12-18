@@ -11,7 +11,7 @@
 # difficulty:       string
 # price:            string
 # image:            string
-# preparation:      text
+# preparations:     ApplicationRecord::RecipesPreparation
 # user_comment:     string
 # created_at:       datetime
 # updated_at:       datetime
@@ -26,7 +26,9 @@ class Recipe < ApplicationRecord
   has_many :recipes_preparations, dependent: :destroy
   has_and_belongs_to_many :kitchenwares
   has_and_belongs_to_many :countries
-  has_many :recipe_images, dependent: :destroy
+  has_many :recipes_images, dependent: :destroy
+
+  accepts_nested_attributes_for :recipes_preparations, :ingredients_recipes, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :preparation_time,

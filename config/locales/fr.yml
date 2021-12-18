@@ -1,5 +1,14 @@
 fr:
   activerecord:
+    models:
+      article: Article
+      category: Catégorie
+      country: Pays
+      ingredient: Ingrédient
+      kitcheware: Ustensile
+      measure: Mesure
+      recipe: Recette
+      user: Utilisateur
     attributes:
       recipe:
         difficulty:
@@ -10,3 +19,11 @@ fr:
           low: bas
           medium: moyen
           high: haut
+  flash:
+    success: 'Votre %{resource} a été %{action} avec succès !'
+    notice:
+    alert: "Votre %{resource} n'a pas pu être %{action} !"
+    action:
+      create: crée
+      update: modifié
+      delete: supprimé

@@ -41,3 +41,11 @@ en:
           low: low
           medium: medium
           high: high
+  flash:
+    success: 'Your %{resource} was successfully %{action} !'
+    notice:
+    alert: 'Your %{resource} could not be %{action} !'
+    action:
+      create: created
+      update: updated
+      delete: deleted

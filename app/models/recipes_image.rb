@@ -4,7 +4,7 @@
 # == Fields
 # recipe: ApplicationRecord::Recipe
 # name:   string
-class RecipeImage < ApplicationRecord
+class RecipesImage < ApplicationRecord
 
   belongs_to :recipe
 
