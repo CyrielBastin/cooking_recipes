@@ -1,4 +1,5 @@
 fr:
+  hello: Bonjour le Monde !
   activerecord:
     models:
       article: Article

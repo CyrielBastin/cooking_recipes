@@ -57,4 +57,9 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # We use the subdomain for the locale
+  config.hosts << Url::DEV_EN_URL
+  config.hosts << Url::DEV_FR_URL
+
 end

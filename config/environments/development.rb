@@ -1,4 +1,5 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
+require_relative '../url'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -74,4 +75,9 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # We use the subdomain for the locale
+  config.hosts << Url::DEV_EN_URL
+  config.hosts << Url::DEV_FR_URL
+
 end
