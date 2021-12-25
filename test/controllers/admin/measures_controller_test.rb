@@ -1,8 +1,9 @@
 require 'test_helper'
+require_relative '../../../config/url'
 
 class Admin::MeasuresControllerTest < ActionDispatch::IntegrationTest
   setup do
-    default_url_options[:host] = 'en.application.local'
+    default_url_options[:host] = Url::DEV_EN_URL
     @measure = measures :teaspoon
   end
 
