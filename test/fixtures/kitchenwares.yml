@@ -1,0 +1,8 @@
+whisk:
+  image:
+
+oven:
+  image: kitchenwares/oven.png
+
+pan:
+  image: kitchenwares/pan.png

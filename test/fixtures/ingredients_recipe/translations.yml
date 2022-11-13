@@ -1,0 +1,29 @@
+bolo_tomato_t_en:
+  translated_model: bolo_tomato
+  locale: en
+  comment: fresh and washed
+
+bolo_tomato_t_fr:
+  translated_model: bolo_tomato
+  locale: fr
+  comment: fraîche et lavée
+
+bolo_onion_t_en:
+  translated_model: bolo_onion
+  locale: en
+  comment:
+
+bolo_onion_t_fr:
+  translated_model: bolo_onion
+  locale: fr
+  comment:
+
+bolo_parsley_t_en:
+  translated_model: bolo_parsley
+  locale: en
+  comment: choped
+
+bolo_parsley_t_fr:
+  translated_model: bolo_parsley
+  locale: fr
+  comment: haché

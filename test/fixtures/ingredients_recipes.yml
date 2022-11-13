@@ -1,0 +1,17 @@
+bolo_tomato:
+  recipe: bolognese
+  ingredient: tomato
+  measure: unit
+  quantity: 6
+
+bolo_onion:
+  recipe: bolognese
+  ingredient: onion
+  measure: unit
+  quantity: 2
+
+bolo_parsley:
+  recipe: bolognese
+  ingredient: parsley
+  measure: gram
+  quantity: 15

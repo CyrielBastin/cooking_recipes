@@ -1,0 +1,19 @@
+france_t_en:
+  translated_model: france
+  locale: en
+  name: France
+
+france_t_fr:
+  translated_model: france
+  locale: fr
+  name: France
+
+italy_t_en:
+  translated_model: italy
+  locale: en
+  name: Italy
+
+italy_t_fr:
+  translated_model: italy
+  locale: fr
+  name: Italie

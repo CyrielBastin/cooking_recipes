@@ -1,0 +1,39 @@
+sauce_t_en:
+  translated_model: sauce
+  locale: en
+  name: Sauce
+
+sauce_t_fr:
+  translated_model: sauce
+  locale: fr
+  name: Sauce
+
+main_course_t_en:
+  translated_model: main_course
+  locale: en
+  name: Main course
+
+main_course_t_fr:
+  translated_model: main_course
+  locale: fr
+  name: Plat principal
+
+meat_t_en:
+  translated_model: meat
+  locale: en
+  name: Meat
+
+meat_t_fr:
+  translated_model: meat
+  locale: fr
+  name: Viande
+
+lamb_t_en:
+  translated_model: lamb
+  locale: en
+  name: Lamb
+
+lamb_t_fr:
+  translated_model: lamb
+  locale: fr
+  name: Agneau

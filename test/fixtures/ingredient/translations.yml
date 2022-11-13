@@ -1,0 +1,49 @@
+salt_t_en:
+  translated_model: salt
+  locale: en
+  name: Salt
+
+salt_t_fr:
+  translated_model: salt
+  locale: fr
+  name: Sel
+
+potato_t_en:
+  translated_model: potato
+  locale: en
+  name: Potato
+
+potato_t_fr:
+  translated_model: potato
+  locale: fr
+  name: Pommes de terre
+
+onion_t_en:
+  translated_model: onion
+  locale: en
+  name: Onion
+
+onion_t_fr:
+  translated_model: onion
+  locale: fr
+  name: Oignon
+
+tomato_t_en:
+  translated_model: tomato
+  locale: en
+  name: Tomato
+
+tomato_t_fr:
+  translated_model: tomato
+  locale: fr
+  name: Tomate
+
+parsley_t_en:
+  translated_model: parsley
+  locale: en
+  name: Parsley
+
+parsley_t_fr:
+  translated_model: parsley
+  locale: fr
+  name: Persil

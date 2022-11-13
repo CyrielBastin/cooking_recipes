@@ -1,0 +1,11 @@
+sauce:
+  parent:
+
+main_course:
+  parent:
+
+meat:
+  parent: main_course
+
+lamb:
+  parent: meat

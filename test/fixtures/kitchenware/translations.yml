@@ -1,0 +1,29 @@
+whisk_t_en:
+  translated_model: whisk
+  locale: en
+  name: Whisk
+
+whisk_t_fr:
+  translated_model: whisk
+  locale: fr
+  name: Fouet
+
+oven_t_en:
+  translated_model: oven
+  locale: en
+  name: Oven
+
+oven_t_fr:
+  translated_model: oven
+  locale: fr
+  name: Four
+
+pan_t_en:
+  translated_model: pan
+  locale: en
+  name: Pan
+
+pan_t_fr:
+  translated_model: pan
+  locale: fr
+  name: Casserole

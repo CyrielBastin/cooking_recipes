@@ -1,0 +1,7 @@
+belgian_cuisine:
+  image: path/to/image.png
+  user: grimm
+
+cheese_for_christmas:
+  image: path/to/image2.png
+  user: grimm
