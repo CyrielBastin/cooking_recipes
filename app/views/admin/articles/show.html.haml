@@ -1,0 +1,10 @@
+.container
+  = link_to sanitize("&larr; Back to Articles"), admin_articles_path
+  .card{style: 'width: 18rem;'}
+    .card-body
+      %h5.card-title= @article.title
+      %h6.card-subtitle.mb-2.text-muted= @article.id
+      %p.card-text= @article.content
+      .d-flex.justify-content-evenly
+        = link_to 'Edit', edit_admin_article_path(@article), role: 'button', class: 'btn btn-info'
+        = link_to 'Delete', admin_article_path(@article), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, role: 'button', class: 'btn btn-danger'

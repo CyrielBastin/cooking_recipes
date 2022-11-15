@@ -1,0 +1,6 @@
+= simple_form_for @article, url: admin_articles_path do |f|
+  = f.input :title
+  = f.input :content, as: :text
+  = f.input :image
+  = f.input :user_id, collection: User.pluck(:id), prompt: 'Choose a user id'
+  = f.submit 'Create article'

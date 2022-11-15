@@ -1,7 +1,7 @@
 class Admin::ArticlesController < AdminController
 
   def index
-    @articles = Article.all
+    @articles = Article.all.reverse
   end
 
   def new
@@ -14,7 +14,7 @@ class Admin::ArticlesController < AdminController
       flash[:success] = t 'flash.success', resource: Article.model_name.human, action: t('flash.action.create')
       redirect_to admin_articles_path
     else
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
 

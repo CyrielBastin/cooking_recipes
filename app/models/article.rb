@@ -19,5 +19,6 @@ class Article < ApplicationRecord
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 150 }
   validates :content, presence: true
+  validates :user_id, presence: true
 
 end

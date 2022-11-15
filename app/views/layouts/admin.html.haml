@@ -8,6 +8,12 @@
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload', defer: true
+    = hotwire_livereload_tags if Rails.env.development?
   %body
-    %h1 Hello from Admin
-    = yield
+    .container
+      .d-flex.justify-content-between
+        %h1 Hello from Admin
+        .d-flex.justify-content-between
+          %a{ href: 'http://en.application.local:3000/admin' } en
+          %a{ href: 'http://fr.application.local:3000/admin', style: 'margin-left:15px' } fr
+      = yield

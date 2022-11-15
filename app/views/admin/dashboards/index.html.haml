@@ -1,1 +1,23 @@
-%h1= t 'hello_admin'
+.container
+  %h1= t 'hello_admin'
+  .card
+    .card-body
+      = link_to t('activerecord.models.article').pluralize, admin_articles_path
+  .card
+    .card-body
+      = link_to t('activerecord.models.category').pluralize, admin_categories_path
+  .card
+    .card-body
+      = link_to t('activerecord.models.country').pluralize, admin_countries_path
+  .card
+    .card-body
+      = link_to t('activerecord.models.ingredient').pluralize, admin_ingredients_path
+  .card
+    .card-body
+      = link_to t('activerecord.models.kitcheware').pluralize, admin_kitchenwares_path
+  .card
+    .card-body
+      = link_to t('activerecord.models.measure').pluralize, admin_measures_path
+  .card
+    .card-body
+      = link_to t('activerecord.models.recipe').pluralize, admin_recipes_path

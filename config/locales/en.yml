@@ -33,6 +33,15 @@ en:
   hello: Hello World !
   hello_admin: Hello from Dashboard
   activerecord:
+    models:
+      article: Article
+      category: Category
+      country: Country
+      ingredient: Ingredient
+      kitcheware: Kitchenware
+      measure: Measure
+      recipe: Recipe
+      user: User
     attributes:
       recipe:
         difficulty:
