@@ -32,7 +32,7 @@ class Admin::ArticlesController < AdminController
       flash[:success] = t 'flash.success', resource: Article.model_name.human, action: t('flash.action.update')
       redirect_to admin_articles_path
     else
-      render 'edit'
+      render 'edit', status: :unprocessable_entity
     end
   end
 

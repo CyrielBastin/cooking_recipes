@@ -16,4 +16,6 @@
         .d-flex.justify-content-between
           %a{ href: 'http://en.application.local:3000/admin' } en
           %a{ href: 'http://fr.application.local:3000/admin', style: 'margin-left:15px' } fr
+      .flash#flash
+        = render 'layouts/flash'
       = yield
