@@ -1,0 +1,14 @@
+.container
+  = link_to sanitize("&larr; Back to Categories"), admin_categories_path
+  .card{style: 'width: 18rem;'}
+    .card-body
+      %h5.card-title= @category.name
+      %h6.card-subtitle.mb-2.text-muted= @category.id
+      %p.card-text
+        - if @category.parent
+          = @category.parent.name
+        - else
+
+      .d-flex.justify-content-evenly
+        = link_to 'Edit', edit_admin_category_path(@category), role: 'button', class: 'btn btn-info'
+        = link_to 'Delete', admin_category_path(@category), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, role: 'button', class: 'btn btn-danger'

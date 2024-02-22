@@ -1,1 +1,27 @@
-= link_to 'New article', new_admin_article_path
+= link_to sanitize("&larr; Back to Admin"), admin_root_path
+.container
+  %h1 Categories
+  = link_to 'New category', new_admin_category_path, role: 'button', class: 'btn btn-primary btn-lg'
+  - if @categories.size > 0
+    %table.table
+      %thead
+        %tr
+          %th{scope: 'col'}id
+          %th{scope: 'col'}name
+          %th{scope: 'col'}parent
+          %th{scope: 'col'}actions
+      %tbody
+        - @categories.each do |category|
+          %tr
+            %th{scope: 'row'}= category.id
+            %td
+              = link_to category.name, admin_category_path(category)
+            %td
+              - if category.parent
+                = link_to category.parent.name, admin_category_path(category.parent.name)
+              - else
+
+            %td
+              .d-flex.justify-content-evenly
+                = link_to 'Edit', edit_admin_category_path(category), role: 'button', class: 'btn btn-info'
+                = link_to 'Delete', admin_category_path(category), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, role: 'button', class: 'btn btn-danger'

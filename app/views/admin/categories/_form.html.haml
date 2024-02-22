@@ -1,0 +1,5 @@
+= simple_form_for [:admin, @category] do |f|
+  = f.input :name
+  = f.input :parent, collection: Category.all, prompt: 'Choose a parent category'
+  %div{style: 'margin-top: 20px'}
+    = f.submit 'Save category'
