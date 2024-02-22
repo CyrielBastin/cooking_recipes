@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class CountryTest < ActiveSupport::TestCase
+class IngredientTest < ActiveSupport::TestCase
 
   def dummy_ingredient
     I18n.locale = :en
