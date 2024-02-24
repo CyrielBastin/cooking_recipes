@@ -1,1 +1,23 @@
-= link_to 'New article', new_admin_article_path
+= link_to sanitize("&larr; Back to Admin"), admin_root_path
+.container
+  %h1 Countries
+  = link_to 'New country', new_admin_country_path, role: 'button', class: 'btn btn-primary btn-lg'
+  - if @countries.size > 0
+    %table.table
+      %thead
+        %tr
+          %th{scope: 'col'}id
+          %th{scope: 'col'}name
+          %th{scope: 'col'}image
+          %th{scope: 'col'}actions
+      %tbody
+        - @countries.each do |country|
+          %tr
+            %th{scope: 'row'}= country.id
+            %td
+              = link_to country.name, admin_country_path(country)
+            %td= country.image
+            %td
+              .d-flex.justify-content-evenly
+                = link_to 'Edit', edit_admin_country_path(country), role: 'button', class: 'btn btn-info'
+                = link_to 'Delete', admin_country_path(country), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, role: 'button', class: 'btn btn-danger'

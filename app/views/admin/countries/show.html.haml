@@ -1,0 +1,10 @@
+.container
+  = link_to sanitize("&larr; Back to Countries"), admin_countries_path
+  .card{style: 'width: 18rem;'}
+    .card-body
+      %h5.card-title= @country.name
+      %h6.card-subtitle.mb-2.text-muted= @country.id
+      %p.card-text= @country.image
+      .d-flex.justify-content-evenly
+        = link_to 'Edit', edit_admin_country_path(@country), role: 'button', class: 'btn btn-info'
+        = link_to 'Delete', admin_country_path(@country), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, role: 'button', class: 'btn btn-danger'

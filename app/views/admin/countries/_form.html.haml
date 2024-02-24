@@ -1,0 +1,5 @@
+= simple_form_for [:admin, @country] do |f|
+  = f.input :name
+  = f.input :image
+  %div{style: 'margin-top: 20px'}
+    = f.submit 'Save country'
