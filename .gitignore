@@ -1,0 +1,16 @@
+.idea
+backend/.idea
+
+backend/.bundle
+backend/log
+backend/tmp
+backend/storage
+backend/vendor
+
+backend/public/assets
+
+backend/config/master.key
+
+backend/app/assets/builds
+
+backend/node_modules
