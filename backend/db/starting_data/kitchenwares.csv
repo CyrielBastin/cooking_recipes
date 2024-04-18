@@ -1,0 +1,37 @@
+id | image                | name_en         | name_fr
+1  | baking_dish.webp     | Baking dish     | Plat à gratin
+2  | blender.webp         | Blender         | Mixeur
+3  | bowl.webp            | Bowl            | Bol
+4  | chopping_board.webp  | Chopping board  | Planche à découper
+5  | deep_fryer.webp      | Deep fryer      | Friteuse
+6  | fork.webp            | Fork            | Fourchette
+7  | gratter.webp         | Gratter         | Râpe
+8  | juicer.webp          | Juicer          | Presse-agrumes
+9  | kitchen_scale.webp   | Kitchen scale   | Balance de cuisine
+10 | knife.webp           | Knife           | Couteau
+11 | ladle.webp           | Ladle           | Louche
+12 | maryse.webp          | Maryse          | Maryse
+13 | mixing_bowl.webp     | Mixing bowl     | Saladier
+14 | muffin_tin.webp      | Muffin tin      | Plât à muffin
+15 | oven.webp            | Oven            | Four
+16 | paint_brush.webp     | Paint brush     | Pinceau
+17 | pan.webp             | Pan             | Casserole
+18 | parchment_paper.webp | Parchment paper | Papier sulfurisé
+19 | peeler.webp          | Peeler          | Econome
+20 | pie_pan.webp         | Pie pan         | Moule à tarte
+21 | robot.webp           | Robot           | Robot
+22 | rolling_pin.webp     | Rolling pin     | Rouleau à pâtisserie
+23 | scizor.webp          | Scizor          | Ciseau
+24 | sieve.webp           | Sieve           | Tamis
+25 | skillet.webp         | Skillet         | Poêle
+26 | slotted_spoon.webp   | Slotted spoon   | Ecumoire
+27 | springform_pan.webp  | Springform pan  | Moule
+28 | strainer.webp        | Strainer        | Passoire
+29 | whisk.webp           | Whisk           | Fouet
+30 | wooden_spoon.webp    | Wooden spoon    | Cuillère en bois
+31 | garlic_press.webp    | Garlic press    | Presse ail
+32 | sandwich_maker.webp  | Sandwich maker  | Appareil à croque-monsieur
+33 | cake_rack.webp       | Cake rack       | Grille à gâteaux
+34 | pitter.webp          | Pitter          | Dénoyauteur
+35 | wok.webp             | Wok             | Wok
+36 | piping_bag.webp      | Piping bag      | Poche à douille

@@ -1,0 +1,110 @@
+id  | parent_id | name_en               | name_fr
+1   |           | Appetizers            | Apéritifs
+2   |           | Entrees               | Entrées
+3   |           | Main courses          | Plats principaux
+4   |           | Desserts              | Desserts
+5   |           | Sauces                | Sauces
+6   |           | Side dishes           | Accompagnements
+7   |           | Drinks                | Boissons
+8   |           | Breakfast             | Petits-déjeuners
+9   | 2         | Cold entrees          | Entrées froides
+10  | 2         | Hot entrees           | Entrées chaudes
+11  | 9         | Salads                | Salades
+12  | 9         | Raw fish              | Poissons crus
+13  | 12        | Sushis                | Sushis
+14  | 12        | Gravelax              | Gravelax
+15  | 9         | Foie gras             | Foie gras
+16  | 9         | Terrines, patés       | Terrines, patés
+17  | 10        | Soups                 | Soupes
+18  | 10        | Soufflés              | Soufflés
+19  | 10        | Toasts                | Tartines
+20  | 3         | Meat                  | Viandes
+21  | 3         | Fishes                | Poissons
+22  | 3         | Shell fishes          | Fruits de mer
+23  | 3         | Pasta, Rice, Semolina | Pâtes, Riz, Semoule
+24  | 3         | Uniques dishes        | Plats uniques
+25  | 20        | Meat in sauce         | Viandes en sauce
+26  | 25        | Paupiette             | Paupiette
+27  | 20        | Roasted Meat          | Viandes rôties
+28  | 20        | Meatballs             | Boulettes de viande
+29  | 21        | Oven fishes           | Poissons au four
+30  | 21        | Fish finger           | Poissons panés
+31  | 23        | Pasta in sauce        | Pâtes en sauce
+32  | 23        | Spaghetti             | Spaghetti
+33  | 23        | Tagliatelle           | Tagliatelle
+34  | 23        | Risotto               | Risotto
+35  | 23        | Macaronis             | Macaronis
+36  | 23        | Gnocchi               | Gnocchi
+37  | 23        | Noodles               | Nouilles
+38  | 37        | Ramen                 | Ramen
+39  | 24        | Couscous              | Couscous
+40  | 24        | Shepherd's pie        | Hachis parmentier
+41  | 24        | Paella                | Paella
+42  | 24        | Cordon bleu           | Cordon bleu
+43  | 4         | Cakes                 | Gâteaux
+44  | 43        | Chocolate cakes       | Gateaux au chocolat
+45  | 43        | Yogurt cakes          | Gateaux au yaourt
+46  | 4         | Biscuits              | Biscuits
+47  | 46        | Cookies               | Cookies
+48  | 4         | Mousses               | Mousses
+49  | 4         | Crumbles              | Crumbles
+50  | 4         | Pies                  | Tartes
+51  | 50        | Apple pies            | Tartes aux pommes
+52  | 50        | Strawberry pies       | Tartes aux fraises
+53  | 4         | Choux                 | Choux
+54  | 53        | Choux à la crème      | Choux à la crème
+55  | 53        | Eclairs               | Eclairs
+56  | 49        | Apple crumbles        | Crumble aux pommes
+57  | 49        | Banana crumbles       | Crumble à la banane
+58  | 4         | Waflles               | Gauffres
+59  | 4         | Tiramisu              | Tiramisu
+60  | 5         | Salty sauces          | Sauces salées
+61  | 60        | Vinaigrettes          | Vinaigrettes
+62  | 60        | Pesto                 | Pesto
+63  | 60        | Hollandaises          | Hollandaises
+64  | 60        | Mayonnaises           | Mayonnaises
+65  | 6         | Pasta                 | Pâtes
+66  | 6         | Potatoes              | Patates
+67  | 66        | French fries          | Frites
+68  | 66        | Oven potatoes         | Pommes au four
+69  | 66        | Pommes duchesse       | Pommes duchesse
+70  | 6         | Vegetables            | Légumes
+71  | 70        | Leeks                 | Poireaux
+72  | 70        | Carrots               | Carrottes
+73  | 70        | Asparagus             | Asperges
+74  | 70        | Peas                  | Petits pois
+75  | 70        | Beans                 | Haricots
+76  | 70        | Cauliflowers          | Chou-fleurs
+77  | 70        | Cabbages              | Choux
+78  | 70        | Peppers               | Poivrons
+79  | 70        | Onions                | Oignons
+80  | 7         | Cold Drinks           | Boissons froides
+81  | 7         | Hot drinks            | Boissons chaudes
+82  | 80        | Alcohols              | Alcools
+83  | 82        | Mojitos               | Mojitos
+84  | 82        | Sangrias              | Sangrias
+85  | 82        | Punchs                | Punchs
+86  | 82        | Gins                  | Gins
+87  | 82        | Martinis              | Martinis
+88  | 82        | Rums                  | Rhums
+89  | 82        | Margaritas            | Margaritas
+90  | 81        | Hot wine              | Vin chaud
+91  | 81        | Hot chocolate         | Chocolat chaud
+92  | 81        | Tea                   | Thé
+93  | 8         | Crepes                | Crèpes
+94  | 8         | Bread                 | Pain
+95  | 8         | Eggs                  | Oeufs
+96  | 93        | Pancakes              | Pancakes
+97  | 95        | Benedict eggs         | Oeufs benedict
+98  | 95        | Scrambled eggs        | Oeufs brouillés
+99  | 95        | Omelettes             | Omelettes
+100 | 95        | Poached eggs          | Oeufs pochés
+101 | 25        | Blanquettes           | Blanquettes
+102 | 20        | Hamburgers            | Hamburgers
+103 | 23        | Lasagnas              | Lasagnes
+104 | 3         | Pizzas                | Pizzas
+105 | 60        | Béchamels             | Béchamels
+106 | 60        | Tomato sauces         | Sauces tomate
+107 | 66        | Mashed potatoes       | Purées
+108 | 1         | Rillettes             | Rillettes
+109 | 35        | Mac & Cheese          | Macaronis aux fromage
