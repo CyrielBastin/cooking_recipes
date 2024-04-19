@@ -1,0 +1,20 @@
+bolo_tomato:
+  recipe: bolognese
+  ingredient: tomato
+  measure: unit
+  quantity: 6
+  comment: fresh and washed
+
+bolo_onion:
+  recipe: bolognese
+  ingredient: onion
+  measure: unit
+  quantity: 2
+  comment:
+
+bolo_parsley:
+  recipe: bolognese
+  ingredient: parsley
+  measure: gram
+  quantity: 15
+  comment: chopped

@@ -3,7 +3,6 @@
 require 'csv'
 
 # Module to import starting data
-# In order for it to work, ACTIVATE the plugin +fallthrough_accessors+ from the +Mobility+ gem
 module ImportData
 
   def self.import_csv

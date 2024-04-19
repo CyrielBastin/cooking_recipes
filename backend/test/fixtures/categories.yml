@@ -1,0 +1,15 @@
+sauce:
+  name: Sauce
+  parent:
+
+main_course:
+  name: Main course
+  parent:
+
+meat:
+  name: Meat
+  parent: main_course
+
+lamb:
+  name: Lamb
+  parent: meat

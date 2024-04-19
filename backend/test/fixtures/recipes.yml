@@ -1,0 +1,44 @@
+tartiflette:
+  name: Tartiflette
+  countries: france
+  category: main_course
+  user: grimm
+  ingredients: salt, potato
+  kitchenwares: oven, pan
+  preparation_time: 30
+  cooking_time: 20
+  difficulty: easy
+  price: medium
+  image: recipes/tartiflette.png
+  number_of_people: 3
+  description: In Tartiflette we trust !
+
+blanquette:
+  name: Blanquette
+  countries: france
+  category: main_course
+  user: grimm
+  ingredients: salt, parsley
+  kitchenwares: pan, whisk
+  preparation_time: 10
+  cooking_time: 115
+  difficulty: easy
+  price: medium
+  image: recipes/blanquette.png
+  number_of_people: 4
+  description: Delicious 'blanquette de veau'
+
+bolognese:
+  name: Bolognese
+  countries: italy
+  category: sauce
+  user: grimm
+  ingredients: salt, parsley
+  kitchenwares: pan, whisk
+  preparation_time: 20
+  cooking_time: 60
+  difficulty: easy
+  price: low
+  image: recipes/bolognese.png
+  number_of_people: 8
+  description: Delicious bolognese sauce

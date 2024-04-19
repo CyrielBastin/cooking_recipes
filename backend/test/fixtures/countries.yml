@@ -1,0 +1,7 @@
+france:
+  image: countries/france.png
+  name: France
+
+italy:
+  image: countries/italy.png
+  name: Italy
