@@ -1,45 +1,30 @@
+# frozen_string_literal: true
 class Api::CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
-  end
 
-  def new
-    @category = Category.new
+    render 'index', status: :ok
   end
 
   def create
     @category = Category.new(category_params)
-    if @category.save
-      flash[:success] = t 'flash.success', resource: Category.model_name.human, action: t('flash.action.create')
-      redirect_to admin_categories_path
-    else
-      render 'new'
-    end
+
+    render('show', status: :created) if @category.save
   end
 
   def show
     @category = Category.find(params[:id])
   end
 
-  def edit
-    @category = Category.find(params[:id])
-  end
-
   def update
     @category = Category.find(params[:id])
-    if @category.update(category_params)
-      flash[:success] = t 'flash.success', resource: Category.model_name.human, action: t('flash.action.update')
-      redirect_to admin_categories_path
-    else
-      render 'edit'
-    end
+
+    render('show', status: :ok) if @category.update(category_params)
   end
 
   def destroy
-    Category.find(params[:id]).destroy
-    flash[:success] = t 'flash.success', resource: Category.model_name.human, action: t('flash.action.delete')
-    redirect_to admin_categories_path
+    head(:no_content) if Category.find(params[:id]).destroy
   end
 
   private

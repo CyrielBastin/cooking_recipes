@@ -7,7 +7,7 @@ class ActivitiesControllerTest < ActionDispatch::IntegrationTest
     @article = articles(:belgian_cuisine)
   end
 
-  test 'should get index' do
+  test 'retrieves all articles' do
     get api_articles_url
     assert_response :success
   end
