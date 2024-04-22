@@ -1,4 +1,4 @@
-class Admin::CountriesController < AdminController
+class Api::CountriesController < ApplicationController
 
   def index
     @countries = Country.all

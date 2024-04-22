@@ -1,4 +1,4 @@
-class Admin::KitchenwaresController < AdminController
+class Api::KitchenwaresController < ApplicationController
 
   def index
     @kitchenwares = Kitchenware.all

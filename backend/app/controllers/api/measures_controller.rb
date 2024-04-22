@@ -1,4 +1,4 @@
-class Admin::MeasuresController < AdminController
+class Api::MeasuresController < ApplicationController
 
   def index
     @measures = Measure.all
