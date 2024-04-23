@@ -16,14 +16,14 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Country.count') do
       post api_countries_url, params:
         { country:
-            { image: 'belgium.png',
+            { image: 'countries/belgium.png',
               name: 'Belgium' } }
     end
 
     assert_response :created
 
     json_response = ActiveSupport::JSON.decode @response.body
-    assert_equal 'belgium.png', json_response['image']
+    assert_equal 'countries/belgium.png', json_response['image']
     assert_equal 'Belgium', json_response['name']
   end
 

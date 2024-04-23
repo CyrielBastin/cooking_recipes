@@ -1,45 +1,31 @@
+# frozen_string_literal: true
+
 class Api::IngredientsController < ApplicationController
 
   def index
     @ingredients = Ingredient.all
-  end
 
-  def new
-    @ingredient = Ingredient.new
+    render 'index', status: :ok
   end
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
-    if @ingredient.save
-      flash[:success] = t 'flash.success', resource: Ingredient.model_name.human, action: t('flash.action.create')
-      redirect_to admin_ingredients_path
-    else
-      render 'new'
-    end
+
+    render('show', status: :created) if @ingredient.save
   end
 
   def show
     @ingredient = Ingredient.find(params[:id])
   end
 
-  def edit
-    @ingredient = Ingredient.find(params[:id])
-  end
-
   def update
     @ingredient = Ingredient.find(params[:id])
-    if @ingredient.update(ingredient_params)
-      flash[:success] = t 'flash.success', resource: Ingredient.model_name.human, action: t('flash.action.update')
-      redirect_to admin_ingredients_path
-    else
-      render 'edit'
-    end
+
+    render('show', status: :ok) if @ingredient.update(ingredient_params)
   end
 
   def destroy
-    Ingredient.find(params[:id]).destroy
-    flash[:success] = t 'flash.success', resource: Ingredient.model_name.human, action: t('flash.action.delete')
-    redirect_to admin_ingredients_path
+    head(:no_content) if Ingredient.find(params[:id]).destroy
   end
 
   private
