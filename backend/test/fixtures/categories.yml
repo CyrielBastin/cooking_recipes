@@ -3,7 +3,7 @@ sauce:
   parent:
 
 main_course:
-  name: Main course
+  name: Main Course
   parent:
 
 meat:

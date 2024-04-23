@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class ActivitiesControllerTest < ActionDispatch::IntegrationTest
+class ArticlesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @article = articles(:belgian_cuisine)
   end

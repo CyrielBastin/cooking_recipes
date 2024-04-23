@@ -29,10 +29,10 @@ class CategoryTest < ActiveSupport::TestCase
     assert_nil c.parent
   end
 
-  test 'category `meat` parent\'s name should be `Main course`' do
+  test 'category `meat` parent\'s name should be `Main Course`' do
     c = categories :meat
 
-    assert_equal 'Main course', c.parent.name
+    assert_equal 'Main Course', c.parent.name
   end
 
   test 'category `lamb` should have parent `meat`' do
@@ -44,7 +44,7 @@ class CategoryTest < ActiveSupport::TestCase
   test 'category `lamb` should have grandparent `main_course`' do
     c = categories :lamb
 
-    assert_equal 'Main course', c.parent.parent.name
+    assert_equal 'Main Course', c.parent.parent.name
   end
 
   test 'category `main_course` should have 2 recipes' do
@@ -53,10 +53,10 @@ class CategoryTest < ActiveSupport::TestCase
     assert_equal 2, c.recipes.count
   end
 
-  test 'category `main_course` should have name: "Main course"' do
+  test 'category `main_course` should have name: "Main Course"' do
     c = categories :main_course
 
-    assert_equal 'Main course', c.name
+    assert_equal 'Main Course', c.name
   end
 
   test 'category `main_course` should have recipe `Tartiflette`' do
