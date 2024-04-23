@@ -1,45 +1,31 @@
+# frozen_string_literal: true
+
 class Api::CountriesController < ApplicationController
 
   def index
     @countries = Country.all
-  end
 
-  def new
-    @country = Country.new
+    render 'index', status: :ok
   end
 
   def create
     @country = Country.new(country_params)
-    if @country.save
-      flash[:success] = t 'flash.success', resource: Country.model_name.human, action: t('flash.action.create')
-      redirect_to admin_countries_path
-    else
-      render 'new'
-    end
+
+    render('show', status: :created) if @country.save
   end
 
   def show
     @country = Country.find(params[:id])
   end
 
-  def edit
-    @country = Country.find(params[:id])
-  end
-
   def update
     @country = Country.find(params[:id])
-    if @country.update(country_params)
-      flash[:success] = t 'flash.success', resource: Country.model_name.human, action: t('flash.action.update')
-      redirect_to admin_countries_path
-    else
-      render 'edit'
-    end
+
+    render('show', status: :ok) if @country.update(country_params)
   end
 
   def destroy
-    Country.find(params[:id]).destroy
-    flash[:success] = t 'flash.success', resource: Country.model_name.human, action: t('flash.action.delete')
-    redirect_to admin_countries_path
+    head(:no_content) if Country.find(params[:id]).destroy
   end
 
   private
