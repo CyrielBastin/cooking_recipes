@@ -40,6 +40,7 @@ class CreateModels < ActiveRecord::Migration[7.1]
     create_table :recipes do |t|
       t.references :category
       t.references :user
+      t.references :country
       t.string :name
       t.integer :preparation_time
       t.integer :cooking_time

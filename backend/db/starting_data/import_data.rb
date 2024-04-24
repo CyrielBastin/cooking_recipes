@@ -13,7 +13,6 @@ module ImportData
     import_kitchenwares
     import_measures
     import_recipes
-    import_countries_recipes
     import_ingredients_recipes
     import_kitchenwares_recipes
     import_recipes_preparation
@@ -40,7 +39,7 @@ module ImportData
       CSV.foreach path(:articles), **default_options do |row|
         article = Article.new do |a|
           a.image = row['image']
-          a.user = User.find(row['user_id'].to_i)
+          a.user_id = row['user_id']
           a.title = row['title_en']
           a.content = row['content_en']
         end
@@ -112,8 +111,9 @@ module ImportData
       count = 0
       CSV.foreach path(:recipes), **default_options do |row|
         recipe = Recipe.new do |r|
-          r.category = Category.find(row['category_id'].to_i)
-          r.user = User.find(row['user_id'].to_i)
+          r.category_id = row['category_id']
+          r.country_id = row['country_id']
+          r.user_id = row['user_id']
           r.preparation_time = row['preparation_time']
           r.cooking_time = row['cooking_time']
           r.number_of_people = row['number_of_people']
@@ -128,23 +128,12 @@ module ImportData
       puts "#{count} Recipes created !"
     end
 
-    def import_countries_recipes
-      count = 0
-      CSV.foreach path(:countries_recipes), **default_options do |row|
-        recipe = Recipe.find(row['recipe_id'].to_i)
-        recipe.countries << Country.find(row['country_id'].to_i)
-
-        count += 1 if recipe.save
-      end
-      puts "#{count} Countries Recipes created !"
-    end
-
     def import_ingredients_recipes
       count = 0
       CSV.foreach path(:ingredients_recipes), **default_options do |row|
         ingredient_recipe = IngredientsRecipe.new do |ir|
-          ir.recipe = Recipe.find(row['recipe_id'].to_i)
-          ir.ingredient = Ingredient.find(row['ingredient_id'].to_i)
+          ir.recipe_id = row['recipe_id']
+          ir.ingredient_id = row['ingredient_id']
           ir.quantity = row['qty']
           ir.measure_id = row['measure_id']
           ir.comment = row['comment_en']
@@ -169,7 +158,7 @@ module ImportData
       count = 0
       CSV.foreach path(:recipes_preparation), **default_options do |row|
         recipe_preparation = RecipesPreparation.new do |rp|
-          rp.recipe = Recipe.find(row['recipe_id'].to_i)
+          rp.recipe_id = row['recipe_id']
           rp.step = row['step']
           rp.detail = row['detail_en']
         end
@@ -182,8 +171,8 @@ module ImportData
       count = 0
       CSV.foreach path(:ingredients_recipes_preparation), **default_options do |row|
         i_r_p = IngredientsRecipesPreparation.new do |irp|
-          irp.recipes_preparation = RecipesPreparation.find(row['recipes_preparation_id'].to_i)
-          irp.ingredient = Ingredient.find(row['ingredient_id'].to_i)
+          irp.recipes_preparation_id = row['recipes_preparation_id']
+          irp.ingredient_id = row['ingredient_id']
         end
         count += 1 if i_r_p.save
       end

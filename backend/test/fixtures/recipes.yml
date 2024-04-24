@@ -1,6 +1,6 @@
 tartiflette:
   name: Tartiflette
-  countries: france
+  country: france
   category: main_course
   user: grimm
   ingredients: salt, potato
@@ -15,7 +15,7 @@ tartiflette:
 
 blanquette:
   name: Blanquette
-  countries: france
+  country: france
   category: main_course
   user: grimm
   ingredients: salt, parsley
@@ -30,7 +30,7 @@ blanquette:
 
 bolognese:
   name: Bolognese
-  countries: italy
+  country: italy
   category: sauce
   user: grimm
   ingredients: salt, parsley

@@ -146,10 +146,8 @@ class RecipeTest < ActiveSupport::TestCase
 
   test '`tartiflette` country name is: `France`' do
     r = recipes :tartiflette
-    r_france = r.countries.filter { |c| c.name == 'France' }.at(0)
 
-    assert r_france
-    assert_equal 'France', r_france.name
+    assert_equal 'France', r.country.name
   end
 
   test '`bolognese` kitchenware should contain `pan` & `whisk`' do

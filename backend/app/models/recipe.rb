@@ -23,7 +23,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :ingredients_recipes
   has_many :recipes_preparations, dependent: :destroy
   has_and_belongs_to_many :kitchenwares
-  has_and_belongs_to_many :countries
+  belongs_to :country, optional: true
   has_many :recipes_images, dependent: :destroy
 
   accepts_nested_attributes_for :recipes_preparations, :ingredients_recipes, allow_destroy: true

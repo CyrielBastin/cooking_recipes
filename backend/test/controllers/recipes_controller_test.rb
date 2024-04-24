@@ -81,6 +81,17 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'In Tartiflette we trust !', json_response['description']
   end
 
+  test 'updates recipe `tartiflette` to add country `france`' do
+    patch api_recipe_url(@recipe), params:
+      { recipe:
+          { country_ids: [countries(:france)] } }
+
+    assert_response :success
+    json_response = ActiveSupport::JSON.decode @response.body
+    assert_equal 'Tartiflette', json_response['name']
+    assert_equal 'grimm@grimm.com', json_response['user']['email']
+  end
+
   test 'updates a recipe fully' do
     put api_recipe_url(@recipe), params:
       { recipe:

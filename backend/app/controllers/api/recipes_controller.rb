@@ -32,7 +32,10 @@ class Api::RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:id, :image, :name, :category_id, :user_id, :preparation_time,
-                                   :cooking_time, :number_of_people, :difficulty, :price, :description)
+                                   :cooking_time, :number_of_people, :difficulty, :price, :description,
+                                   :kitchenware_ids, :country_ids,
+                                   ingredients_recipes_attributes: %i[id ingredient_id quantity measure_id comment],
+                                   recipes_preparations_attributes: %i[id step detail])
   end
 
 end

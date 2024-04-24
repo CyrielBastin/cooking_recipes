@@ -92,6 +92,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_134321) do
   create_table "recipes", force: :cascade do |t|
     t.bigint "category_id"
     t.bigint "user_id"
+    t.bigint "country_id"
     t.string "name"
     t.integer "preparation_time"
     t.integer "cooking_time"
@@ -103,6 +104,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_134321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_recipes_on_category_id"
+    t.index ["country_id"], name: "index_recipes_on_country_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
