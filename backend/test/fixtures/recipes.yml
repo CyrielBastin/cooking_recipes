@@ -3,7 +3,6 @@ tartiflette:
   country: france
   category: main_course
   user: grimm
-  ingredients: salt, potato
   kitchenwares: oven, pan
   preparation_time: 30
   cooking_time: 20
@@ -18,7 +17,6 @@ blanquette:
   country: france
   category: main_course
   user: grimm
-  ingredients: salt, parsley
   kitchenwares: pan, whisk
   preparation_time: 10
   cooking_time: 115
@@ -33,7 +31,6 @@ bolognese:
   country: italy
   category: sauce
   user: grimm
-  ingredients: salt, parsley
   kitchenwares: pan, whisk
   preparation_time: 20
   cooking_time: 60

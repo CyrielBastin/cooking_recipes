@@ -4,6 +4,7 @@
 # == Fields
 # name:             string
 # category:         ApplicationRecord::Category
+# country:          ApplicationRecord::Country
 # user:             ApplicationRecord::User
 # preparation_time: integer
 # cooking_time:     integer
@@ -21,12 +22,12 @@ class Recipe < ApplicationRecord
   belongs_to :category
   has_many :ingredients_recipes, dependent: :destroy
   has_many :ingredients, through: :ingredients_recipes
-  has_many :recipes_preparations, dependent: :destroy
+  has_many :instructions_recipes, dependent: :destroy
   has_and_belongs_to_many :kitchenwares
   belongs_to :country, optional: true
   has_many :recipes_images, dependent: :destroy
 
-  accepts_nested_attributes_for :recipes_preparations, :ingredients_recipes, allow_destroy: true
+  accepts_nested_attributes_for :instructions_recipes, :ingredients_recipes, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :preparation_time,

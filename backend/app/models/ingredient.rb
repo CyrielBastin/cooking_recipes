@@ -10,7 +10,7 @@ class Ingredient < ApplicationRecord
 
   has_many :ingredients_recipes
   has_many :recipes, through: :ingredients_recipes
-  has_many :ingredients_recipes_preparations
+  has_and_belongs_to_many :instructions_recipes
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 50 }
 

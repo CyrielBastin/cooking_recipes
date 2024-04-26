@@ -1,7 +1,0 @@
-bolo_onion:
-  recipes_preparation: bolo_step_two
-  ingredient: onion
-
-bolo_tomato:
-  recipes_preparation: bolo_step_two
-  ingredient: tomato

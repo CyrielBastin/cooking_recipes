@@ -1,0 +1,10 @@
+bolo_step_one:
+  recipe: bolognese
+  step: 1
+  comment: Wash your hands, you dirty PIG !
+
+bolo_step_two:
+  recipe: bolognese
+  step: 2
+  comment: Cut onions and tomatoes
+  ingredients: onion, tomato

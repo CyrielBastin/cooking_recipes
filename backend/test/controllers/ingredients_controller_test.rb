@@ -4,7 +4,7 @@ require "test_helper"
 
 class IngredientsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @ingredient = ingredients(:onion)
+    @ingredient = ingredients :onion
   end
 
   test 'retrieves all ingredients' do

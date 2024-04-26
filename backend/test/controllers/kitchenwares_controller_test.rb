@@ -4,7 +4,7 @@ require "test_helper"
 
 class KitchenwaresControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @kitchenware = kitchenwares(:pan)
+    @kitchenware = kitchenwares :pan
   end
 
   test 'retrieves all kitchenwares' do

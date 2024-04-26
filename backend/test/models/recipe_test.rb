@@ -8,6 +8,7 @@ class RecipeTest < ActiveSupport::TestCase
     Recipe.new do |r|
       r.name = 'Lasagna'
       r.category = categories :main_course
+      r.country = countries :italy
       r.user = users :grimm
       r.preparation_time = 120
       r.cooking_time = 25
@@ -135,12 +136,14 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal 4, r.number_of_people
   end
 
-  test '`blanquette` ingredients should contain `salt` & `parsley`' do
+  test '`bolognese` ingredients contains `tomato` & `onion` & `parsley`' do
     r = recipes :blanquette
-    salt_r = r.ingredients.filter { |i| i.name == 'Salt' }
+    tomato_r = r.ingredients.filter { |i| i.name == 'Tomato' }
+    onion_r = r.ingredients.filter { |i| i.name == 'Onion' }
     parsley_r = r.ingredients.filter { |i| i.name == 'Parsley' }
 
-    assert salt_r
+    assert tomato_r
+    assert onion_r
     assert parsley_r
   end
 
@@ -159,24 +162,24 @@ class RecipeTest < ActiveSupport::TestCase
     assert whisk_r
   end
 
-  test '`bolognese` should have 2 steps in its preparation' do
+  test '`bolognese` should have 2 instructions in its preparation' do
     r = recipes :bolognese
 
-    assert_equal 2, r.recipes_preparations.count
+    assert_equal 2, r.instructions_recipes.count
   end
 
   test '`bolognese` first step should be to wash hands' do
     r = recipes :bolognese
-    step_1 = r.recipes_preparations.filter { |s| s.step == 1 }.at(0)
+    step_1 = r.instructions_recipes.filter { |s| s.step == 1 }.at(0)
 
     if assert step_1
-      assert_equal 'Wash your hands, you dirty PIG !', step_1.detail
+      assert_equal 'Wash your hands, you dirty PIG !', step_1.comment
     end
   end
 
   test '`bolognese` step 2 should contain `onion` & `tomato`' do
     r = recipes :bolognese
-    step2 = r.recipes_preparations.filter { |s| s.step == 2 }.at(0)
+    step2 = r.instructions_recipes.filter { |s| s.step == 2 }.at(0)
 
     assert step2
     assert_equal 2, step2.ingredients.count

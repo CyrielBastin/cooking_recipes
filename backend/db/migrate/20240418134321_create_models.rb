@@ -65,15 +65,15 @@ class CreateModels < ActiveRecord::Migration[7.1]
     end
     add_column :ingredients_recipes, :id, :primary_key
 
-    create_table :recipes_preparations do |t|
+    create_table :instructions_recipes do |t|
       t.references :recipe
       t.integer :step
-      t.string :detail
+      t.string :comment
       t.timestamps
     end
 
-    create_join_table :recipes_preparations, :ingredients do |t|
-      t.index :recipes_preparation_id, name: :recipes_preparation_id_index
+    create_join_table :instructions_recipes, :ingredients, id: false do |t|
+      t.index :instructions_recipe_id, name: :instructions_recipe_id_index
       t.index :ingredient_id, name: :ingredient_id_index
     end
     create_join_table :recipes, :kitchenwares do |t|

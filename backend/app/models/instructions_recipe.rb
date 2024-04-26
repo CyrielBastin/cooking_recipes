@@ -8,14 +8,13 @@
 # == Fields
 # recipe: ApplicationRecord::Recipe
 # step:   integer
-# detail: string
-class RecipesPreparation < ApplicationRecord
+# comment: string
+class InstructionsRecipe < ApplicationRecord
 
   belongs_to :recipe
-  has_many :ingredients_recipes_preparations, dependent: :destroy
-  has_many :ingredients, through: :ingredients_recipes_preparations
+  has_and_belongs_to_many :ingredients
 
   validates :step, presence: true, numericality: { greater_than: 0 }
-  validates :detail, presence: true, length: { maximum: 255 }
+  validates :comment, presence: true, length: { maximum: 255 }
 
 end

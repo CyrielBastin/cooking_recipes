@@ -4,7 +4,7 @@ require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @category = categories(:lamb)
+    @category = categories :lamb
   end
 
   test 'retrieves all categories' do

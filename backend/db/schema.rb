@@ -53,6 +53,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_134321) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ingredients_instructions_recipes", id: false, force: :cascade do |t|
+    t.bigint "instructions_recipe_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.index ["ingredient_id"], name: "ingredient_id_index"
+    t.index ["instructions_recipe_id"], name: "instructions_recipe_id_index"
+  end
+
   create_table "ingredients_recipes", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.bigint "ingredient_id", null: false
@@ -62,11 +69,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_134321) do
     t.index ["measure_id"], name: "index_ingredients_recipes_on_measure_id"
   end
 
-  create_table "ingredients_recipes_preparations", id: false, force: :cascade do |t|
-    t.bigint "recipes_preparation_id", null: false
-    t.bigint "ingredient_id", null: false
-    t.index ["ingredient_id"], name: "ingredient_id_index"
-    t.index ["recipes_preparation_id"], name: "recipes_preparation_id_index"
+  create_table "instructions_recipes", force: :cascade do |t|
+    t.bigint "recipe_id"
+    t.integer "step"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_instructions_recipes_on_recipe_id"
   end
 
   create_table "kitchenwares", force: :cascade do |t|
@@ -114,15 +123,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_134321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_recipes_images_on_recipe_id"
-  end
-
-  create_table "recipes_preparations", force: :cascade do |t|
-    t.bigint "recipe_id"
-    t.integer "step"
-    t.string "detail"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_recipes_preparations_on_recipe_id"
   end
 
   create_table "users", force: :cascade do |t|

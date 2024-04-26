@@ -20,6 +20,7 @@ class Api::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+    set_kitchenwares
 
     render('show', status: :ok) if @recipe.update(recipe_params)
   end
@@ -31,11 +32,17 @@ class Api::RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:id, :image, :name, :category_id, :user_id, :preparation_time,
+    params.require(:recipe).permit(:id, :image, :name, :category_id, :country_id, :user_id, :preparation_time,
                                    :cooking_time, :number_of_people, :difficulty, :price, :description,
-                                   :kitchenware_ids, :country_ids,
+                                   :kitchenware_ids,
                                    ingredients_recipes_attributes: %i[id ingredient_id quantity measure_id comment],
-                                   recipes_preparations_attributes: %i[id step detail])
+                                   instructions_recipes_attributes: %i[id step comment])
+  end
+
+  def set_kitchenwares
+    if params[:recipe][:kitchenware_ids]&.size&.positive?
+      @recipe.kitchenware_ids = params[:recipe][:kitchenware_ids]
+    end
   end
 
 end

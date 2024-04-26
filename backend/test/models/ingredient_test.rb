@@ -29,10 +29,10 @@ class IngredientTest < ActiveSupport::TestCase
     assert_not i2.save
   end
 
-  test 'ingredient `salt` should have 3 recipes' do
-    i = ingredients :salt
+  test 'ingredient `tomato` should have 1 recipe' do
+    i = ingredients :tomato
 
-    assert_equal 3, i.recipes.count
+    assert_equal 1, i.recipes.count
   end
 
   test 'ingredient `tomato` should have recipe `bolognese`' do

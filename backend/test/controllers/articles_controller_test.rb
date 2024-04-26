@@ -4,7 +4,7 @@ require "test_helper"
 
 class ArticlesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @article = articles(:belgian_cuisine)
+    @article = articles :belgian_cuisine
   end
 
   test 'retrieves all articles' do
@@ -36,7 +36,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     json_response = ActiveSupport::JSON.decode @response.body
-    assert_equal 'path/to/image.png', json_response['image']
+    assert_equal 'articles/belgian_cuisine.png', json_response['image']
     assert_equal 'Belgian Cuisine', json_response['title']
     assert_equal 'Try out belgian cuisine, it can be fabulous !', json_response['content']
     assert_equal 'grimm@grimm.com', json_response['user']['email']
@@ -50,7 +50,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     json_response = ActiveSupport::JSON.decode @response.body
-    assert_equal 'path/to/image.png', json_response['image']
+    assert_equal 'articles/belgian_cuisine.png', json_response['image']
     assert_equal 'Fixed title', json_response['title']
     assert_equal 'Try out belgian cuisine, it can be fabulous !', json_response['content']
     assert_equal 'grimm@grimm.com', json_response['user']['email']

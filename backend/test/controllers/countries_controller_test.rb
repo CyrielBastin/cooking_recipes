@@ -4,7 +4,7 @@ require "test_helper"
 
 class CountriesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @country = countries(:france)
+    @country = countries :france
   end
 
   test 'retrieves all countries' do

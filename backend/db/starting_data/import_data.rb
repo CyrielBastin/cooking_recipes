@@ -15,8 +15,8 @@ module ImportData
     import_recipes
     import_ingredients_recipes
     import_kitchenwares_recipes
-    import_recipes_preparation
-    import_ingredients_recipes_preparation
+    import_instructions_recipes
+    import_ingredients_instructions_recipes
   end
 
   class << self
@@ -154,29 +154,28 @@ module ImportData
       puts "#{count} Kitchenwares Recipes created !"
     end
 
-    def import_recipes_preparation
+    def import_instructions_recipes
       count = 0
-      CSV.foreach path(:recipes_preparation), **default_options do |row|
-        recipe_preparation = RecipesPreparation.new do |rp|
-          rp.recipe_id = row['recipe_id']
-          rp.step = row['step']
-          rp.detail = row['detail_en']
+      CSV.foreach path(:instructions_recipes), **default_options do |row|
+        instruction_recipe = InstructionsRecipe.new do |i_r|
+          i_r.recipe_id = row['recipe_id']
+          i_r.step = row['step']
+          i_r.comment = row['comment_en']
         end
-        count += 1 if recipe_preparation.save
+        count += 1 if instruction_recipe.save
       end
-      puts "#{count} Recipes Preparation created !"
+      puts "#{count} Instructions Recipes created !"
     end
 
-    def import_ingredients_recipes_preparation
+    def import_ingredients_instructions_recipes
       count = 0
-      CSV.foreach path(:ingredients_recipes_preparation), **default_options do |row|
-        i_r_p = IngredientsRecipesPreparation.new do |irp|
-          irp.recipes_preparation_id = row['recipes_preparation_id']
-          irp.ingredient_id = row['ingredient_id']
-        end
-        count += 1 if i_r_p.save
+      CSV.foreach path(:ingredients_instructions_recipes), **default_options do |row|
+        i_r = InstructionsRecipe.find(row['instructions_recipe_id'].to_i)
+        i_r.ingredients << Ingredient.find(row['ingredient_id'].to_i)
+
+        count += 1 if i_r.save
       end
-      puts "#{count} Ingredients Recipes Preparation created !"
+      puts "#{count} Ingredients Instructions Recipes created !"
     end
   end
 

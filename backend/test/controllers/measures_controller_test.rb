@@ -4,7 +4,7 @@ require "test_helper"
 
 class MeasuresControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @measure = measures(:teaspoon)
+    @measure = measures :teaspoon
   end
 
   test 'retrieves all measures' do
