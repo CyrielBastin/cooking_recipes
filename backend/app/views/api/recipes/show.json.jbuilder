@@ -37,6 +37,7 @@ if @recipe.kitchenwares
   end
   if @recipe.ingredients_recipes
     json.ingredients @recipe.ingredients_recipes do |i_r|
+      json.ingredients_recipe_id i_r.id
       json.id i_r.ingredient.id
       json.image i_r.ingredient.image
       json.name i_r.ingredient.name
@@ -46,7 +47,9 @@ if @recipe.kitchenwares
     end
   end
   if @recipe.instructions_recipes
-    json.instructions @recipe.instructions_recipes do |i_r|
+    preparation = @recipe.instructions_recipes.sort_by { |i_r| i_r.step }
+    json.instructions preparation do |i_r|
+      json.id i_r.id
       json.step i_r.step
       json.comment i_r.comment
     end

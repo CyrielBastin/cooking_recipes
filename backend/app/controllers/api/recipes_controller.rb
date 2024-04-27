@@ -35,8 +35,8 @@ class Api::RecipesController < ApplicationController
     params.require(:recipe).permit(:id, :image, :name, :category_id, :country_id, :user_id, :preparation_time,
                                    :cooking_time, :number_of_people, :difficulty, :price, :description,
                                    :kitchenware_ids,
-                                   ingredients_recipes_attributes: %i[id ingredient_id quantity measure_id comment],
-                                   instructions_recipes_attributes: %i[id step comment])
+                                   ingredients_recipes_attributes: %i[id ingredient_id quantity measure_id comment _destroy],
+                                   instructions_recipes_attributes: %i[id step comment _destroy])
   end
 
   def set_kitchenwares
