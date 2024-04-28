@@ -87,7 +87,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
   test 'updates a recipe to add kitchenwares' do
     patch api_recipe_url(@recipe), params:
-      { recipe:
+      { kitchenwares: '1',
+        recipe:
           { kitchenware_ids: [kitchenwares(:oven)[:id], kitchenwares(:pan)[:id]] } }
 
     assert_response :success
@@ -101,7 +102,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
   test 'adds `blanquette` ingredients' do
     patch api_recipe_url(@recipe), params:
-      { recipe:
+      { ingredients: '1',
+        recipe:
           { ingredients_recipes_attributes: [
             { ingredient_id: ingredients(:onion)[:id],
               quantity: 2,
@@ -146,7 +148,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
   test 'adds `blanquette` instructions' do
     patch api_recipe_url(@recipe), params:
-      { recipe:
+      { instructions: '1',
+        recipe:
           { instructions_recipes_attributes: [
             { step: 1,
               comment: 'Wash your hands.' },

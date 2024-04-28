@@ -24,36 +24,43 @@ json.array! @recipes do |recipe|
     json.country do
       json.id recipe.country.id
       json.name recipe.country.name
+      json.image recipe.country.image
     end
   end
   json.user do
     json.id recipe.user.id
     json.email recipe.user.email
   end
-  if recipe.kitchenwares
-    json.kitchenwares recipe.kitchenwares do |k|
-      json.id k.id
-      json.name k.name
-      json.image k.image
+  if params[:kitchenwares] && params[:kitchenwares] == '1'
+    if recipe.kitchenwares
+      json.kitchenwares recipe.kitchenwares do |k|
+        json.id k.id
+        json.name k.name
+        json.image k.image
+      end
     end
   end
-  if recipe.ingredients_recipes
-    json.ingredients recipe.ingredients_recipes do |i_r|
-      json.ingredients_recipe_id i_r.id
-      json.id i_r.ingredient.id
-      json.image i_r.ingredient.image
-      json.name i_r.ingredient.name
-      json.quantity i_r.quantity
-      json.measure(i_r.measure.name) if i_r.measure
-      json.comment i_r.comment
+  if params[:ingredients] && params[:ingredients] == '1'
+    if recipe.ingredients_recipes
+      json.ingredients recipe.ingredients_recipes do |i_r|
+        json.ingredients_recipe_id i_r.id
+        json.id i_r.ingredient.id
+        json.image i_r.ingredient.image
+        json.name i_r.ingredient.name
+        json.quantity i_r.quantity
+        json.measure(i_r.measure.name) if i_r.measure
+        json.comment i_r.comment
+      end
     end
   end
-  if recipe.instructions_recipes
-    preparation = recipe.instructions_recipes.sort_by { |i_r| i_r.step }
-    json.instructions preparation do |i_r|
-      json.id i_r.id
-      json.step i_r.step
-      json.comment i_r.comment
+  if params[:instructions] && params[:instructions] == '1'
+    if recipe.instructions_recipes
+      preparation = recipe.instructions_recipes.sort_by { |i_r| i_r.step }
+      json.instructions preparation do |i_r|
+        json.id i_r.id
+        json.step i_r.step
+        json.comment i_r.comment
+      end
     end
   end
 end
