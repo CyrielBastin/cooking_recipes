@@ -6,3 +6,7 @@ There is also an issue with how the `params` are sent with the test `updates 'bo
 Manual Testing seem to work though!
 
 We will test the controller in the frontend to try to pinpoint where the problem comes from.
+
+---
+The route `user_registration` doesn't seem to work in testing either.
+We shall try it on the frontend too.

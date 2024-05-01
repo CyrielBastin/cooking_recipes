@@ -13,8 +13,8 @@ require_relative 'starting_data/import_data'
 #   end
 
 users = [
-  User.new(id: 1, email: 'valtyr@valtyr.io', password: '123456', password_confirmation: '123456'),
-  User.new(id: 2, email: 'toto@toto.com', password: '123456', password_confirmation: '123456')
+  User.new(email: 'valtyr@valtyr.io', password: '123456', password_confirmation: '123456', jti: SecureRandom.uuid),
+  User.new(email: 'toto@toto.com', password: '123456', password_confirmation: '123456', jti: SecureRandom.uuid)
 ]
 users.each(&:save)
 puts '2 users created !'

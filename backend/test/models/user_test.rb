@@ -21,6 +21,7 @@ class UserTest < ActiveSupport::TestCase
       u.email = 'grimm@grimm.com'
       u.password = '123456'
       u.password_confirmation = '123456'
+      u.jti = 'new jti'
     end
 
     assert u1.save

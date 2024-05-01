@@ -2,3 +2,4 @@
 
 grimm:
   email: grimm@grimm.com
+  jti: jwt_revocation_jti
