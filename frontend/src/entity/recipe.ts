@@ -14,8 +14,8 @@ export default interface Recipe {
   preparationTime?: number
   cookingTime?: number
   numberOfPeople?: number
-  difficulty: string
-  price: string
+  difficulty: RecipeDifficulty
+  price: RecipePrice
   createdAt: Date
   updatedAt: Date
   description: string
@@ -34,3 +34,6 @@ export interface InstructionsRecipe {
   step: number
   comment: string
 }
+
+export type RecipeDifficulty = 'easy' | 'normal' | 'hard'
+export type RecipePrice = 'low' | 'medium' | 'high'
