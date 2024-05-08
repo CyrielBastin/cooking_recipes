@@ -20,9 +20,9 @@ export default interface Recipe {
   updatedAt: Date
   description: string
 
-  category?: Category
-  user?: User
-  country?: Country
+  category?: Partial<Category>
+  user?: Partial<User>
+  country?: Partial<Country>
 
   kitchenwares?: Kitchenware[]
   ingredients?: IngredientRecipe[]
@@ -37,3 +37,25 @@ export interface InstructionsRecipe {
 
 export type RecipeDifficulty = 'easy' | 'normal' | 'hard'
 export type RecipePrice = 'low' | 'medium' | 'high'
+
+export interface CreateOrUpdateRecipe extends Recipe {
+  kitchenwareIds?: Array<number>
+  ingredientsRecipesAttributes?: Array<IngredientsRecipesAttributes>
+  instructionsRecipesAttributes?: Array<InstructionsRecipesAttributes>
+}
+
+export interface IngredientsRecipesAttributes {
+  id?: number
+  ingredientId: number
+  quantity?: number
+  measureId?: number
+  comment?: string
+  _destroy?: '1' | true
+}
+
+export interface InstructionsRecipesAttributes {
+  id?: number
+  step: number
+  comment: string
+  _destroy?: '1' | true
+}

@@ -29,23 +29,29 @@ export default interface GetRecipeDTO {
     email: string
   }
 
-  kitchenwares?: Array<{
-    id: number
-    name: string
-    image?: string
-  }>
-  ingredients?: Array<{
-    ingredients_recipe_id: number
-    id: number
-    image: string
-    name: string
-    quantity: number
-    measure: string
-    comment: string
-  }>
-  instructions?: Array<{
-    id: number
-    step: number
-    comment: string
-  }>
+  kitchenwares?: Array<GetRecipeKitchenwareDTO>
+  ingredients?: Array<GetRecipeIngredientDTO>
+  instructions?: Array<GetRecipeInstructionDTO>
+}
+
+export interface GetRecipeKitchenwareDTO {
+  id: number
+  name: string
+  image?: string
+}
+
+export interface GetRecipeIngredientDTO {
+  ingredients_recipe_id: number
+  id: number
+  image: string
+  name: string
+  quantity: number
+  measure: string
+  comment: string
+}
+
+export interface GetRecipeInstructionDTO {
+  id: number
+  step: number
+  comment: string
 }

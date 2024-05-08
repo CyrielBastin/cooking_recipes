@@ -14,16 +14,20 @@ export default interface PostRecipeDTO {
   description: string
 
   kitchenware_ids?: Array<number>
-  ingredients_recipes_attributes?: Array<{
-    ingredient_id: number
-    quantity: string
-    measure_id: number
-    comment: string
-    _destroy?: string
-  }>
-  instructions_recipes_attributes?: Array<{
-    step: number
-    comment: string
-    _destroy?: string
-  }>
+  ingredients_recipes_attributes?: Array<PostIngredientsRecipesAttributes>
+  instructions_recipes_attributes?: Array<PostInstructionsRecipesAttributes>
+}
+
+export interface PostIngredientsRecipesAttributes {
+  ingredient_id: number
+  quantity?: number
+  measure_id?: number
+  comment?: string
+  _destroy?: '1' | true
+}
+
+export interface PostInstructionsRecipesAttributes {
+  step: number
+  comment: string
+  _destroy?: '1' | true
 }

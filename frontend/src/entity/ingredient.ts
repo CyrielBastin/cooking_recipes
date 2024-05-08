@@ -5,7 +5,7 @@ export default interface Ingredient {
 }
 
 export interface IngredientRecipe extends Ingredient {
-  IngredientRecipeId: number
+  ingredientRecipeId: number
   quantity?: number
   measure?: string
   comment?: string
