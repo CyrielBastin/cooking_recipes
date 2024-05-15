@@ -15,15 +15,24 @@ const dummy_measure: Measure = {
 describe('Measure Mapper', () => {
   describe('MeasureMapper.fromGetDTO()', () => {
     describe('Creates a Measure from GetMeasureDTO', () => {
-      test('All values for a Measure are present', () => {
-        const get_measure_dto = JSON.parse(JSON.stringify(dummy_get_measure_dto))
+      test('Check the PRESENCE of the properties', () => {
+        const get_measure_dto: GetMeasureDTO = JSON.parse(JSON.stringify(dummy_get_measure_dto))
         const measure = MeasureMapper.fromGetDTO(get_measure_dto)
 
-        assert.exists(measure.id)
-        assert.exists(measure.name)
+        assert.isDefined(measure.id)
+        assert.isDefined(measure.name)
       })
-      test('All values for a Measure are correct', () => {
-        const get_measure_dto = JSON.parse(JSON.stringify(dummy_get_measure_dto))
+
+      test('Check the TYPE of the properties', () => {
+        const get_measure_dto: GetMeasureDTO = JSON.parse(JSON.stringify(dummy_get_measure_dto))
+        const measure = MeasureMapper.fromGetDTO(get_measure_dto)
+
+        assert.isNumber(measure.id)
+        assert.isString(measure.name)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const get_measure_dto: GetMeasureDTO = JSON.parse(JSON.stringify(dummy_get_measure_dto))
         const measure = MeasureMapper.fromGetDTO(get_measure_dto)
 
         assert.strictEqual(measure.id, get_measure_dto.id)
@@ -34,14 +43,22 @@ describe('Measure Mapper', () => {
 
   describe('MeasureMapper.toPostDTO()', () => {
     describe('Creates a PostMeasureDTO from a Measure', () => {
-      test('All values for a PostMeasureDTO are present', () => {
-        const measure = JSON.parse(JSON.stringify(dummy_measure))
+      test('Check the PRESENCE of the properties', () => {
+        const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const post_measure_dto = MeasureMapper.toPostDTO(measure)
 
-        assert.exists(post_measure_dto.name)
+        assert.isDefined(post_measure_dto.name)
       })
-      test('All values for a PostMeasureDTO are correct', () => {
-        const measure = JSON.parse(JSON.stringify(dummy_measure))
+
+      test('Check the TYPE of the properties', () => {
+        const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
+        const post_measure_dto = MeasureMapper.toPostDTO(measure)
+
+        assert.isString(post_measure_dto.name)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const post_measure_dto = MeasureMapper.toPostDTO(measure)
 
         assert.strictEqual(post_measure_dto.name, measure.name)
@@ -51,15 +68,24 @@ describe('Measure Mapper', () => {
 
   describe('MeasureMapper.toPutDTO()', () => {
     describe('Creates a PutMeasureDTO from a Measure', () => {
-      test('All values for a PutMeasureDTO are present', () => {
-        const measure = JSON.parse(JSON.stringify(dummy_measure))
+      test('Check the PRESENCE of the properties', () => {
+        const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const put_measure_dto = MeasureMapper.toPutDTO(measure)
 
-        assert.exists(put_measure_dto.id)
-        assert.exists(put_measure_dto.name)
+        assert.isDefined(put_measure_dto.id)
+        assert.isDefined(put_measure_dto.name)
       })
-      test('All values for a PutMeasureDTO are correct', () => {
-        const measure = JSON.parse(JSON.stringify(dummy_measure))
+
+      test('Check the TYPE of the properties', () => {
+        const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
+        const put_measure_dto = MeasureMapper.toPutDTO(measure)
+
+        assert.isNumber(put_measure_dto.id)
+        assert.isString(put_measure_dto.name)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const put_measure_dto = MeasureMapper.toPutDTO(measure)
 
         assert.strictEqual(put_measure_dto.id, measure.id)

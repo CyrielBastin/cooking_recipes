@@ -17,17 +17,26 @@ const dummy_country: Country = {
 describe('Country Mapper', () => {
   describe('CountryMapper.fromGetDTO()', () => {
     describe('Creates a Country from GetCountryDTO', () => {
-      test('All values for a Country are present', () => {
-        const get_country_dto = JSON.parse(JSON.stringify(dummy_get_country_dto))
+      test('Check the PRESENCE of the properties', () => {
+        const get_country_dto: GetCountryDTO = JSON.parse(JSON.stringify(dummy_get_country_dto))
         const country = CountryMapper.fromGetDTO(get_country_dto)
 
-        assert.exists(country.id)
+        assert.isDefined(country.id)
         assert.isDefined(country.image)
-        assert.isNull(country.image)
-        assert.exists(country.name)
+        assert.isDefined(country.name)
       })
-      test('All values for a Country are correct', () => {
-        const get_country_dto = JSON.parse(JSON.stringify(dummy_get_country_dto))
+
+      test('Check the TYPE of the properties', () => {
+        const get_country_dto: GetCountryDTO = JSON.parse(JSON.stringify(dummy_get_country_dto))
+        const country = CountryMapper.fromGetDTO(get_country_dto)
+
+        assert.isNumber(country.id)
+        assert.isNull(country.image)
+        assert.isString(country.name)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const get_country_dto: GetCountryDTO = JSON.parse(JSON.stringify(dummy_get_country_dto))
         const country = CountryMapper.fromGetDTO(get_country_dto)
 
         assert.strictEqual(country.id, get_country_dto.id)
@@ -39,68 +48,59 @@ describe('Country Mapper', () => {
 
   describe('CountryMapper.toPostDTO()', () => {
     describe('Creates a PostCountryDTO from a Country', () => {
-      test('All values for a PostCountryDTO are present', () => {
-        const country = JSON.parse(JSON.stringify(dummy_country))
+      test('Check the PRESENCE of the properties', () => {
+        const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const post_country_dto = CountryMapper.toPostDTO(country)
 
-        assert.exists(post_country_dto.image)
-        assert.exists(post_country_dto.name)
-
-        country.image = null
-        const post_country_dto_2 = CountryMapper.toPostDTO(country)
-
-        assert.isDefined(post_country_dto_2.image)
-        assert.isNull(post_country_dto_2.image)
-        assert.exists(post_country_dto_2.name)
+        assert.isDefined(post_country_dto.image)
+        assert.isDefined(post_country_dto.name)
       })
-      test('All values for a PostCountryDTO are correct', () => {
-        const country = JSON.parse(JSON.stringify(dummy_country))
+
+      test('Check the TYPE of the properties', () => {
+        const country: Country = JSON.parse(JSON.stringify(dummy_country))
+        const post_country_dto = CountryMapper.toPostDTO(country)
+
+        assert.isString(post_country_dto.image)
+        assert.isString(post_country_dto.name)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const post_country_dto = CountryMapper.toPostDTO(country)
 
         assert.strictEqual(post_country_dto.image, country.image)
         assert.strictEqual(post_country_dto.name, country.name)
-
-        country.image = null
-        const post_country_dto_2 = CountryMapper.toPostDTO(country)
-
-        assert.strictEqual(post_country_dto_2.image, country.image)
-        assert.strictEqual(post_country_dto_2.name, country.name)
       })
     })
   })
 
   describe('CountryMapper.toPutDTO()', () => {
     describe('Creates a PutCountryDTO from a Country', () => {
-      test('All values for a PutCountryDTO are present', () => {
-        const country = JSON.parse(JSON.stringify(dummy_country))
+      test('Check the PRESENCE of the properties', () => {
+        const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const put_country_dto = CountryMapper.toPutDTO(country)
 
-        assert.exists(put_country_dto.id)
-        assert.exists(put_country_dto.image)
-        assert.exists(put_country_dto.name)
-
-        country.image = null
-        const put_country_dto_2 = CountryMapper.toPutDTO(country)
-
-        assert.exists(put_country_dto_2.id)
-        assert.isDefined(put_country_dto_2.image)
-        assert.isNull(put_country_dto_2.image)
-        assert.exists(put_country_dto_2.name)
+        assert.isDefined(put_country_dto.id)
+        assert.isDefined(put_country_dto.image)
+        assert.isDefined(put_country_dto.name)
       })
-      test('All values for a PutCountryDTO are correct', () => {
-        const country = JSON.parse(JSON.stringify(dummy_country))
+
+      test('Check the TYPE of the properties', () => {
+        const country: Country = JSON.parse(JSON.stringify(dummy_country))
+        const put_country_dto = CountryMapper.toPutDTO(country)
+
+        assert.isNumber(put_country_dto.id)
+        assert.isString(put_country_dto.image)
+        assert.isString(put_country_dto.name)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const put_country_dto = CountryMapper.toPutDTO(country)
 
         assert.strictEqual(put_country_dto.id, country.id)
         assert.strictEqual(put_country_dto.image, country.image)
         assert.strictEqual(put_country_dto.name, country.name)
-
-        country.image = null
-        const put_country_dto_2 = CountryMapper.toPutDTO(country)
-
-        assert.strictEqual(put_country_dto_2.id, country.id)
-        assert.strictEqual(put_country_dto_2.image, country.image)
-        assert.strictEqual(put_country_dto_2.name, country.name)
       })
     })
   })

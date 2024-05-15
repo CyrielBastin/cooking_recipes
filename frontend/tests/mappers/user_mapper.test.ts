@@ -12,16 +12,26 @@ const dummy_user: CreateUser = {
 describe('User Mapper', () => {
   describe('UserMapper.toPostDTO()', () => {
     describe('Creates a PostUserDTO from a User', () => {
-      test('All values for a PostUserDTO are present', () => {
-        const user = JSON.parse(JSON.stringify(dummy_user))
+      test('Check the PRESENCE of the properties', () => {
+        const user: CreateUser = JSON.parse(JSON.stringify(dummy_user))
         const post_user_dto = UserMapper.toPostDTO(user)
 
-        assert.exists(post_user_dto.email)
-        assert.exists(post_user_dto.password)
-        assert.exists(post_user_dto.password_confirmation)
+        assert.isDefined(post_user_dto.email)
+        assert.isDefined(post_user_dto.password)
+        assert.isDefined(post_user_dto.password_confirmation)
       })
-      test('All values for a PostUserDTO are correct', () => {
-        const user = JSON.parse(JSON.stringify(dummy_user))
+
+      test('Check the TYPE of the properties', () => {
+        const user: CreateUser = JSON.parse(JSON.stringify(dummy_user))
+        const post_user_dto = UserMapper.toPostDTO(user)
+
+        assert.isString(post_user_dto.email)
+        assert.isString(post_user_dto.password)
+        assert.isString(post_user_dto.password_confirmation)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const user: CreateUser = JSON.parse(JSON.stringify(dummy_user))
         const post_user_dto = UserMapper.toPostDTO(user)
 
         assert.strictEqual(post_user_dto.email, user.email)

@@ -18,7 +18,7 @@ describe('Category Mapper', () => {
   describe('CategoryMapper.fromGetDTO()', () => {
     describe('Creates a Category from GetCategoryDTO', () => {
       test('Check the PRESENCE of the properties', () => {
-        const get_category_dto = JSON.parse(JSON.stringify(dummy_get_category_dto))
+        const get_category_dto: GetCategoryDTO = JSON.parse(JSON.stringify(dummy_get_category_dto))
         const category = CategoryMapper.fromGetDTO(get_category_dto)
 
         assert.isDefined(category.id)
@@ -27,7 +27,7 @@ describe('Category Mapper', () => {
       })
 
       test('Check the TYPE of the properties', () => {
-        const get_category_dto = JSON.parse(JSON.stringify(dummy_get_category_dto))
+        const get_category_dto: GetCategoryDTO = JSON.parse(JSON.stringify(dummy_get_category_dto))
         const category = CategoryMapper.fromGetDTO(get_category_dto)
 
         assert.isNumber(category.id)
@@ -36,7 +36,7 @@ describe('Category Mapper', () => {
       })
 
       test('Check the VALUE of the properties', () => {
-        const get_category_dto = JSON.parse(JSON.stringify(dummy_get_category_dto))
+        const get_category_dto: GetCategoryDTO = JSON.parse(JSON.stringify(dummy_get_category_dto))
         const category = CategoryMapper.fromGetDTO(get_category_dto)
 
         assert.strictEqual(category.id, get_category_dto.id)
@@ -49,7 +49,7 @@ describe('Category Mapper', () => {
   describe('CategoryMapper.toPostDTO()', () => {
     describe('Creates a PostCategoryDTO from a Category', () => {
       test('Check the PRESENCE of the properties', () => {
-        const category = JSON.parse(JSON.stringify(dummy_category))
+        const category: Category = JSON.parse(JSON.stringify(dummy_category))
         const post_category_dto = CategoryMapper.toPostDTO(category)
 
         assert.isDefined(post_category_dto.name)
@@ -57,7 +57,7 @@ describe('Category Mapper', () => {
       })
 
       test('Check the TYPE of the properties', () => {
-        const category = JSON.parse(JSON.stringify(dummy_category))
+        const category: Category = JSON.parse(JSON.stringify(dummy_category))
         const post_category_dto = CategoryMapper.toPostDTO(category)
 
         assert.isString(post_category_dto.name)
@@ -65,7 +65,7 @@ describe('Category Mapper', () => {
       })
 
       test('Check the VALUE of the properties', () => {
-        const category = JSON.parse(JSON.stringify(dummy_category))
+        const category: Category = JSON.parse(JSON.stringify(dummy_category))
         const post_category_dto = CategoryMapper.toPostDTO(category)
 
         assert.strictEqual(post_category_dto.name, category.name)
@@ -77,7 +77,7 @@ describe('Category Mapper', () => {
   describe('CategoryMapper.toPutDTO()', () => {
     describe('Creates a PutCategoryDTO from a Category', () => {
       test('Check the PRESENCE of the properties', () => {
-        const category = JSON.parse(JSON.stringify(dummy_category))
+        const category: Category = JSON.parse(JSON.stringify(dummy_category))
         const put_category_dto = CategoryMapper.toPutDTO(category)
 
         assert.isDefined(put_category_dto.id)
@@ -86,7 +86,7 @@ describe('Category Mapper', () => {
       })
 
       test('Check the TYPE of the properties', () => {
-        const category = JSON.parse(JSON.stringify(dummy_category))
+        const category: Category = JSON.parse(JSON.stringify(dummy_category))
         const put_category_dto = CategoryMapper.toPutDTO(category)
 
         assert.isNumber(put_category_dto.id)
@@ -95,7 +95,7 @@ describe('Category Mapper', () => {
       })
 
       test('Check the VALUE of the properties', () => {
-        const category = JSON.parse(JSON.stringify(dummy_category))
+        const category: Category = JSON.parse(JSON.stringify(dummy_category))
         const put_category_dto = CategoryMapper.toPutDTO(category)
 
         assert.strictEqual(put_category_dto.id, category.id)

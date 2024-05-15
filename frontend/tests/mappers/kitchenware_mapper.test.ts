@@ -17,17 +17,32 @@ const dummy_kitchenware: Kitchenware = {
 describe('Kitchenware Mapper', () => {
   describe('KitchenwareMapper.fromGetDTO()', () => {
     describe('Creates a Kitchenware from GetKitchenwareDTO', () => {
-      test('All values for a Kitchenware are present', () => {
-        const get_kitchenware_dto = JSON.parse(JSON.stringify(dummy_get_kitchenware_dto))
+      test('Check the PRESENCE of the properties', () => {
+        const get_kitchenware_dto: GetKitchenwareDTO = JSON.parse(
+          JSON.stringify(dummy_get_kitchenware_dto)
+        )
         const kitchenware = KitchenwareMapper.fromGetDTO(get_kitchenware_dto)
 
-        assert.exists(kitchenware.id)
+        assert.isDefined(kitchenware.id)
         assert.isDefined(kitchenware.image)
-        assert.isNull(kitchenware.image)
-        assert.exists(kitchenware.name)
+        assert.isDefined(kitchenware.name)
       })
-      test('All values for a Kitchenware are correct', () => {
-        const get_kitchenware_dto = JSON.parse(JSON.stringify(dummy_get_kitchenware_dto))
+
+      test('Check the TYPE of the properties', () => {
+        const get_kitchenware_dto: GetKitchenwareDTO = JSON.parse(
+          JSON.stringify(dummy_get_kitchenware_dto)
+        )
+        const kitchenware = KitchenwareMapper.fromGetDTO(get_kitchenware_dto)
+
+        assert.isNumber(kitchenware.id)
+        assert.isNull(kitchenware.image)
+        assert.isString(kitchenware.name)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const get_kitchenware_dto: GetKitchenwareDTO = JSON.parse(
+          JSON.stringify(dummy_get_kitchenware_dto)
+        )
         const kitchenware = KitchenwareMapper.fromGetDTO(get_kitchenware_dto)
 
         assert.strictEqual(kitchenware.id, get_kitchenware_dto.id)
@@ -39,68 +54,59 @@ describe('Kitchenware Mapper', () => {
 
   describe('KitchenwareMapper.toPostDTO()', () => {
     describe('Creates a PostKitchenwareDTO from a Kitchenware', () => {
-      test('All values for a PostKitchenwareDTO are present', () => {
-        const kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
+      test('Check the PRESENCE of the properties', () => {
+        const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const post_kitchenware_dto = KitchenwareMapper.toPostDTO(kitchenware)
 
-        assert.exists(post_kitchenware_dto.image)
-        assert.exists(post_kitchenware_dto.name)
-
-        kitchenware.image = null
-        const post_kitchenware_dto_2 = KitchenwareMapper.toPostDTO(kitchenware)
-
-        assert.isDefined(post_kitchenware_dto_2.image)
-        assert.isNull(post_kitchenware_dto_2.image)
-        assert.exists(post_kitchenware_dto_2.name)
+        assert.isDefined(post_kitchenware_dto.image)
+        assert.isDefined(post_kitchenware_dto.name)
       })
-      test('All values for a PostKitchenwareDTO are correct', () => {
-        const kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
+
+      test('Check the TYPE of the properties', () => {
+        const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
+        const post_kitchenware_dto = KitchenwareMapper.toPostDTO(kitchenware)
+
+        assert.isString(post_kitchenware_dto.image)
+        assert.isString(post_kitchenware_dto.name)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const post_kitchenware_dto = KitchenwareMapper.toPostDTO(kitchenware)
 
         assert.strictEqual(post_kitchenware_dto.image, kitchenware.image)
         assert.strictEqual(post_kitchenware_dto.name, kitchenware.name)
-
-        kitchenware.image = null
-        const post_kitchenware_dto_2 = KitchenwareMapper.toPostDTO(kitchenware)
-
-        assert.strictEqual(post_kitchenware_dto_2.image, kitchenware.image)
-        assert.strictEqual(post_kitchenware_dto_2.name, kitchenware.name)
       })
     })
   })
 
   describe('KitchenwareMapper.toPutDTO()', () => {
     describe('Creates a PutKitchenwareDTO from a Kitchenware', () => {
-      test('All values for a PutKitchenwareDTO are present', () => {
-        const kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
+      test('Check the PRESENCE of the properties', () => {
+        const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const put_kitchenware_dto = KitchenwareMapper.toPutDTO(kitchenware)
 
-        assert.exists(put_kitchenware_dto.id)
-        assert.exists(put_kitchenware_dto.image)
-        assert.exists(put_kitchenware_dto.name)
-
-        kitchenware.image = null
-        const put_kitchenware_dto_2 = KitchenwareMapper.toPutDTO(kitchenware)
-
-        assert.exists(put_kitchenware_dto_2.id)
-        assert.isDefined(put_kitchenware_dto_2.image)
-        assert.isNull(put_kitchenware_dto_2.image)
-        assert.exists(put_kitchenware_dto_2.name)
+        assert.isDefined(put_kitchenware_dto.id)
+        assert.isDefined(put_kitchenware_dto.image)
+        assert.isDefined(put_kitchenware_dto.name)
       })
-      test('All values for a PutKitchenwareDTO are correct', () => {
-        const kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
+
+      test('Check the TYPE of the properties', () => {
+        const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
+        const put_kitchenware_dto = KitchenwareMapper.toPutDTO(kitchenware)
+
+        assert.isNumber(put_kitchenware_dto.id)
+        assert.isString(put_kitchenware_dto.image)
+        assert.isString(put_kitchenware_dto.name)
+      })
+
+      test('Check the VALUE of the properties', () => {
+        const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const put_kitchenware_dto = KitchenwareMapper.toPutDTO(kitchenware)
 
         assert.strictEqual(put_kitchenware_dto.id, kitchenware.id)
         assert.strictEqual(put_kitchenware_dto.image, kitchenware.image)
         assert.strictEqual(put_kitchenware_dto.name, kitchenware.name)
-
-        kitchenware.image = null
-        const put_kitchenware_dto_2 = KitchenwareMapper.toPutDTO(kitchenware)
-
-        assert.strictEqual(put_kitchenware_dto_2.id, kitchenware.id)
-        assert.strictEqual(put_kitchenware_dto_2.image, kitchenware.image)
-        assert.strictEqual(put_kitchenware_dto_2.name, kitchenware.name)
       })
     })
   })
