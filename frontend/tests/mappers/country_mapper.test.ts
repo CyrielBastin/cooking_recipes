@@ -17,7 +17,7 @@ const dummy_country: Country = {
 describe('Country Mapper', () => {
   describe('CountryMapper.fromGetDTO()', () => {
     describe('Creates a Country from GetCountryDTO', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const get_country_dto: GetCountryDTO = JSON.parse(JSON.stringify(dummy_get_country_dto))
         const country = CountryMapper.fromGetDTO(get_country_dto)
 
@@ -26,7 +26,7 @@ describe('Country Mapper', () => {
         assert.isDefined(country.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const get_country_dto: GetCountryDTO = JSON.parse(JSON.stringify(dummy_get_country_dto))
         const country = CountryMapper.fromGetDTO(get_country_dto)
 
@@ -35,7 +35,7 @@ describe('Country Mapper', () => {
         assert.isString(country.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const get_country_dto: GetCountryDTO = JSON.parse(JSON.stringify(dummy_get_country_dto))
         const country = CountryMapper.fromGetDTO(get_country_dto)
 
@@ -48,7 +48,7 @@ describe('Country Mapper', () => {
 
   describe('CountryMapper.toPostDTO()', () => {
     describe('Creates a PostCountryDTO from a Country', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const post_country_dto = CountryMapper.toPostDTO(country)
 
@@ -56,7 +56,7 @@ describe('Country Mapper', () => {
         assert.isDefined(post_country_dto.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const post_country_dto = CountryMapper.toPostDTO(country)
 
@@ -64,7 +64,7 @@ describe('Country Mapper', () => {
         assert.isString(post_country_dto.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const post_country_dto = CountryMapper.toPostDTO(country)
 
@@ -76,7 +76,7 @@ describe('Country Mapper', () => {
 
   describe('CountryMapper.toPutDTO()', () => {
     describe('Creates a PutCountryDTO from a Country', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const put_country_dto = CountryMapper.toPutDTO(country)
 
@@ -85,7 +85,7 @@ describe('Country Mapper', () => {
         assert.isDefined(put_country_dto.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const put_country_dto = CountryMapper.toPutDTO(country)
 
@@ -94,7 +94,7 @@ describe('Country Mapper', () => {
         assert.isString(put_country_dto.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const country: Country = JSON.parse(JSON.stringify(dummy_country))
         const put_country_dto = CountryMapper.toPutDTO(country)
 

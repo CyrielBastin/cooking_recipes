@@ -4,31 +4,6 @@ import Recipe from '../../src/entity/recipe'
 import RecipeMapper from '../../src/entity/mappers/recipe_mapper'
 
 const dummy_get_recipe_dto: GetRecipeDTO = {
-  id: 8,
-  image: 'cuban_mojito.jpg',
-  name: 'Mojito',
-  category_id: 83,
-  country_id: null,
-  user_id: 1,
-  preparation_time: 5,
-  cooking_time: null,
-  number_of_people: 3,
-  difficulty: 'hard',
-  price: 'medium',
-  description: 'Moooooooojjiiiiiiiiiiito',
-  created_at: '2024-04-30T14:38:37.430Z',
-  updated_at: '2024-04-30T14:38:37.430Z',
-  category: {
-    id: 83,
-    name: 'Mojitos'
-  },
-  user: {
-    id: 1,
-    email: 'valtyr@valtyr.io'
-  }
-}
-
-const dummy_get_recipe_dto_full_info: GetRecipeDTO = {
   id: 15,
   image: 'caesar_salad.jpg',
   name: 'Caesar salad',
@@ -98,24 +73,6 @@ const dummy_get_recipe_dto_full_info: GetRecipeDTO = {
       comment: null
     },
     {
-      ingredients_recipe_id: 105,
-      id: 87,
-      image: 'mustard.webp',
-      name: 'Mustard',
-      quantity: 1,
-      measure: 'teaspoon',
-      comment: null
-    },
-    {
-      ingredients_recipe_id: 106,
-      id: 132,
-      image: 'tabasco.webp',
-      name: 'Tabasco',
-      quantity: null,
-      measure: null,
-      comment: null
-    },
-    {
       ingredients_recipe_id: 107,
       id: 75,
       image: 'lemon.webp',
@@ -140,24 +97,6 @@ const dummy_get_recipe_dto_full_info: GetRecipeDTO = {
       name: 'Vegetable oil',
       quantity: 15,
       measure: 'cl',
-      comment: null
-    },
-    {
-      ingredients_recipe_id: 110,
-      id: 101,
-      image: 'pepper.webp',
-      name: 'Pepper',
-      quantity: null,
-      measure: null,
-      comment: null
-    },
-    {
-      ingredients_recipe_id: 111,
-      id: 121,
-      image: 'salt.webp',
-      name: 'Salt',
-      quantity: null,
-      measure: null,
       comment: null
     },
     {
@@ -227,21 +166,6 @@ const dummy_get_recipe_dto_full_info: GetRecipeDTO = {
 }
 
 const dummy_recipe: Recipe = {
-  id: 2,
-  image: 'tartiflette.webp',
-  name: 'Tartiflette',
-  countryId: null,
-  categoryId: 4,
-  userId: 1,
-  preparationTime: null,
-  cookingTime: null,
-  numberOfPeople: null,
-  difficulty: 'hard',
-  price: 'high',
-  description: 'My favorite'
-}
-
-const dummy_recipe_with_infos: Recipe = {
   id: 3,
   image: 'recipes/lasagna.png',
   name: 'Lasagna',
@@ -300,63 +224,128 @@ const dummy_recipe_with_infos: Recipe = {
 describe('Recipe Mapper', () => {
   describe('RecipeMapper.fromGetDTO()', () => {
     describe('Creates a Recipe from GetRecipeDTO', () => {
-      test('All values for a Recipe (base) are present', () => {
+      test('Check the PRESENCE of all properties', () => {
         const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
         const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
 
-        assert.exists(recipe.id)
-        assert.exists(recipe.image)
-        assert.exists(recipe.name)
-        assert.exists(recipe.categoryId)
+        assert.isDefined(recipe.id)
+        assert.isDefined(recipe.image)
+        assert.isDefined(recipe.name)
+        assert.isDefined(recipe.categoryId)
         assert.isDefined(recipe.countryId)
-        assert.isNull(recipe.countryId)
-        assert.exists(recipe.userId)
-        assert.exists(recipe.preparationTime)
+        assert.isDefined(recipe.userId)
+        assert.isDefined(recipe.preparationTime)
         assert.isDefined(recipe.cookingTime)
-        assert.isNull(recipe.cookingTime)
-        assert.exists(recipe.numberOfPeople)
-        assert.exists(recipe.difficulty)
-        assert.exists(recipe.price)
-        assert.exists(recipe.description)
-        assert.exists(recipe.createdAt)
-        assert.exists(recipe.updatedAt)
-        assert.exists(recipe.category)
-        assert.exists(recipe.user)
+        assert.isDefined(recipe.numberOfPeople)
+        assert.isDefined(recipe.difficulty)
+        assert.isDefined(recipe.price)
+        assert.isDefined(recipe.description)
+        assert.isDefined(recipe.createdAt)
+        assert.isDefined(recipe.updatedAt)
+        assert.isDefined(recipe.category)
+        assert.isDefined(recipe.country)
+        assert.isDefined(recipe.user)
+        assert.isDefined(recipe.kitchenwares)
+        assert.isDefined(recipe.ingredients)
+        assert.isDefined(recipe.instructions)
       })
 
-      test('All values for a Recipe (extra infos) are present', () => {
-        const get_recipe_dto: GetRecipeDTO = JSON.parse(
-          JSON.stringify(dummy_get_recipe_dto_full_info)
-        )
+      test('Check the PRESENCE of property `kitchenwares` nested properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
         const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
 
-        assert.exists(recipe.id)
-        assert.exists(recipe.image)
-        assert.exists(recipe.name)
-        assert.exists(recipe.categoryId)
-        assert.exists(recipe.countryId)
-        assert.exists(recipe.userId)
-        assert.exists(recipe.preparationTime)
-        assert.isDefined(recipe.cookingTime)
-        assert.isNull(recipe.cookingTime)
-        assert.exists(recipe.numberOfPeople)
-        assert.exists(recipe.difficulty)
-        assert.exists(recipe.price)
-        assert.exists(recipe.description)
-        assert.exists(recipe.createdAt)
-        assert.exists(recipe.updatedAt)
-        assert.exists(recipe.category)
-        assert.exists(recipe.country)
-        assert.exists(recipe.user)
         assert.exists(recipe.kitchenwares)
-        assert.exists(recipe.ingredients)
-        assert.exists(recipe.instructions)
+        assert.property(recipe.kitchenwares?.at(0), 'id')
+        assert.property(recipe.kitchenwares?.at(0), 'image')
+        assert.property(recipe.kitchenwares?.at(0), 'name')
       })
 
-      test('All values for a Recipe are correct', () => {
-        const get_recipe_dto: GetRecipeDTO = JSON.parse(
-          JSON.stringify(dummy_get_recipe_dto_full_info)
-        )
+      test('Check the PRESENCE of property `ingredients` nested properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
+        const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
+
+        assert.exists(recipe.ingredients)
+        assert.property(recipe.ingredients?.at(0), 'ingredientsRecipeId')
+        assert.property(recipe.ingredients?.at(0), 'id')
+        assert.property(recipe.ingredients?.at(0), 'image')
+        assert.property(recipe.ingredients?.at(0), 'name')
+        assert.property(recipe.ingredients?.at(0), 'quantity')
+        assert.property(recipe.ingredients?.at(0), 'measure')
+        assert.property(recipe.ingredients?.at(0), 'comment')
+      })
+
+      test('Check the PRESENCE of property `instructions` nested properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
+        const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
+
+        assert.exists(recipe.instructions)
+        assert.property(recipe.instructions?.at(0), 'id')
+        assert.property(recipe.instructions?.at(0), 'step')
+        assert.property(recipe.instructions?.at(0), 'comment')
+      })
+
+      test('Check the TYPE of all properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
+        const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
+
+        assert.isNumber(recipe.id)
+        assert.isString(recipe.image)
+        assert.isString(recipe.name)
+        assert.isNumber(recipe.categoryId)
+        assert.isNumber(recipe.countryId)
+        assert.isNumber(recipe.userId)
+        assert.isNumber(recipe.preparationTime)
+        assert.isNull(recipe.cookingTime)
+        assert.isNumber(recipe.numberOfPeople)
+        assert.isString(recipe.difficulty)
+        assert.isString(recipe.price)
+        assert.isString(recipe.description)
+        assert.typeOf(recipe.createdAt, 'Date')
+        assert.typeOf(recipe.updatedAt, 'Date')
+        assert.isObject(recipe.category)
+        assert.isObject(recipe.country)
+        assert.isObject(recipe.user)
+        assert.isArray(recipe.kitchenwares)
+        assert.isArray(recipe.ingredients)
+        assert.isArray(recipe.instructions)
+      })
+
+      test('Check the TYPE of property `kitchenwares` nested properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
+        const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
+
+        assert.isArray(recipe.kitchenwares)
+        assert.isNumber(recipe.kitchenwares?.at(0)?.id)
+        assert.isString(recipe.kitchenwares?.at(0)?.image)
+        assert.isString(recipe.kitchenwares?.at(0)?.name)
+      })
+
+      test('Check the TYPE of property `ingredients` nested properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
+        const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
+
+        assert.isArray(recipe.ingredients)
+        assert.isNumber(recipe.ingredients?.at(2)?.ingredientsRecipeId)
+        assert.isNumber(recipe.ingredients?.at(2)?.id)
+        assert.isString(recipe.ingredients?.at(2)?.image)
+        assert.isString(recipe.ingredients?.at(2)?.name)
+        assert.isNull(recipe.ingredients?.at(2)?.quantity)
+        assert.isNull(recipe.ingredients?.at(2)?.measure)
+        assert.isNull(recipe.ingredients?.at(2)?.comment)
+      })
+
+      test('Check the TYPE of property `instructions` nested properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
+        const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
+
+        assert.isArray(recipe.instructions)
+        assert.isNumber(recipe.instructions?.at(0)?.id)
+        assert.isNumber(recipe.instructions?.at(0)?.step)
+        assert.isString(recipe.instructions?.at(0)?.comment)
+      })
+
+      test('Check the VALUE of all properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
         const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
 
         assert.strictEqual(recipe.id, get_recipe_dto.id)
@@ -376,10 +365,40 @@ describe('Recipe Mapper', () => {
         assert.deepEqual(recipe.category, get_recipe_dto.category)
         assert.deepEqual(recipe.country, get_recipe_dto.country)
         assert.deepEqual(recipe.user, get_recipe_dto.user)
-        assert.deepEqual(recipe.kitchenwares, get_recipe_dto.kitchenwares)
-        assert.strictEqual(13, recipe.ingredients?.length)
+      })
+
+      test('Check the VALUE of property `kitchenwares` nested properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
+        const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
+
+        assert.strictEqual(recipe.kitchenwares?.length, 4)
+        assert.strictEqual(recipe.kitchenwares?.at(0)?.id, get_recipe_dto.kitchenwares?.at(0)?.id)
         assert.strictEqual(
-          recipe.ingredients?.at(0)?.ingredientRecipeId,
+          recipe.kitchenwares?.at(0)?.image,
+          get_recipe_dto.kitchenwares?.at(0)?.image
+        )
+        assert.strictEqual(
+          recipe.kitchenwares?.at(0)?.name,
+          get_recipe_dto.kitchenwares?.at(0)?.name
+        )
+        assert.strictEqual(recipe.kitchenwares?.at(3)?.id, get_recipe_dto.kitchenwares?.at(3)?.id)
+        assert.strictEqual(
+          recipe.kitchenwares?.at(3)?.image,
+          get_recipe_dto.kitchenwares?.at(3)?.image
+        )
+        assert.strictEqual(
+          recipe.kitchenwares?.at(3)?.name,
+          get_recipe_dto.kitchenwares?.at(3)?.name
+        )
+      })
+
+      test('Check the VALUE of property `ingredients` nested properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
+        const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
+
+        assert.strictEqual(recipe.ingredients?.length, 9)
+        assert.strictEqual(
+          recipe.ingredients?.at(0)?.ingredientsRecipeId,
           get_recipe_dto.ingredients?.at(0)?.ingredients_recipe_id
         )
         assert.strictEqual(recipe.ingredients?.at(0)?.id, get_recipe_dto.ingredients?.at(0)?.id)
@@ -401,29 +420,51 @@ describe('Recipe Mapper', () => {
           get_recipe_dto.ingredients?.at(0)?.comment
         )
         assert.strictEqual(
-          recipe.ingredients?.at(11)?.ingredientRecipeId,
-          get_recipe_dto.ingredients?.at(11)?.ingredients_recipe_id
+          recipe.ingredients?.at(7)?.ingredientsRecipeId,
+          get_recipe_dto.ingredients?.at(7)?.ingredients_recipe_id
         )
-        assert.strictEqual(recipe.ingredients?.at(11)?.id, get_recipe_dto.ingredients?.at(11)?.id)
+        assert.strictEqual(recipe.ingredients?.at(7)?.id, get_recipe_dto.ingredients?.at(7)?.id)
         assert.strictEqual(
-          recipe.ingredients?.at(11)?.image,
-          get_recipe_dto.ingredients?.at(11)?.image
+          recipe.ingredients?.at(7)?.image,
+          get_recipe_dto.ingredients?.at(7)?.image
         )
+        assert.strictEqual(recipe.ingredients?.at(7)?.name, get_recipe_dto.ingredients?.at(7)?.name)
         assert.strictEqual(
-          recipe.ingredients?.at(11)?.name,
-          get_recipe_dto.ingredients?.at(11)?.name
-        )
-        assert.strictEqual(
-          recipe.ingredients?.at(11)?.quantity,
-          get_recipe_dto.ingredients?.at(11)?.quantity
+          recipe.ingredients?.at(7)?.quantity,
+          get_recipe_dto.ingredients?.at(7)?.quantity
         )
         assert.strictEqual(
-          recipe.ingredients?.at(11)?.measure,
-          get_recipe_dto.ingredients?.at(11)?.measure
+          recipe.ingredients?.at(7)?.measure,
+          get_recipe_dto.ingredients?.at(7)?.measure
         )
         assert.strictEqual(
-          recipe.ingredients?.at(11)?.comment,
-          get_recipe_dto.ingredients?.at(11)?.comment
+          recipe.ingredients?.at(7)?.comment,
+          get_recipe_dto.ingredients?.at(7)?.comment
+        )
+      })
+
+      test('Check the VALUE of property `instructions` nested properties', () => {
+        const get_recipe_dto: GetRecipeDTO = JSON.parse(JSON.stringify(dummy_get_recipe_dto))
+        const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
+
+        assert.strictEqual(recipe.instructions?.length, 5)
+        assert.strictEqual(recipe.instructions?.at(0)?.id, get_recipe_dto.instructions?.at(0)?.id)
+        assert.strictEqual(
+          recipe.instructions?.at(0)?.step,
+          get_recipe_dto.instructions?.at(0)?.step
+        )
+        assert.strictEqual(
+          recipe.instructions?.at(0)?.comment,
+          get_recipe_dto.instructions?.at(0)?.comment
+        )
+        assert.strictEqual(recipe.instructions?.at(4)?.id, get_recipe_dto.instructions?.at(4)?.id)
+        assert.strictEqual(
+          recipe.instructions?.at(4)?.step,
+          get_recipe_dto.instructions?.at(4)?.step
+        )
+        assert.strictEqual(
+          recipe.instructions?.at(4)?.comment,
+          get_recipe_dto.instructions?.at(4)?.comment
         )
       })
     })
@@ -431,90 +472,392 @@ describe('Recipe Mapper', () => {
 
   describe('RecipeMapper.toPostDTO()', () => {
     describe('Creates a PostRecipeDTO from a Recipe', () => {
-      test('All values for a PostRecipeDTO (base) are present', () => {
+      test('Check the PRESENCE of all properties', () => {
         const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
         const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
 
-        assert.exists(post_recipe_dto.image)
-        assert.exists(post_recipe_dto.name)
-        assert.exists(post_recipe_dto.category_id)
+        assert.isDefined(post_recipe_dto.image)
+        assert.isDefined(post_recipe_dto.name)
+        assert.isDefined(post_recipe_dto.category_id)
         assert.isDefined(post_recipe_dto.country_id)
-        assert.isNull(post_recipe_dto.country_id)
-        assert.exists(post_recipe_dto.user_id)
+        assert.isDefined(post_recipe_dto.user_id)
         assert.isDefined(post_recipe_dto.preparation_time)
-        assert.isNull(post_recipe_dto.preparation_time)
         assert.isDefined(post_recipe_dto.cooking_time)
-        assert.isNull(post_recipe_dto.cooking_time)
         assert.isDefined(post_recipe_dto.number_of_people)
-        assert.isNull(post_recipe_dto.number_of_people)
-        assert.exists(post_recipe_dto.difficulty)
-        assert.exists(post_recipe_dto.price)
-        assert.exists(post_recipe_dto.description)
+        assert.isDefined(post_recipe_dto.difficulty)
+        assert.isDefined(post_recipe_dto.price)
+        assert.isDefined(post_recipe_dto.description)
+        assert.isDefined(post_recipe_dto.kitchenware_ids)
+        assert.isDefined(post_recipe_dto.ingredients_recipes_attributes)
+        assert.isDefined(post_recipe_dto.instructions_recipes_attributes)
       })
 
-      test('All values for a PostRecipeDTO (extra infos) are present', () => {
-        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe_with_infos))
+      test('Check the PRESENCE of property `ingredients_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
         const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
 
-        assert.exists(post_recipe_dto.image)
-        assert.exists(post_recipe_dto.name)
-        assert.exists(post_recipe_dto.category_id)
-        assert.exists(post_recipe_dto.country_id)
-        assert.exists(post_recipe_dto.user_id)
-        assert.exists(post_recipe_dto.preparation_time)
-        assert.exists(post_recipe_dto.cooking_time)
-        assert.isDefined(post_recipe_dto.number_of_people)
-        assert.isNull(post_recipe_dto.number_of_people)
-        assert.exists(post_recipe_dto.difficulty)
-        assert.exists(post_recipe_dto.price)
-        assert.exists(post_recipe_dto.description)
-        assert.exists(post_recipe_dto.kitchenware_ids)
         assert.exists(post_recipe_dto.ingredients_recipes_attributes)
-        assert.exists(post_recipe_dto.instructions_recipes_attributes)
+        assert.property(post_recipe_dto.ingredients_recipes_attributes?.at(0), 'ingredient_id')
+        assert.property(post_recipe_dto.ingredients_recipes_attributes?.at(0), 'quantity')
+        assert.property(post_recipe_dto.ingredients_recipes_attributes?.at(0), 'measure_id')
+        assert.property(post_recipe_dto.ingredients_recipes_attributes?.at(0), 'comment')
       })
 
-      // test('All values for a PostRecipeDTO are correct', () => {
-      //   const recipe = JSON.parse(JSON.stringify(dummy_recipe_with_infos))
-      //   const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
+      test('Check the PRESENCE of property `instructions_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
 
-      //   assert.strictEqual(post_recipe_dto.image, recipe.image)
-      // })
+        assert.exists(post_recipe_dto.instructions_recipes_attributes)
+        assert.property(post_recipe_dto.instructions_recipes_attributes?.at(0), 'step')
+        assert.property(post_recipe_dto.instructions_recipes_attributes?.at(0), 'comment')
+      })
+
+      test('Check the TYPE of all properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
+
+        assert.isString(post_recipe_dto.image)
+        assert.isString(post_recipe_dto.name)
+        assert.isNumber(post_recipe_dto.category_id)
+        assert.isNumber(post_recipe_dto.country_id)
+        assert.isNumber(post_recipe_dto.user_id)
+        assert.isNumber(post_recipe_dto.preparation_time)
+        assert.isNumber(post_recipe_dto.cooking_time)
+        assert.isNull(post_recipe_dto.number_of_people)
+        assert.isString(post_recipe_dto.difficulty)
+        assert.isString(post_recipe_dto.price)
+        assert.isString(post_recipe_dto.description)
+        assert.isArray(post_recipe_dto.kitchenware_ids)
+        assert.isArray(post_recipe_dto.ingredients_recipes_attributes)
+        assert.isArray(post_recipe_dto.instructions_recipes_attributes)
+      })
+
+      test('Check the TYPE of property `kitchenware_ids` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
+
+        assert.exists(post_recipe_dto.kitchenware_ids)
+        assert.isArray(post_recipe_dto.kitchenware_ids)
+        assert.isNumber(post_recipe_dto.kitchenware_ids?.at(0))
+      })
+
+      test('Check the TYPE of property `ingredients_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
+
+        assert.isArray(post_recipe_dto.ingredients_recipes_attributes)
+        assert.isNumber(post_recipe_dto.ingredients_recipes_attributes?.at(0)?.ingredient_id)
+        assert.isNumber(post_recipe_dto.ingredients_recipes_attributes?.at(0)?.quantity)
+        assert.isNull(post_recipe_dto.ingredients_recipes_attributes?.at(0)?.measure_id)
+        assert.isString(post_recipe_dto.ingredients_recipes_attributes?.at(0)?.comment)
+      })
+
+      test('Check the TYPE of property `instructions_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
+
+        assert.isArray(post_recipe_dto.instructions_recipes_attributes)
+        assert.isNumber(post_recipe_dto.instructions_recipes_attributes?.at(0)?.step)
+        assert.isString(post_recipe_dto.instructions_recipes_attributes?.at(0)?.comment)
+      })
+
+      test('Check the VALUE of all properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
+
+        assert.strictEqual(post_recipe_dto.image, recipe.image)
+        assert.strictEqual(post_recipe_dto.name, recipe.name)
+        assert.strictEqual(post_recipe_dto.category_id, recipe.categoryId)
+        assert.strictEqual(post_recipe_dto.country_id, recipe.countryId)
+        assert.strictEqual(post_recipe_dto.user_id, recipe.userId)
+        assert.strictEqual(post_recipe_dto.preparation_time, recipe.preparationTime)
+        assert.strictEqual(post_recipe_dto.cooking_time, recipe.cookingTime)
+        assert.strictEqual(post_recipe_dto.number_of_people, recipe.numberOfPeople)
+        assert.strictEqual(post_recipe_dto.difficulty, recipe.difficulty)
+        assert.strictEqual(post_recipe_dto.price, recipe.price)
+        assert.strictEqual(post_recipe_dto.description, recipe.description)
+      })
+
+      test('Check the VALUE of property `kitchenware_ids` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
+
+        assert.exists(post_recipe_dto.kitchenware_ids)
+        assert.isArray(post_recipe_dto.kitchenware_ids)
+        assert.deepEqual(post_recipe_dto.kitchenware_ids, recipe.kitchenwareIds)
+      })
+
+      test('Check the VALUE of property `ingredients_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
+
+        assert.exists(post_recipe_dto.ingredients_recipes_attributes)
+        assert.strictEqual(post_recipe_dto.ingredients_recipes_attributes?.length, 3)
+        assert.strictEqual(
+          post_recipe_dto.ingredients_recipes_attributes?.at(0)?.ingredient_id,
+          recipe.ingredientsRecipesAttributes?.at(0)?.ingredientId
+        )
+        assert.strictEqual(
+          post_recipe_dto.ingredients_recipes_attributes?.at(0)?.quantity,
+          recipe.ingredientsRecipesAttributes?.at(0)?.quantity
+        )
+        assert.strictEqual(
+          post_recipe_dto.ingredients_recipes_attributes?.at(0)?.measure_id,
+          recipe.ingredientsRecipesAttributes?.at(0)?.measureId
+        )
+        assert.strictEqual(
+          post_recipe_dto.ingredients_recipes_attributes?.at(0)?.comment,
+          recipe.ingredientsRecipesAttributes?.at(0)?.comment
+        )
+        assert.strictEqual(
+          post_recipe_dto.ingredients_recipes_attributes?.at(2)?.ingredient_id,
+          recipe.ingredientsRecipesAttributes?.at(2)?.ingredientId
+        )
+        assert.strictEqual(
+          post_recipe_dto.ingredients_recipes_attributes?.at(2)?.quantity,
+          recipe.ingredientsRecipesAttributes?.at(2)?.quantity
+        )
+        assert.strictEqual(
+          post_recipe_dto.ingredients_recipes_attributes?.at(2)?.measure_id,
+          recipe.ingredientsRecipesAttributes?.at(2)?.measureId
+        )
+        assert.strictEqual(
+          post_recipe_dto.ingredients_recipes_attributes?.at(2)?.comment,
+          recipe.ingredientsRecipesAttributes?.at(2)?.comment
+        )
+      })
+
+      test('Check the VALUE of property `instructions_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const post_recipe_dto = RecipeMapper.toPostDTO(recipe)
+
+        assert.exists(post_recipe_dto.instructions_recipes_attributes)
+        assert.strictEqual(post_recipe_dto.ingredients_recipes_attributes?.length, 3)
+        assert.strictEqual(
+          post_recipe_dto.instructions_recipes_attributes?.at(0)?.step,
+          recipe.instructionsRecipesAttributes?.at(0)?.step
+        )
+        assert.strictEqual(
+          post_recipe_dto.instructions_recipes_attributes?.at(0)?.comment,
+          recipe.instructionsRecipesAttributes?.at(0)?.comment
+        )
+        assert.strictEqual(
+          post_recipe_dto.instructions_recipes_attributes?.at(2)?.step,
+          recipe.instructionsRecipesAttributes?.at(2)?.step
+        )
+        assert.strictEqual(
+          post_recipe_dto.instructions_recipes_attributes?.at(2)?.comment,
+          recipe.instructionsRecipesAttributes?.at(2)?.comment
+        )
+      })
     })
   })
 
-  // describe('RecipeMapper.toPutDTO()', () => {
-  //   describe('Creates a PutRecipeDTO from a Recipe', () => {
-  //     test('All values for a PutRecipeDTO are present', () => {
-  //       const recipe = JSON.parse(JSON.stringify(dummy_recipe))
-  //       const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+  describe('RecipeMapper.toPutDTO()', () => {
+    describe('Creates a PutRecipeDTO from a Recipe', () => {
+      test('Check the PRESENCE of all properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
 
-  //       assert.exists(put_recipe_dto.id)
-  //       assert.exists(put_recipe_dto.image)
-  //       assert.exists(put_recipe_dto.name)
+        assert.isDefined(put_recipe_dto.id)
+        assert.isDefined(put_recipe_dto.image)
+        assert.isDefined(put_recipe_dto.name)
+        assert.isDefined(put_recipe_dto.category_id)
+        assert.isDefined(put_recipe_dto.country_id)
+        assert.isDefined(put_recipe_dto.user_id)
+        assert.isDefined(put_recipe_dto.preparation_time)
+        assert.isDefined(put_recipe_dto.cooking_time)
+        assert.isDefined(put_recipe_dto.number_of_people)
+        assert.isDefined(put_recipe_dto.difficulty)
+        assert.isDefined(put_recipe_dto.price)
+        assert.isDefined(put_recipe_dto.description)
+        assert.isDefined(put_recipe_dto.kitchenware_ids)
+        assert.isDefined(put_recipe_dto.ingredients_recipes_attributes)
+        assert.isDefined(put_recipe_dto.instructions_recipes_attributes)
+      })
 
-  //       recipe.image = null
-  //       const put_recipe_dto_2 = RecipeMapper.toPutDTO(recipe)
+      test('Check the PRESENCE of property `ingredients_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
 
-  //       assert.exists(put_recipe_dto_2.id)
-  //       assert.isDefined(put_recipe_dto_2.image)
-  //       assert.isNull(put_recipe_dto_2.image)
-  //       assert.exists(put_recipe_dto_2.name)
-  //     })
-  //     test('All values for a PutRecipeDTO are correct', () => {
-  //       const recipe = JSON.parse(JSON.stringify(dummy_recipe))
-  //       const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+        assert.exists(put_recipe_dto.ingredients_recipes_attributes)
+        assert.property(put_recipe_dto.ingredients_recipes_attributes?.at(0), 'id')
+        assert.property(put_recipe_dto.ingredients_recipes_attributes?.at(0), 'ingredient_id')
+        assert.property(put_recipe_dto.ingredients_recipes_attributes?.at(0), 'quantity')
+        assert.property(put_recipe_dto.ingredients_recipes_attributes?.at(0), 'measure_id')
+        assert.property(put_recipe_dto.ingredients_recipes_attributes?.at(0), 'comment')
+      })
 
-  //       assert.strictEqual(put_recipe_dto.id, recipe.id)
-  //       assert.strictEqual(put_recipe_dto.image, recipe.image)
-  //       assert.strictEqual(put_recipe_dto.name, recipe.name)
+      test('Check the PRESENCE of property `instructions_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
 
-  //       recipe.image = null
-  //       const put_recipe_dto_2 = RecipeMapper.toPutDTO(recipe)
+        assert.exists(put_recipe_dto.instructions_recipes_attributes)
+        assert.property(put_recipe_dto.instructions_recipes_attributes?.at(0), 'id')
+        assert.property(put_recipe_dto.instructions_recipes_attributes?.at(0), 'step')
+        assert.property(put_recipe_dto.instructions_recipes_attributes?.at(0), 'comment')
+      })
 
-  //       assert.strictEqual(put_recipe_dto_2.id, recipe.id)
-  //       assert.strictEqual(put_recipe_dto_2.image, recipe.image)
-  //       assert.strictEqual(put_recipe_dto_2.name, recipe.name)
-  //     })
-  //   })
-  // })
+      test('Check the TYPE of all properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+
+        assert.isNumber(put_recipe_dto.id)
+        assert.isString(put_recipe_dto.image)
+        assert.isString(put_recipe_dto.name)
+        assert.isNumber(put_recipe_dto.category_id)
+        assert.isNumber(put_recipe_dto.country_id)
+        assert.isNumber(put_recipe_dto.user_id)
+        assert.isNumber(put_recipe_dto.preparation_time)
+        assert.isNumber(put_recipe_dto.cooking_time)
+        assert.isNull(put_recipe_dto.number_of_people)
+        assert.isString(put_recipe_dto.difficulty)
+        assert.isString(put_recipe_dto.price)
+        assert.isString(put_recipe_dto.description)
+        assert.isArray(put_recipe_dto.kitchenware_ids)
+        assert.isArray(put_recipe_dto.ingredients_recipes_attributes)
+        assert.isArray(put_recipe_dto.instructions_recipes_attributes)
+      })
+
+      test('Check the TYPE of property `kitchenware_ids` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+
+        assert.exists(put_recipe_dto.kitchenware_ids)
+        assert.isArray(put_recipe_dto.kitchenware_ids)
+        assert.isNumber(put_recipe_dto.kitchenware_ids?.at(0))
+      })
+
+      test('Check the TYPE of property `ingredients_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+
+        assert.exists(put_recipe_dto.ingredients_recipes_attributes)
+        assert.isArray(put_recipe_dto.ingredients_recipes_attributes)
+        assert.isNumber(put_recipe_dto.ingredients_recipes_attributes?.at(0)?.id)
+        assert.isNumber(put_recipe_dto.ingredients_recipes_attributes?.at(0)?.ingredient_id)
+        assert.isNumber(put_recipe_dto.ingredients_recipes_attributes?.at(0)?.quantity)
+        assert.isNull(put_recipe_dto.ingredients_recipes_attributes?.at(0)?.measure_id)
+        assert.isString(put_recipe_dto.ingredients_recipes_attributes?.at(0)?.comment)
+      })
+
+      test('Check the TYPE of property `instructions_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+
+        assert.exists(put_recipe_dto.instructions_recipes_attributes)
+        assert.isArray(put_recipe_dto.instructions_recipes_attributes)
+        assert.isNumber(put_recipe_dto.instructions_recipes_attributes?.at(0)?.id)
+        assert.isNumber(put_recipe_dto.instructions_recipes_attributes?.at(0)?.step)
+        assert.isString(put_recipe_dto.instructions_recipes_attributes?.at(0)?.comment)
+      })
+
+      test('Check the VALUE of all properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+
+        assert.strictEqual(put_recipe_dto.id, recipe.id)
+        assert.strictEqual(put_recipe_dto.image, recipe.image)
+        assert.strictEqual(put_recipe_dto.name, recipe.name)
+        assert.strictEqual(put_recipe_dto.category_id, recipe.categoryId)
+        assert.strictEqual(put_recipe_dto.country_id, recipe.countryId)
+        assert.strictEqual(put_recipe_dto.user_id, recipe.userId)
+        assert.strictEqual(put_recipe_dto.preparation_time, recipe.preparationTime)
+        assert.strictEqual(put_recipe_dto.cooking_time, recipe.cookingTime)
+        assert.strictEqual(put_recipe_dto.number_of_people, recipe.numberOfPeople)
+        assert.strictEqual(put_recipe_dto.difficulty, recipe.difficulty)
+        assert.strictEqual(put_recipe_dto.price, recipe.price)
+        assert.strictEqual(put_recipe_dto.description, recipe.description)
+      })
+
+      test('Check the VALUE of property `kitchenware_ids` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+
+        assert.exists(put_recipe_dto.kitchenware_ids)
+        assert.isArray(put_recipe_dto.kitchenware_ids)
+        assert.deepEqual(put_recipe_dto.kitchenware_ids, recipe.kitchenwareIds)
+      })
+
+      test('Check the VALUE of property `ingredients_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+
+        assert.exists(put_recipe_dto.ingredients_recipes_attributes)
+        assert.strictEqual(put_recipe_dto.ingredients_recipes_attributes?.length, 3)
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(0)?.id,
+          recipe.ingredientsRecipesAttributes?.at(0)?.id
+        )
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(0)?.ingredient_id,
+          recipe.ingredientsRecipesAttributes?.at(0)?.ingredientId
+        )
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(0)?.quantity,
+          recipe.ingredientsRecipesAttributes?.at(0)?.quantity
+        )
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(0)?.measure_id,
+          recipe.ingredientsRecipesAttributes?.at(0)?.measureId
+        )
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(0)?.comment,
+          recipe.ingredientsRecipesAttributes?.at(0)?.comment
+        )
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(2)?.id,
+          recipe.ingredientsRecipesAttributes?.at(2)?.id
+        )
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(2)?.ingredient_id,
+          recipe.ingredientsRecipesAttributes?.at(2)?.ingredientId
+        )
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(2)?.quantity,
+          recipe.ingredientsRecipesAttributes?.at(2)?.quantity
+        )
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(2)?.measure_id,
+          recipe.ingredientsRecipesAttributes?.at(2)?.measureId
+        )
+        assert.strictEqual(
+          put_recipe_dto.ingredients_recipes_attributes?.at(2)?.comment,
+          recipe.ingredientsRecipesAttributes?.at(2)?.comment
+        )
+      })
+
+      test('Check the VALUE of property `instructions_recipes_attributes` nested properties', () => {
+        const recipe: Recipe = JSON.parse(JSON.stringify(dummy_recipe))
+        const put_recipe_dto = RecipeMapper.toPutDTO(recipe)
+
+        assert.exists(put_recipe_dto.instructions_recipes_attributes)
+        assert.strictEqual(put_recipe_dto.ingredients_recipes_attributes?.length, 3)
+        assert.strictEqual(
+          put_recipe_dto.instructions_recipes_attributes?.at(0)?.id,
+          recipe.instructionsRecipesAttributes?.at(0)?.id
+        )
+        assert.strictEqual(
+          put_recipe_dto.instructions_recipes_attributes?.at(0)?.step,
+          recipe.instructionsRecipesAttributes?.at(0)?.step
+        )
+        assert.strictEqual(
+          put_recipe_dto.instructions_recipes_attributes?.at(0)?.comment,
+          recipe.instructionsRecipesAttributes?.at(0)?.comment
+        )
+        assert.strictEqual(
+          put_recipe_dto.instructions_recipes_attributes?.at(2)?.id,
+          recipe.instructionsRecipesAttributes?.at(2)?.id
+        )
+        assert.strictEqual(
+          put_recipe_dto.instructions_recipes_attributes?.at(2)?.step,
+          recipe.instructionsRecipesAttributes?.at(2)?.step
+        )
+        assert.strictEqual(
+          put_recipe_dto.instructions_recipes_attributes?.at(2)?.comment,
+          recipe.instructionsRecipesAttributes?.at(2)?.comment
+        )
+      })
+    })
+  })
 })

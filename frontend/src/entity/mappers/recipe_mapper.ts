@@ -148,7 +148,7 @@ function convert_ingredient_from_dto(ingredient: GetRecipeIngredientDTO): Ingred
     id: ingredient.id,
     image: ingredient.image,
     name: ingredient.name,
-    ingredientRecipeId: ingredient.ingredients_recipe_id,
+    ingredientsRecipeId: ingredient.ingredients_recipe_id,
     quantity: ingredient.quantity,
     measure: ingredient.measure ? ingredient.measure : null,
     comment: ingredient.comment

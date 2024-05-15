@@ -33,7 +33,7 @@ const dummy_article: Article = {
 describe('Article Mapper', () => {
   describe('ArticleMapper.fromGetDTO()', () => {
     describe('Creates an Article from GetArticleDTO', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const get_article_dto: GetArticleDTO = JSON.parse(JSON.stringify(dummy_get_article_dto))
         const article = ArticleMapper.fromGetDTO(get_article_dto)
 
@@ -47,7 +47,7 @@ describe('Article Mapper', () => {
         assert.isDefined(article.user)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const get_article_dto: GetArticleDTO = JSON.parse(JSON.stringify(dummy_get_article_dto))
         const article = ArticleMapper.fromGetDTO(get_article_dto)
 
@@ -63,7 +63,7 @@ describe('Article Mapper', () => {
         assert.isString(article.user?.email)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const get_article_dto: GetArticleDTO = JSON.parse(JSON.stringify(dummy_get_article_dto))
         const article = ArticleMapper.fromGetDTO(get_article_dto)
 
@@ -81,7 +81,7 @@ describe('Article Mapper', () => {
 
   describe('ArticleMapper.toPostDTO()', () => {
     describe('Creates a PostArticleDTO from an Article', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const article: Article = JSON.parse(JSON.stringify(dummy_article))
         const post_article_dto = ArticleMapper.toPostDTO(article)
 
@@ -91,7 +91,7 @@ describe('Article Mapper', () => {
         assert.isDefined(post_article_dto.user_id)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const article: Article = JSON.parse(JSON.stringify(dummy_article))
         const post_article_dto = ArticleMapper.toPostDTO(article)
 
@@ -101,7 +101,7 @@ describe('Article Mapper', () => {
         assert.isNumber(post_article_dto.user_id)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const article: Article = JSON.parse(JSON.stringify(dummy_article))
         const post_article_dto = ArticleMapper.toPostDTO(article)
 
@@ -115,7 +115,7 @@ describe('Article Mapper', () => {
 
   describe('ArticleMapper.toPutDTO()', () => {
     describe('Creates a PutArticleDTO from an Article', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const article: Article = JSON.parse(JSON.stringify(dummy_article))
         const put_article_dto = ArticleMapper.toPutDTO(article)
 
@@ -126,7 +126,7 @@ describe('Article Mapper', () => {
         assert.isDefined(put_article_dto.user_id)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const article: Article = JSON.parse(JSON.stringify(dummy_article))
         const put_article_dto = ArticleMapper.toPutDTO(article)
 
@@ -137,7 +137,7 @@ describe('Article Mapper', () => {
         assert.isNumber(put_article_dto.user_id)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const article: Article = JSON.parse(JSON.stringify(dummy_article))
         const put_article_dto = ArticleMapper.toPutDTO(article)
 

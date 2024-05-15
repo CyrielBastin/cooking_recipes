@@ -17,7 +17,7 @@ const dummy_ingredient: Ingredient = {
 describe('Ingredient Mapper', () => {
   describe('IngredientMapper.fromGetDTO()', () => {
     describe('Creates an Ingredient from GetIngredientDTO', () => {
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const get_ingredient_dto: GetIngredientDTO = JSON.parse(
           JSON.stringify(dummy_get_ingredient_dto)
         )
@@ -28,7 +28,7 @@ describe('Ingredient Mapper', () => {
         assert.isDefined(ingredient.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const get_ingredient_dto: GetIngredientDTO = JSON.parse(
           JSON.stringify(dummy_get_ingredient_dto)
         )
@@ -39,7 +39,7 @@ describe('Ingredient Mapper', () => {
         assert.isString(ingredient.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const get_ingredient_dto: GetIngredientDTO = JSON.parse(
           JSON.stringify(dummy_get_ingredient_dto)
         )
@@ -54,7 +54,7 @@ describe('Ingredient Mapper', () => {
 
   describe('IngredientMapper.toPostDTO()', () => {
     describe('Creates a PostIngredientDTO from an Ingredient', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const ingredient: Ingredient = JSON.parse(JSON.stringify(dummy_ingredient))
         const post_ingredient_dto = IngredientMapper.toPostDTO(ingredient)
 
@@ -62,7 +62,7 @@ describe('Ingredient Mapper', () => {
         assert.isDefined(post_ingredient_dto.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const ingredient: Ingredient = JSON.parse(JSON.stringify(dummy_ingredient))
         const post_ingredient_dto = IngredientMapper.toPostDTO(ingredient)
 
@@ -70,7 +70,7 @@ describe('Ingredient Mapper', () => {
         assert.isString(post_ingredient_dto.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const ingredient: Ingredient = JSON.parse(JSON.stringify(dummy_ingredient))
         const post_ingredient_dto = IngredientMapper.toPostDTO(ingredient)
 
@@ -82,7 +82,7 @@ describe('Ingredient Mapper', () => {
 
   describe('IngredientMapper.toPutDTO()', () => {
     describe('Creates a PutIngredientDTO from an Ingredient', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const ingredient: Ingredient = JSON.parse(JSON.stringify(dummy_ingredient))
         const put_ingredient_dto = IngredientMapper.toPutDTO(ingredient)
 
@@ -91,7 +91,7 @@ describe('Ingredient Mapper', () => {
         assert.isDefined(put_ingredient_dto.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const ingredient: Ingredient = JSON.parse(JSON.stringify(dummy_ingredient))
         const put_ingredient_dto = IngredientMapper.toPutDTO(ingredient)
 
@@ -100,7 +100,7 @@ describe('Ingredient Mapper', () => {
         assert.isString(put_ingredient_dto.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const ingredient: Ingredient = JSON.parse(JSON.stringify(dummy_ingredient))
         const put_ingredient_dto = IngredientMapper.toPutDTO(ingredient)
 

@@ -17,7 +17,7 @@ const dummy_kitchenware: Kitchenware = {
 describe('Kitchenware Mapper', () => {
   describe('KitchenwareMapper.fromGetDTO()', () => {
     describe('Creates a Kitchenware from GetKitchenwareDTO', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const get_kitchenware_dto: GetKitchenwareDTO = JSON.parse(
           JSON.stringify(dummy_get_kitchenware_dto)
         )
@@ -28,7 +28,7 @@ describe('Kitchenware Mapper', () => {
         assert.isDefined(kitchenware.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const get_kitchenware_dto: GetKitchenwareDTO = JSON.parse(
           JSON.stringify(dummy_get_kitchenware_dto)
         )
@@ -39,7 +39,7 @@ describe('Kitchenware Mapper', () => {
         assert.isString(kitchenware.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const get_kitchenware_dto: GetKitchenwareDTO = JSON.parse(
           JSON.stringify(dummy_get_kitchenware_dto)
         )
@@ -54,7 +54,7 @@ describe('Kitchenware Mapper', () => {
 
   describe('KitchenwareMapper.toPostDTO()', () => {
     describe('Creates a PostKitchenwareDTO from a Kitchenware', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const post_kitchenware_dto = KitchenwareMapper.toPostDTO(kitchenware)
 
@@ -62,7 +62,7 @@ describe('Kitchenware Mapper', () => {
         assert.isDefined(post_kitchenware_dto.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const post_kitchenware_dto = KitchenwareMapper.toPostDTO(kitchenware)
 
@@ -70,7 +70,7 @@ describe('Kitchenware Mapper', () => {
         assert.isString(post_kitchenware_dto.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const post_kitchenware_dto = KitchenwareMapper.toPostDTO(kitchenware)
 
@@ -82,7 +82,7 @@ describe('Kitchenware Mapper', () => {
 
   describe('KitchenwareMapper.toPutDTO()', () => {
     describe('Creates a PutKitchenwareDTO from a Kitchenware', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const put_kitchenware_dto = KitchenwareMapper.toPutDTO(kitchenware)
 
@@ -91,7 +91,7 @@ describe('Kitchenware Mapper', () => {
         assert.isDefined(put_kitchenware_dto.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const put_kitchenware_dto = KitchenwareMapper.toPutDTO(kitchenware)
 
@@ -100,7 +100,7 @@ describe('Kitchenware Mapper', () => {
         assert.isString(put_kitchenware_dto.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const kitchenware: Kitchenware = JSON.parse(JSON.stringify(dummy_kitchenware))
         const put_kitchenware_dto = KitchenwareMapper.toPutDTO(kitchenware)
 

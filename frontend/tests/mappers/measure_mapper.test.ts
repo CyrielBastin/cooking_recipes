@@ -15,7 +15,7 @@ const dummy_measure: Measure = {
 describe('Measure Mapper', () => {
   describe('MeasureMapper.fromGetDTO()', () => {
     describe('Creates a Measure from GetMeasureDTO', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const get_measure_dto: GetMeasureDTO = JSON.parse(JSON.stringify(dummy_get_measure_dto))
         const measure = MeasureMapper.fromGetDTO(get_measure_dto)
 
@@ -23,7 +23,7 @@ describe('Measure Mapper', () => {
         assert.isDefined(measure.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const get_measure_dto: GetMeasureDTO = JSON.parse(JSON.stringify(dummy_get_measure_dto))
         const measure = MeasureMapper.fromGetDTO(get_measure_dto)
 
@@ -31,7 +31,7 @@ describe('Measure Mapper', () => {
         assert.isString(measure.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const get_measure_dto: GetMeasureDTO = JSON.parse(JSON.stringify(dummy_get_measure_dto))
         const measure = MeasureMapper.fromGetDTO(get_measure_dto)
 
@@ -43,21 +43,21 @@ describe('Measure Mapper', () => {
 
   describe('MeasureMapper.toPostDTO()', () => {
     describe('Creates a PostMeasureDTO from a Measure', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const post_measure_dto = MeasureMapper.toPostDTO(measure)
 
         assert.isDefined(post_measure_dto.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const post_measure_dto = MeasureMapper.toPostDTO(measure)
 
         assert.isString(post_measure_dto.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const post_measure_dto = MeasureMapper.toPostDTO(measure)
 
@@ -68,7 +68,7 @@ describe('Measure Mapper', () => {
 
   describe('MeasureMapper.toPutDTO()', () => {
     describe('Creates a PutMeasureDTO from a Measure', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const put_measure_dto = MeasureMapper.toPutDTO(measure)
 
@@ -76,7 +76,7 @@ describe('Measure Mapper', () => {
         assert.isDefined(put_measure_dto.name)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const put_measure_dto = MeasureMapper.toPutDTO(measure)
 
@@ -84,7 +84,7 @@ describe('Measure Mapper', () => {
         assert.isString(put_measure_dto.name)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const measure: Measure = JSON.parse(JSON.stringify(dummy_measure))
         const put_measure_dto = MeasureMapper.toPutDTO(measure)
 

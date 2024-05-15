@@ -12,7 +12,7 @@ const dummy_user: CreateUser = {
 describe('User Mapper', () => {
   describe('UserMapper.toPostDTO()', () => {
     describe('Creates a PostUserDTO from a User', () => {
-      test('Check the PRESENCE of the properties', () => {
+      test('Check the PRESENCE of all properties', () => {
         const user: CreateUser = JSON.parse(JSON.stringify(dummy_user))
         const post_user_dto = UserMapper.toPostDTO(user)
 
@@ -21,7 +21,7 @@ describe('User Mapper', () => {
         assert.isDefined(post_user_dto.password_confirmation)
       })
 
-      test('Check the TYPE of the properties', () => {
+      test('Check the TYPE of all properties', () => {
         const user: CreateUser = JSON.parse(JSON.stringify(dummy_user))
         const post_user_dto = UserMapper.toPostDTO(user)
 
@@ -30,7 +30,7 @@ describe('User Mapper', () => {
         assert.isString(post_user_dto.password_confirmation)
       })
 
-      test('Check the VALUE of the properties', () => {
+      test('Check the VALUE of all properties', () => {
         const user: CreateUser = JSON.parse(JSON.stringify(dummy_user))
         const post_user_dto = UserMapper.toPostDTO(user)
 
