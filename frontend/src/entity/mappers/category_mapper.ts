@@ -8,14 +8,8 @@ export default class CategoryMapper {
     return {
       id: category_dto.id,
       name: category_dto.name,
-      parentId: category_dto.parent_id,
-      createdAt: category_dto.created_at,
-      updatedAt: category_dto.updated_at,
-      parent: {
-        id: category_dto.parent?.id,
-        name: category_dto.parent?.name
-      }
-    } as Category
+      parentId: category_dto.parent_id
+    }
   }
 
   static toPostDTO(category: Category): PostCategoryDTO {

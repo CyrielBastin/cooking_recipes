@@ -48,7 +48,7 @@ json.array! @recipes do |recipe|
         json.image i_r.ingredient.image
         json.name i_r.ingredient.name
         json.quantity i_r.quantity
-        json.measure(i_r.measure.name) if i_r.measure
+        json.measure(i_r.measure&.name)
         json.comment i_r.comment
       end
     end

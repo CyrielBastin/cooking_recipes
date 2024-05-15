@@ -1,5 +1,5 @@
 export default interface Kitchenware {
   id: number
-  image?: string
+  image: string | null
   name: string
 }

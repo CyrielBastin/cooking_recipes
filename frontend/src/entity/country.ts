@@ -1,5 +1,5 @@
 export default interface Country {
   id: number
-  image?: string
+  image: string | null
   name: string
 }

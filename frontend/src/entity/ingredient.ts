@@ -1,12 +1,12 @@
 export default interface Ingredient {
   id: number
-  image?: string
+  image: string | null
   name: string
 }
 
 export interface IngredientRecipe extends Ingredient {
   ingredientRecipeId: number
-  quantity?: number
-  measure?: string
-  comment?: string
+  quantity: number | null
+  measure?: string | null
+  comment: string | null
 }

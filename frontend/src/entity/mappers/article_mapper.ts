@@ -10,8 +10,8 @@ export default class ArticleMapper {
       image: article_dto.image,
       title: article_dto.title,
       content: article_dto.content,
-      createdAt: article_dto.created_at,
-      updatedAt: article_dto.updated_at,
+      createdAt: new Date(article_dto.created_at),
+      updatedAt: new Date(article_dto.updated_at),
       userId: article_dto.user_id,
       user: {
         id: article_dto.user.id,

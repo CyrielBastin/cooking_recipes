@@ -1,4 +1,4 @@
 export default interface PostIngredientDTO {
-  image?: string
+  image: string | null
   name: string
 }

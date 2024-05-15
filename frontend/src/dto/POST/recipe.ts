@@ -1,14 +1,14 @@
 import type { RecipeDifficulty, RecipePrice } from '@/entity/recipe'
 
 export default interface PostRecipeDTO {
-  image?: string
+  image: string | null
   name: string
-  country_id?: number
+  country_id: number | null
   category_id: number
   user_id: number
-  preparation_time?: number
-  cooking_time?: number
-  number_of_people?: number
+  preparation_time: number | null
+  cooking_time: number | null
+  number_of_people: number | null
   difficulty: RecipeDifficulty
   price: RecipePrice
   description: string
@@ -20,9 +20,9 @@ export default interface PostRecipeDTO {
 
 export interface PostIngredientsRecipesAttributes {
   ingredient_id: number
-  quantity?: number
-  measure_id?: number
-  comment?: string
+  quantity: number | null
+  measure_id: number | null
+  comment: string | null
   _destroy?: '1' | true
 }
 

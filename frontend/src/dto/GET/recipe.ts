@@ -2,18 +2,18 @@ import type { RecipeDifficulty, RecipePrice } from '@/entity/recipe'
 
 export default interface GetRecipeDTO {
   id: number
-  image?: string
+  image: string
   name: string
-  country_id?: number
+  country_id: number | null
   category_id: number
   user_id: number
-  preparation_time?: number
-  cooking_time?: number
-  number_of_people?: number
+  preparation_time: number | null
+  cooking_time: number | null
+  number_of_people: number | null
   difficulty: RecipeDifficulty
   price: RecipePrice
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
   description: string
 
   category: {
@@ -22,8 +22,9 @@ export default interface GetRecipeDTO {
   }
   country?: {
     id: number
+    image: string | null
     name: string
-  }
+  } | null
   user: {
     id: number
     email: string
@@ -37,17 +38,17 @@ export default interface GetRecipeDTO {
 export interface GetRecipeKitchenwareDTO {
   id: number
   name: string
-  image?: string
+  image: string | null
 }
 
 export interface GetRecipeIngredientDTO {
   ingredients_recipe_id: number
   id: number
-  image: string
+  image: string | null
   name: string
-  quantity: number
-  measure: string
-  comment: string
+  quantity: number | null
+  measure: string | null
+  comment: string | null
 }
 
 export interface GetRecipeInstructionDTO {

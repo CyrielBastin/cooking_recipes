@@ -1,4 +1,4 @@
 export default interface PostKitchenwareDTO {
-  image?: string
+  image: string | null
   name: string
 }

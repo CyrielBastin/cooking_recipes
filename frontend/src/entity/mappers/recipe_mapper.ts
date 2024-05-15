@@ -3,7 +3,6 @@ import type GetRecipeDTO from '../../dto/GET/recipe'
 import type PutRecipeDTO from '@/dto/PUT/recipe'
 import type Recipe from '../recipe'
 import type {
-  CreateOrUpdateRecipe,
   IngredientsRecipesAttributes,
   InstructionsRecipe,
   InstructionsRecipesAttributes
@@ -26,7 +25,7 @@ import type {
 
 export default class recipeMapper {
   static fromGetDTO(recipe_dto: GetRecipeDTO): Recipe {
-    return {
+    const recipe = {
       id: recipe_dto.id,
       image: recipe_dto.image,
       name: recipe_dto.name,
@@ -38,8 +37,8 @@ export default class recipeMapper {
       numberOfPeople: recipe_dto.number_of_people,
       difficulty: recipe_dto.difficulty,
       price: recipe_dto.price,
-      createdAt: recipe_dto.created_at,
-      updatedAt: recipe_dto.updated_at,
+      createdAt: new Date(recipe_dto.created_at),
+      updatedAt: new Date(recipe_dto.updated_at),
       description: recipe_dto.description,
       user: {
         id: recipe_dto.user.id,
@@ -48,19 +47,30 @@ export default class recipeMapper {
       category: {
         id: recipe_dto.category.id,
         name: recipe_dto.category.name
-      },
-      country: {
-        id: recipe_dto.country?.id,
-        name: recipe_dto.country?.name
-      },
+      }
+    } as Recipe
 
-      kitchenwares: recipe_dto.kitchenwares?.map(convert_kitchenware_from_dto),
-      ingredients: recipe_dto.ingredients?.map(convert_ingredient_from_dto),
-      instructions: recipe_dto.instructions?.map(convert_instruction_from_dto)
+    if (recipe_dto.country) {
+      recipe.country = {
+        id: recipe_dto.country?.id,
+        image: recipe_dto.country?.image,
+        name: recipe_dto.country?.name
+      }
     }
+    if (recipe_dto.kitchenwares) {
+      recipe.kitchenwares = recipe_dto.kitchenwares?.map(convert_kitchenware_from_dto)
+    }
+    if (recipe_dto.ingredients) {
+      recipe.ingredients = recipe_dto.ingredients?.map(convert_ingredient_from_dto)
+    }
+    if (recipe_dto.instructions) {
+      recipe.instructions = recipe_dto.instructions?.map(convert_instruction_from_dto)
+    }
+
+    return recipe
   }
 
-  static toPostDTO(recipe: CreateOrUpdateRecipe): PostRecipeDTO {
+  static toPostDTO(recipe: Recipe): PostRecipeDTO {
     const new_recipe = {
       image: recipe.image,
       name: recipe.name,
@@ -91,7 +101,7 @@ export default class recipeMapper {
     return new_recipe
   }
 
-  static toPutDTO(recipe: CreateOrUpdateRecipe): PutRecipeDTO {
+  static toPutDTO(recipe: Recipe): PutRecipeDTO {
     const update_recipe = {
       id: recipe.id,
       image: recipe.image,
@@ -140,7 +150,7 @@ function convert_ingredient_from_dto(ingredient: GetRecipeIngredientDTO): Ingred
     name: ingredient.name,
     ingredientRecipeId: ingredient.ingredients_recipe_id,
     quantity: ingredient.quantity,
-    measure: ingredient.measure,
+    measure: ingredient.measure ? ingredient.measure : null,
     comment: ingredient.comment
   }
 }

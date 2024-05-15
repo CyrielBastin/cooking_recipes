@@ -1,4 +1,4 @@
 export default interface PostCountryDTO {
-  image?: string
+  image: string | null
   name: string
 }

@@ -6,18 +6,18 @@ import type User from './user'
 
 export default interface Recipe {
   id: number
-  image?: string
+  image: string
   name: string
-  countryId?: number
+  countryId: number | null
   categoryId: number
   userId: number
-  preparationTime?: number
-  cookingTime?: number
-  numberOfPeople?: number
+  preparationTime: number | null
+  cookingTime: number | null
+  numberOfPeople: number | null
   difficulty: RecipeDifficulty
   price: RecipePrice
-  createdAt: Date
-  updatedAt: Date
+  createdAt?: Date
+  updatedAt?: Date
   description: string
 
   category?: Partial<Category>
@@ -27,6 +27,10 @@ export default interface Recipe {
   kitchenwares?: Kitchenware[]
   ingredients?: IngredientRecipe[]
   instructions?: InstructionsRecipe[]
+  // Create or update a recipe
+  kitchenwareIds?: Array<number>
+  ingredientsRecipesAttributes?: Array<IngredientsRecipesAttributes>
+  instructionsRecipesAttributes?: Array<InstructionsRecipesAttributes>
 }
 
 export interface InstructionsRecipe {
@@ -38,18 +42,12 @@ export interface InstructionsRecipe {
 export type RecipeDifficulty = 'easy' | 'normal' | 'hard'
 export type RecipePrice = 'low' | 'medium' | 'high'
 
-export interface CreateOrUpdateRecipe extends Recipe {
-  kitchenwareIds?: Array<number>
-  ingredientsRecipesAttributes?: Array<IngredientsRecipesAttributes>
-  instructionsRecipesAttributes?: Array<InstructionsRecipesAttributes>
-}
-
 export interface IngredientsRecipesAttributes {
   id?: number
   ingredientId: number
-  quantity?: number
-  measureId?: number
-  comment?: string
+  quantity: number | null
+  measureId: number | null
+  comment: string | null
   _destroy?: '1' | true
 }
 
