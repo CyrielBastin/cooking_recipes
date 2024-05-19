@@ -1159,6 +1159,8 @@ Recipe {
     {
       "id": 50,
       "ingredient_id": 1,
+      "image": "garlic.webp",
+      "name": "Garlic",
       "quantity": 4,
       "measure_id": null,
       "comment": null
@@ -1166,6 +1168,8 @@ Recipe {
     {
       "id": 51,
       "ingredient_id": 10,
+      "image": "basil.webp",
+      "name": "Basil",
       "quantity": 5,
       "measure_id": 4,
       "comment": "Freshly Cut"
@@ -1256,6 +1260,8 @@ Recipe {
     {
       "id": 50,
       "ingredient_id": 1,
+      "image": "garlic.webp",
+      "name": "Garlic",
       "quantity": 4,
       "measure_id": null,
       "comment": null
@@ -1263,6 +1269,8 @@ Recipe {
     {
       "id": 51,
       "ingredient_id": 10,
+      "image": "basil.webp",
+      "name": "Basil",
       "quantity": 5,
       "measure_id": 4,
       "comment": "Freshly Cut"
@@ -1287,7 +1295,7 @@ Recipe {
         "ingredient_id": 1,
         "quantity": 4,
         "measure_id": 5,
-        "comment": "Black or White pepper"
+        "comment": "Finely cut"
       },
       {
         "id": 51,
@@ -1353,13 +1361,17 @@ Recipe {
     {
       "id": 50,
       "ingredient_id": 1,
+      "image": "garlic.webp",
+      "name": "Garlic",
       "quantity": 4,
       "measure_id": 5,
-      "comment": "Black or White pepper"
+      "comment": "Finely cut"
     },
     {
       "id": 52,
       "ingredient_id": 22,
+      "image": "tomato.webp",
+      "name": "Tomato",
       "quantity": 6,
       "measure_id": null,
       "comment": "Fresh tomatoes from the market"
