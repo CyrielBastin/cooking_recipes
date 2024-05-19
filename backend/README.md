@@ -1191,6 +1191,9 @@ Recipe {
   - Response: 204 `No Content` - if validations fail
 
 > PUT '/api/recipes/10'
+>
+> If you add `kitchenwares=1`, `ingredients=1`, `instructions=1` to the body.
+> They will be part of the response
 
 ```json
 {
