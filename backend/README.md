@@ -828,7 +828,7 @@ Recipe {
     ingredient_id:         int
     image:                 string | null
     name:                  string
-    quantity:              string | null
+    quantity:              int | null
     measure:               string | null
     comment:               string | null
   }>
