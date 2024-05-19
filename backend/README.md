@@ -5,7 +5,7 @@
 - [/api/ingredients](#Ingredients)
 - [/api/kitchenwares](#Kitchenwares)
 - [/api/measures](#Measures)
-- /api/recipes
+- [/api/recipes](#Recipes)
 
 ---
 
@@ -14,16 +14,16 @@
 
 ```
 Article {
-id: int
-title: string
-image: string
-content: string
-user_id: int
+id:         int
+title:      string
+image:      string
+content:    string
+user_id:    int
 created_at: string
 updated_at: string
 user: {
-  id: int
-  email: string
+  id:       int
+  email:    string
   }
 }
 ```
@@ -32,8 +32,8 @@ When creating or updating an `article` it must a have the form:
 
 ```
 Article {
-title: string - [max: 150 chars]
-image: string
+title:   string - [max: 150 chars]
+image:   string
 content: string
 user_id: int
 }
@@ -184,8 +184,8 @@ user_id: int
 
 ```
 Category {
-  id: int
-  name: string
+  id:        int
+  name:      string
   parent_id: int | null
 }
 ```
@@ -194,7 +194,7 @@ When creating or updating a `category` it must a have the form:
 
 ```
 Category {
-  name: string - [Unique, max: 30 chars]
+  name:      string - [Unique, max: 30 chars]
   parent_id: int | null
 }
 ```
@@ -307,9 +307,9 @@ Category {
 
 ```
 Country {
-  id: int
+  id:    int
   image: string | null
-  name: string
+  name:  string
 }
 ```
 
@@ -318,7 +318,7 @@ When creating or updating a `country` it must a have the form:
 ```
 Country {
   image: string | null
-  name: string - [Unique, max: 100 chars]
+  name:  string - [Unique, max: 100 chars]
 }
 ```
 
@@ -430,9 +430,9 @@ Country {
 
 ```
 Ingredient {
-  id: int
+  id:    int
   image: string | null
-  name: string
+  name:  string
 }
 ```
 
@@ -441,7 +441,7 @@ When creating or updating an `ingredient` it must a have the form:
 ```
 Ingredient {
   image: string | null
-  name: string - [Unique, max: 50 chars]
+  name:  string - [Unique, max: 50 chars]
 }
 ```
 
@@ -553,9 +553,9 @@ Ingredient {
 
 ```
 Kitchenware {
-  id: int
+  id:    int
   image: string | null
-  name: string
+  name:  string
 }
 ```
 
@@ -564,7 +564,7 @@ When creating or updating a `kitchenware` it must a have the form:
 ```
 Kitchenware {
   image: string | null
-  name: string - [Unique, max: 50 chars]
+  name:  string - [Unique, max: 50 chars]
 }
 ```
 
@@ -676,7 +676,7 @@ Kitchenware {
 
 ```
 Measure {
-  id: int
+  id:   int
   name: string
 }
 ```
@@ -782,6 +782,606 @@ Measure {
 
 ### DELETE `/api/measures/{id}`
 - Deletes `measure` with id `{id}`
+  - Response: 204 `No Content` - if success
+  - Response: 404 `Not Found`
+---
+
+# Recipes
+`Recipes` returned will have the form:
+
+```
+Recipe {
+  id:                      int
+  image:                   string
+  name:                    string
+  category_id:             int
+  country_id:              int | null
+  user_id:                 int
+  preparation_time:        int | null
+  cooking_time:            int | null
+  number_of_people:        int | null
+  difficulty:              "easy" | "normal" | "hard"
+  price:                   "low" | "medium" | "high"
+  description:             string
+  created_at:              string
+  updated_at:              string
+  category: {
+    id:                    int
+    name:                  string
+  }
+  country?: {
+    id:                    int
+    image:                 string | null
+    name:                  string
+  }
+  user: {
+    id:                    int
+    email:                 string
+  }
+  kitchenwares?: Array<{
+    id:                    int
+    image:                 string
+    name:                  string
+  }>
+  ingredients?: Array<{
+    id:                    int
+    ingredient_id:         int
+    image:                 string | null
+    name:                  string
+    quantity:              string | null
+    measure:               string | null
+    comment:               string | null
+  }>
+  instructions?: Array<{
+    id:                    int
+    step:                  int
+    comment:               string
+  }>
+}
+```
+
+- `preparation_time` and `cooking_time` are in minutes (ie: 60 -> 60 minutes)
+- `ingredients.ingredient_id` is the `id` of the ingredient
+- `ingredients.id` is the `id` to use to UPDATE the `ingredient`
+  - it is the `id` for the model `IngredientsRecipe`
+
+When creating or updating a `recipe` it must a have the form:
+
+```
+Recipe {
+  image:            string
+  name:             string - [max: 100 chars]
+  category_id:      int
+  country_id:       int | null
+  user_id:          int
+  preparation_time: int | null - [ min: 0 ]
+  cooking_time:     int | null - [ min: 0 ]
+  number_of_people: int | null - [ min: 0 ]
+  difficulty:       "easy" | "normal" | "hard"
+  price:            "low" | "medium" | "high"
+  description:      string
+}
+```
+
+- `preparation_time` and `cooking_time` are in minutes (ie: 60 -> 60 minutes)
+
+
+- To add kitchenwares:
+
+```
+Recipe {
+// Rest of the fields
+
+  kitchenware_ids: Array<int>
+}
+```
+
+- To add ingredients:
+
+```
+Recipe {
+// Rest of the fields
+
+  ingredients_recipes_attributes: Array<{
+    id?:           int
+    ingredient_id: int
+    quantity:      int | null
+    measure_id:    int | null
+    comment:       string | null
+    _destroy?:     "1"
+  }>
+}
+```
+
+- the presence of `id` depends if you want to update an existing `ingredient` or create a new one
+- if `_destroy` is present and set to `"1"`, it will delete the `ingredient`
+
+
+- To add instructions:
+
+```
+Recipe {
+// Rest of the fields
+
+  instructions_recipes_attributes: Array<{
+    id?:       int
+    step:      int
+    comment:   string
+    _destroy?: "1"
+  }>
+}
+```
+
+- the presence of `id` depends if you want to update an existing `ingredient` or create a new one
+- if `_destroy` is present and set to `"1"`, it will delete the `ingredient`
+
+### GET `/api/recipes`
+- Retrieves All `recipes`
+  - add `?kitchenwares=1` `?ingredients=1` `?instructions=1` to route `url` to retrieve kitchenwares, ingredients, and instructions
+  - Response: 200 `Ok`
+### GET `/api/recipes/{id}`
+- Retrieves `recipe` with id `{id}`
+  - add `?kitchenwares=1` `?ingredients=1` `?instructions=1` to route `url` to retrieve kitchenwares, ingredients, and instructions
+  - Response: 200 `Ok`
+  - Response: 404 `Not Found`
+
+> GET '/api/recipes/1'
+>
+> returns: 200
+
+```json
+{
+  "id": 1,
+  "image": "tartiflette_1123.webp",
+  "name": "Tartiflette",
+  "category_id": 5,
+  "country_id": 1,
+  "user_id": 1,
+  "preparation_time": 30,
+  "cooking_time": 30,
+  "number_of_people": 5,
+  "difficulty": "easy",
+  "price": "medium",
+  "description": "In Tartiflette, we Trust",
+  "created_at": "2024-05-19 15:17:20",
+  "updated_at": "2024-05-19 15:17:20",
+  "category": {
+    "id": 5,
+    "name": "Main Dishes"
+  },
+  "country": {
+    "id": 1,
+    "image": "france.webp",
+    "name": "France"
+  },
+  "user": {
+    "id": 1,
+    "email": "toto@example.com"
+  }
+}
+```
+
+> GET '/api/recipes/1?kitchenwares=1&ingredients=1&instructions=1'
+>
+> returns: 200
+
+```json
+{
+  "id": 1,
+  "image": "tartiflette_1123.webp",
+  "name": "Tartiflette",
+  "category_id": 5,
+  "country_id": 1,
+  "user_id": 1,
+  "preparation_time": 30,
+  "cooking_time": 30,
+  "number_of_people": 5,
+  "difficulty": "easy",
+  "price": "medium",
+  "description": "In Tartiflette, we Trust",
+  "created_at": "2024-05-19 15:17:20",
+  "updated_at": "2024-05-19 15:17:20",
+  "category": {
+    "id": 5,
+    "name": "Main Dishes"
+  },
+  "country": {
+    "id": 1,
+    "image": "france.webp",
+    "name": "France"
+  },
+  "user": {
+    "id": 1,
+    "email": "toto@example.com"
+  },
+  "kitchenwares": [
+    {
+      "id": 1,
+      "image": "pan.webp",
+      "name": "Pan"
+    },
+    {
+      "id": 4,
+      "image": null,
+      "name": "Oven"
+    }
+  ],
+  "ingredients": [
+    {
+      "id": 1,
+      "ingredient_id": 8,
+      "image": "onion.webp",
+      "name": "Onion",
+      "quantity": 6,
+      "measure_id": 1,
+      "comment": null
+    },
+    {
+      "id": 2,
+      "ingredient_id": 5,
+      "image": "salt.webp",
+      "name": "Salt",
+      "quantity": null,
+      "measure_id": null,
+      "comment": null
+    },
+    {
+      "id": 3,
+      "ingredient_id": 47,
+      "image": "potato.webp",
+      "name": "Potato",
+      "quantity": 1,
+      "measure_id": 3,
+      "comment": "1Kg of Bintje Potatoes"
+    }
+  ],
+  "instructions": [
+    {
+      "id": 1,
+      "step": 1,
+      "comment": "Wash your hands"
+    },
+    {
+      "id": 2,
+      "step": 2,
+      "comment": "Prepare Everything"
+    },
+    {
+      "id": 3,
+      "step": 3,
+      "comment": "Serve!"
+    }
+  ]
+}
+```
+
+### POST `/api/recipes`
+- Creates a new `recipe`
+  - Response: 201 `Created`
+  - Response: 204 `No Content` - if validations fail
+
+> POST '/api/recipes'
+>
+> If you add `kitchenwares=1`, `ingredients=1`, `instructions=1` to the body.
+> They will be part of the response
+
+```json
+{
+  "kitchenwares": "1",
+  "ingredients": "1",
+  "instructions": "1",
+  "recipe": {
+    "image": "bolo_123456.webp",
+    "name": "Bolognese Sauce",
+    "category_id": 6,
+    "country_id": 2,
+    "user_id": 1,
+    "preparation_time": 15,
+    "cooking_time": 60,
+    "number_of_people": null,
+    "difficulty": "easy",
+    "price": "low",
+    "description": "My Grandma's Bolognese",
+    "kitchenware_ids": [1, 2, 3],
+    "ingredients_recipes_attributes": [
+      {
+        "ingredient_id": 1,
+        "quantity": 4,
+        "measure_id": null,
+        "comment": null
+      },
+      {
+        "ingredient_id": 10,
+        "quantity": 5,
+        "measure_id": 4,
+        "comment": "Freshly Cut"
+      }
+    ],
+    "instructions_recipes_attributes": [
+      {
+        "step": 1,
+        "comment": "Prepare everything"
+      }
+    ]
+  }
+}
+```
+
+> returns: 201
+
+```json
+{
+  "id": 10,
+  "image": "bolo_123456.webp",
+  "name": "Bolognese Sauce",
+  "category_id": 6,
+  "country_id": 2,
+  "user_id": 1,
+  "preparation_time": 15,
+  "cooking_time": 60,
+  "number_of_people": null,
+  "difficulty": "easy",
+  "price": "low",
+  "description": "My Grandma's Bolognese",
+  "created_at": "2024-05-19 19:48:30",
+  "updated_at": "2024-05-19 19:48:30",
+  "category": {
+    "id": 6,
+    "name": "Hot Sauces"
+  },
+  "country": {
+    "id": 2,
+    "image": "italy.webp",
+    "name": "Italy"
+  },
+  "user": {
+    "id": 1,
+    "email": "john@doe.example"
+  },
+  "kitchenwares": [
+    {
+      "id": 1,
+      "image": "pan.webp",
+      "name": "Pan"
+    },
+    {
+      "id": 2,
+      "image": "spatula.webp",
+      "name": "Spatula"
+    },
+    {
+      "id": 3,
+      "image": "knife.webp",
+      "name": "Knife"
+    }
+  ],
+  "ingredients": [
+    {
+      "id": 50,
+      "ingredient_id": 1,
+      "quantity": 4,
+      "measure_id": null,
+      "comment": null
+    },
+    {
+      "id": 51,
+      "ingredient_id": 10,
+      "quantity": 5,
+      "measure_id": 4,
+      "comment": "Freshly Cut"
+    }
+  ],
+  "instructions": [
+    {
+      "id": 123,
+      "step": 1,
+      "comment": "Prepare everything"
+    }
+  ]
+}
+```
+
+### PUT `/api/recipes/{id}`
+- Updates `recipe` with id `{id}`
+  - Response: 200 `Ok`
+  - Response: 204 `No Content` - if validations fail
+
+> PUT '/api/recipes/10'
+
+```json
+{
+  "kitchenwares": "1",
+  "ingredients": "1",
+  "recipe": {
+    "image": "bolo_123456.webp",
+    "name": "Bolognese Sauce",
+    "category_id": 6,
+    "country_id": 2,
+    "user_id": 1,
+    "preparation_time": 15,
+    "cooking_time": 60,
+    "number_of_people": 10,
+    "difficulty": "easy",
+    "price": "low",
+    "description": "My Grandma's Bolognese",
+    "kitchenware_ids": [2, 4]
+  }
+}
+```
+
+> returns: 200
+
+```json
+{
+  "id": 10,
+  "image": "bolo_123456.webp",
+  "name": "Bolognese Sauce",
+  "category_id": 6,
+  "country_id": 2,
+  "user_id": 1,
+  "preparation_time": 15,
+  "cooking_time": 60,
+  "number_of_people": 10,
+  "difficulty": "easy",
+  "price": "low",
+  "description": "My Grandma's Bolognese",
+  "created_at": "2024-05-19 19:48:30",
+  "updated_at": "2024-05-19 19:48:30",
+  "category": {
+    "id": 6,
+    "name": "Hot Sauces"
+  },
+  "country": {
+    "id": 2,
+    "image": "italy.webp",
+    "name": "Italy"
+  },
+  "user": {
+    "id": 1,
+    "email": "john@doe.example"
+  },
+  "kitchenwares": [
+    {
+      "id": 2,
+      "image": "spatula.webp",
+      "name": "Spatula"
+    },
+    {
+      "id": 4,
+      "image": "garlic_smasher.webp",
+      "name": "Garlic Smasher"
+    }
+  ],
+  "ingredients": [
+    {
+      "id": 50,
+      "ingredient_id": 1,
+      "quantity": 4,
+      "measure_id": null,
+      "comment": null
+    },
+    {
+      "id": 51,
+      "ingredient_id": 10,
+      "quantity": 5,
+      "measure_id": 4,
+      "comment": "Freshly Cut"
+    }
+  ]
+}
+```
+
+### PATCH `/api/recipes/{id}`
+- Updates `recipe` with id `{id}`
+  - Response: 200 `Ok`
+  - Response: 204 `No Content` - if validations fail
+
+> PATCH '/api/recipes/10?ingredients=1&instructions=1'
+
+```json
+{
+  "recipe": {
+    "ingredients_recipes_attributes": [
+      {
+        "id": 50,
+        "ingredient_id": 1,
+        "quantity": 4,
+        "measure_id": 5,
+        "comment": "Black or White pepper"
+      },
+      {
+        "id": 51,
+        "_destroy": "1"
+      },
+      {
+        "ingredient_id": 22,
+        "quantity": 6,
+        "measure_id": null,
+        "comment": "Fresh tomatoes from the market"
+      }
+    ],
+    "instructions_recipes_attributes": [
+      {
+        "id": 123,
+        "_destroy": "1"
+      },
+      {
+        "step": 1,
+        "comment": "Cut everything"
+      },
+      {
+        "step": 2,
+        "comment": "Just cook!"
+      }
+    ]
+  }
+}
+```
+
+> returns: 200
+
+```json
+{
+  "id": 10,
+  "image": "bolo_123456.webp",
+  "name": "Bolognese Sauce",
+  "category_id": 6,
+  "country_id": 2,
+  "user_id": 1,
+  "preparation_time": 15,
+  "cooking_time": 60,
+  "number_of_people": 10,
+  "difficulty": "easy",
+  "price": "low",
+  "description": "My Grandma's Bolognese",
+  "created_at": "2024-05-19 19:48:30",
+  "updated_at": "2024-05-19 19:48:30",
+  "category": {
+    "id": 6,
+    "name": "Hot Sauces"
+  },
+  "country": {
+    "id": 2,
+    "image": "italy.webp",
+    "name": "Italy"
+  },
+  "user": {
+    "id": 1,
+    "email": "john@doe.example"
+  },
+  "ingredients": [
+    {
+      "id": 50,
+      "ingredient_id": 1,
+      "quantity": 4,
+      "measure_id": 5,
+      "comment": "Black or White pepper"
+    },
+    {
+      "id": 52,
+      "ingredient_id": 22,
+      "quantity": 6,
+      "measure_id": null,
+      "comment": "Fresh tomatoes from the market"
+    }
+  ],
+  "instructions": [
+    {
+      "id": 124,
+      "step": 1,
+      "comment": "Cut everything"
+    },
+    {
+      "id": 125,
+      "step": 2,
+      "comment": "Just cook!"
+    }
+  ]
+}
+```
+
+### DELETE `/api/recipes/{id}`
+- Deletes `recipe` with id `{id}`
   - Response: 204 `No Content` - if success
   - Response: 404 `Not Found`
 ---

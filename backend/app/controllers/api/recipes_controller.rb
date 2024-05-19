@@ -10,6 +10,7 @@ class Api::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    set_kitchenwares
 
     render('show', status: :created) if @recipe.save
   end

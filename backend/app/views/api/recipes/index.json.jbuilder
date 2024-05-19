@@ -43,8 +43,8 @@ json.array! @recipes do |recipe|
   if params[:ingredients] && params[:ingredients] == '1'
     if recipe.ingredients_recipes
       json.ingredients recipe.ingredients_recipes do |i_r|
-        json.ingredients_recipe_id i_r.id
-        json.id i_r.ingredient.id
+        json.id i_r.id
+        json.ingredient_id i_r.ingredient.id
         json.image i_r.ingredient.image
         json.name i_r.ingredient.name
         json.quantity i_r.quantity
