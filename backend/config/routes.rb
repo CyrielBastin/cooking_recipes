@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # devise_for must remain outside of namespace 'api'.
+  # Or Devise always responds with "401: Unauthorized" when trying to login
   devise_for :users,
              path: 'api/',
              path_names: {
