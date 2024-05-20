@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
 
-  get '/secret', to: 'home#secret_message'
-  devise_for :users, path: '', path_names: {
-    sign_in: 'login',
-    sign_out: 'logout',
-    registration: 'signup'
-  },
-    controllers: {
-      sessions: 'users/sessions',
-      registrations: 'users/registrations'
-    }
+  devise_for :users,
+             path: 'api/',
+             path_names: {
+               sign_in: 'login',
+               sign_out: 'logout',
+               registration: 'signup'
+             },
+             controllers: {
+               sessions: 'users/sessions',
+               registrations: 'users/registrations'
+             }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -20,5 +21,8 @@ Rails.application.routes.draw do
   root 'home#index'
   namespace 'api', defaults: { format: :json } do
     resources :articles, :categories, :countries, :ingredients, :kitchenwares, :measures, :recipes
+
+    # This route will be used by the frontend to check user authentication and authorization
+    get '/secret', to: 'secrets#secret_message'
   end
 end
