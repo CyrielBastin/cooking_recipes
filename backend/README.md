@@ -1,11 +1,51 @@
-# Routes
-- [/api/articles](#Articles)
-- [/api/categories](#Categories)
-- [/api/countries](#Countries)
-- [/api/ingredients](#Ingredients)
-- [/api/kitchenwares](#Kitchenwares)
-- [/api/measures](#Measures)
-- [/api/recipes](#Recipes)
+# API
+- [Article](#Articles)
+  - [GET](#GET-Articles)
+  - [POST](#POST-Articles)
+  - [PUT](#PUT-Articles)
+  - [PATCH](#PATCH-Articles)
+  - [DELETE](#DELETE-Articles)
+- [Category](#Categories)
+  - [GET](#GET-Categories)
+  - [POST](#POST-Categories)
+  - [PUT](#PUT-Categories)
+  - [PATCH](#PATCH-Categories)
+  - [DELETE](#DELETE-Categories)
+- [Country](#Countries)
+  - [GET](#GET-Countries)
+  - [POST](#POST-Countries)
+  - [PUT](#PUT-Countries)
+  - [PATCH](#PATCH-Countries)
+  - [DELETE](#DELETE-Countries)
+- [Ingredient](#Ingredients)
+  - [GET](#GET-Ingredients)
+  - [POST](#POST-Ingredients)
+  - [PUT](#PUT-Ingredients)
+  - [PATCH](#PATCH-Ingredients)
+  - [DELETE](#DELETE-Ingredients)
+- [Kitchenware](#Kitchenwares)
+  - [GET](#GET-Kitchenwares)
+  - [POST](#POST-Kitchenwares)
+  - [PUT](#PUT-Kitchenwares)
+  - [PATCH](#PATCH-Kitchenwares)
+  - [DELETE](#DELETE-Kitchenwares)
+- [Measure](#Measures)
+  - [GET](#GET-Measures)
+  - [POST](#POST-Measures)
+  - [PUT](#PUT-Measures)
+  - [PATCH](#PATCH-Measures)
+  - [DELETE](#DELETE-Measures)
+- [Recipe](#Recipes)
+  - [GET](#GET-Recipes)
+  - [POST](#POST-Recipes)
+  - [PUT](#PUT-Recipes)
+  - [PATCH](#PATCH-Recipes)
+  - [DELETE](#DELETE-Recipes)
+- [User](#Users)
+  - [Registration](#User-Registration)
+  - [Login](#User-Login)
+  - [Logout](#User-Logout)
+  - [Secret](#User-Secret)
 
 ---
 
@@ -39,6 +79,7 @@ user_id: int
 }
 ```
 
+## GET Articles
 ### GET `/api/articles`
 - Retrieves All `articles`
   - Response: 200 `Ok`
@@ -67,6 +108,7 @@ user_id: int
 }
 ```
 
+## POST Articles
 ### POST `/api/articles`
 - Creates a new `article`
   - Response: 201 `Created`
@@ -103,6 +145,7 @@ user_id: int
 }
 ```
 
+## PUT Articles
 ### PUT `/api/articles/{id}`
 - Updates `article` with id `{id}`
   - Response: 200 `Ok`
@@ -139,7 +182,7 @@ user_id: int
 }
 ```
 
-
+## PATCH Articles
 ### PATCH `/api/articles/{id}`
 - Updates `article` with id `{id}`
   - Response: 200 `Ok`
@@ -173,6 +216,7 @@ user_id: int
 }
 ```
 
+## DELETE Articles
 ### DELETE `/api/articles/{id}`
 - Deletes `article` with id `{id}`
   - Response: 204 `No Content` - if success
@@ -199,6 +243,7 @@ Category {
 }
 ```
 
+## GET Categories
 ### GET `/api/categories`
 - Retrieves All `categories`
   - Response: 200 `Ok`
@@ -219,6 +264,7 @@ Category {
 }
 ```
 
+## POST Categories
 ### POST `/api/categories`
 - Creates a new `category`
   - Response: 201 `Created`
@@ -245,6 +291,7 @@ Category {
 }
 ```
 
+## PUT Categories
 ### PUT `/api/categories/{id}`
 - Updates `category` with id `{id}`
   - Response: 200 `Ok`
@@ -271,6 +318,7 @@ Category {
 }
 ```
 
+## PATCH Categories
 ### PATCH `/api/categories/{id}`
 - Updates `category` with id `{id}`
   - Response: 200 `Ok`
@@ -296,6 +344,7 @@ Category {
 }
 ```
 
+## DELETE Categories
 ### DELETE `/api/categories/{id}`
 - Deletes `category` with id `{id}`
   - Response: 204 `No Content` - if success
@@ -322,6 +371,7 @@ Country {
 }
 ```
 
+## GET Countries
 ### GET `/api/countries`
 - Retrieves All `countries`
   - Response: 200 `Ok`
@@ -342,6 +392,7 @@ Country {
 }
 ```
 
+## POST Countries
 ### POST `/api/countries`
 - Creates a new `country`
   - Response: 201 `Created`
@@ -368,6 +419,7 @@ Country {
 }
 ```
 
+## PUT Countries
 ### PUT `/api/countries/{id}`
 - Updates `country` with id `{id}`
   - Response: 200 `Ok`
@@ -394,6 +446,7 @@ Country {
 }
 ```
 
+## PATCH Countries
 ### PATCH `/api/countries/{id}`
 - Updates `country` with id `{id}`
   - Response: 200 `Ok`
@@ -419,6 +472,7 @@ Country {
 }
 ```
 
+## DELETE Countries
 ### DELETE `/api/countries/{id}`
 - Deletes `country` with id `{id}`
   - Response: 204 `No Content` - if success
@@ -445,6 +499,7 @@ Ingredient {
 }
 ```
 
+## GET Ingredients
 ### GET `/api/ingredients`
 - Retrieves All `ingredients`
   - Response: 200 `Ok`
@@ -465,6 +520,7 @@ Ingredient {
 }
 ```
 
+## POST Ingredients
 ### POST `/api/ingredients`
 - Creates a new `ingredient`
   - Response: 201 `Created`
@@ -491,6 +547,7 @@ Ingredient {
 }
 ```
 
+## PUT Ingredients
 ### PUT `/api/ingredients/{id}`
 - Updates `ingredient` with id `{id}`
   - Response: 200 `Ok`
@@ -517,6 +574,7 @@ Ingredient {
 }
 ```
 
+## PATCH Ingredients
 ### PATCH `/api/ingredients/{id}`
 - Updates `ingredient` with id `{id}`
   - Response: 200 `Ok`
@@ -542,6 +600,7 @@ Ingredient {
 }
 ```
 
+## DELETE Ingredients
 ### DELETE `/api/ingredients/{id}`
 - Deletes `ingredient` with id `{id}`
   - Response: 204 `No Content` - if success
@@ -568,6 +627,7 @@ Kitchenware {
 }
 ```
 
+## GET Kitchenwares
 ### GET `/api/kitchenwares`
 - Retrieves All `kitchenwares`
   - Response: 200 `Ok`
@@ -588,6 +648,7 @@ Kitchenware {
 }
 ```
 
+## POST Kitchenwares
 ### POST `/api/kitchenwares`
 - Creates a new `kitchenware`
   - Response: 201 `Created`
@@ -614,6 +675,7 @@ Kitchenware {
 }
 ```
 
+## PUT Kitchenwares
 ### PUT `/api/kitchenwares/{id}`
 - Updates `kitchenware` with id `{id}`
   - Response: 200 `Ok`
@@ -640,6 +702,7 @@ Kitchenware {
 }
 ```
 
+## PATCH Kitchenwares
 ### PATCH `/api/kitchenwares/{id}`
 - Updates `kitchenware` with id `{id}`
   - Response: 200 `Ok`
@@ -665,6 +728,7 @@ Kitchenware {
 }
 ```
 
+## DELETE Kitchenwares
 ### DELETE `/api/kitchenwares/{id}`
 - Deletes `kitchenware` with id `{id}`
   - Response: 204 `No Content` - if success
@@ -689,6 +753,7 @@ Measure {
 }
 ```
 
+## GET Measures
 ### GET `/api/measures`
 - Retrieves All `measures`
   - Response: 200 `Ok`
@@ -708,6 +773,7 @@ Measure {
 }
 ```
 
+## POST Measures
 ### POST `/api/measures`
 - Creates a new `measure`
   - Response: 201 `Created`
@@ -732,6 +798,7 @@ Measure {
 }
 ```
 
+## PUT Measures
 ### PUT `/api/measures/{id}`
 - Updates `measure` with id `{id}`
   - Response: 200 `Ok`
@@ -756,6 +823,7 @@ Measure {
 }
 ```
 
+## PATCH Measures
 ### PATCH `/api/measures/{id}`
 - Updates `measure` with id `{id}`
   - Response: 200 `Ok`
@@ -780,6 +848,7 @@ Measure {
 }
 ```
 
+## DELETE Measures
 ### DELETE `/api/measures/{id}`
 - Deletes `measure` with id `{id}`
   - Response: 204 `No Content` - if success
@@ -915,6 +984,8 @@ Recipe {
 - the presence of `id` depends if you want to update an existing `ingredient` or create a new one
 - if `_destroy` is present and set to `"1"`, it will delete the `ingredient`
 
+
+## GET Recipes
 ### GET `/api/recipes`
 - Retrieves All `recipes`
   - add `?kitchenwares=1` `?ingredients=1` `?instructions=1` to route `url` to retrieve kitchenwares, ingredients, and instructions
@@ -1055,6 +1126,7 @@ Recipe {
 }
 ```
 
+## POST Recipes
 ### POST `/api/recipes`
 - Creates a new `recipe`
   - Response: 201 `Created`
@@ -1185,6 +1257,7 @@ Recipe {
 }
 ```
 
+## PUT Recipes
 ### PUT `/api/recipes/{id}`
 - Updates `recipe` with id `{id}`
   - Response: 200 `Ok`
@@ -1282,6 +1355,7 @@ Recipe {
 }
 ```
 
+## PATCH Recipes
 ### PATCH `/api/recipes/{id}`
 - Updates `recipe` with id `{id}`
   - Response: 200 `Ok`
@@ -1395,8 +1469,169 @@ Recipe {
 }
 ```
 
+## DELETE Recipes
 ### DELETE `/api/recipes/{id}`
 - Deletes `recipe` with id `{id}`
   - Response: 204 `No Content` - if success
   - Response: 404 `Not Found`
+---
+
+# Users
+`Users` returned will have the form:
+
+```
+User {
+  id:   int
+  email: string
+}
+```
+
+When creating a new `user` it must a have the form:
+
+```
+User {
+  email:                 string - [Unique]
+  password:              string
+  password_confirmation: string
+}
+```
+
+When Logging in a `user` it must a have the form:
+
+```
+User {
+  email:    string
+  password: string
+}
+```
+
+## User Registration
+### POST `/api/signup`
+- Creates a new `user`
+  - Response: 201 `Created`
+  - Response: 204 `No Content` - if validations fail
+
+> POST '/api/signup'
+
+```json
+{
+  "user": {
+    "email": "toto@example.com",
+    "password": "123456",
+    "password_confirmation": "123456"
+  }
+}
+```
+
+> returns: 201
+
+```json
+{
+  "id": 24,
+  "email": "toto@example.com"
+}
+```
+
+## User Login
+### POST `/api/login`
+- Logs in a `user`
+  - Response: 200 `Ok`
+    - returns a JWT inside the header {'Authorization'}
+  - Response: 401 `Unauthorized`
+
+> POST '/api/login'
+
+```json
+{
+  "user": {
+    "email": "toto@example.com",
+    "password": "123456"
+  }
+}
+```
+
+> returns: 200 
+```json
+{
+  "headers": { "Authorization": "Bearer <JWT_Token>" }
+}
+```
+
+```json
+{
+  "id": 24,
+  "email": "toto@example.com"
+}
+```
+
+> POST '/api/login'
+
+```json
+{
+  "user": {
+    "email": "toto@example.com",
+    "password": "wrong password"
+  }
+}
+```
+
+> returns: 401
+```json
+{
+  "error": "Invalid Email or password."
+}
+```
+
+## User Logout
+### DELETE `/api/logout`
+- Logs out a `user`
+  - Must provide the JWT with the request (inside the header)
+  - Response: 200 `Ok`
+
+> DELETE '/api/logout'
+
+```json
+{
+  "headers": {
+    "Authorization": "Bearer <JWT_Token>"
+  }
+}
+```
+
+> returns: 200
+
+```json
+{
+  "message": "Logged out successfully."
+}
+```
+
+## User Secret
+
+> [!NOTE]
+> Waiting to implement `Authorization` before finishing this part.
+
+### GET `/api/secret`
+- Checks Authentication/Authorization for a `user`
+  - You may provide the JWT with the request (inside the header)
+    - It will check whether the token is valid or not
+  - Response: 200 `Ok`
+  - Response: 401 `Unauthorized`
+
+> GET '/api/secret'
+
+```json
+{
+  "headers": {
+    "Authorization": "Bearer <JWT_Token>"
+  }
+}
+```
+
+> returns: 200
+
+```json
+{}
+```
+
 ---
