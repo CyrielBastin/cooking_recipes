@@ -129,7 +129,7 @@ user_id: 0 | string  ==> message: "must exist"
 - Creates a new `article`
   - Response: `201` Created
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > POST '/api/articles'
 
@@ -198,7 +198,7 @@ user_id: 0 | string  ==> message: "must exist"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PUT '/api/articles/2'
 
@@ -264,7 +264,7 @@ user_id: 0 | string  ==> message: "must exist"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PATCH '/api/articles/2'
 
@@ -382,7 +382,7 @@ name:   > 30 chars    ==> message: "is too long (maximum is 30 characters)"
 - Creates a new `category`
   - Response: `201` Created
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
   - Response: `500` Internal Server Error
     - if violation of Foreign Key `parent_id`
 
@@ -449,7 +449,7 @@ name:   > 30 chars    ==> message: "is too long (maximum is 30 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
   - Response: `500` Internal Server Error
     - if violation of Foreign Key `parent_id`
 
@@ -516,7 +516,7 @@ name:   > 30 chars    ==> message: "is too long (maximum is 30 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
   - Response: `500` Internal Server Error
     - if violation of Foreign Key `parent_id`
 
@@ -641,7 +641,7 @@ name:   > 100 chars    ==> message: "is too long (maximum is 100 characters)"
 - Creates a new `country`
   - Response: `201` Created
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > POST '/api/countries'
 
@@ -691,7 +691,7 @@ name:   > 100 chars    ==> message: "is too long (maximum is 100 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PUT '/api/countries/9'
 
@@ -742,7 +742,7 @@ name:   > 100 chars    ==> message: "is too long (maximum is 100 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PATCH '/api/countries/9'
 
@@ -852,7 +852,7 @@ name:   > 50 chars     ==> message: "is too long (maximum is 50 characters)"
 - Creates a new `ingredient`
   - Response: `201` Created
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > POST '/api/ingredients'
 
@@ -903,7 +903,7 @@ name:   > 50 chars     ==> message: "is too long (maximum is 50 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PUT '/api/ingredients/50'
 
@@ -954,7 +954,7 @@ name:   > 50 chars     ==> message: "is too long (maximum is 50 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PATCH '/api/ingredients/50'
 
@@ -982,7 +982,7 @@ name:   > 50 chars     ==> message: "is too long (maximum is 50 characters)"
 ```json
 {
   "ingredient": {
-    "image": null,
+    "image": "red_cabbage.webp",
     "name": "vqedsodkiiufmesjquzxwsjcepjmrmbeacenysgkstvptjdadbk"
   }
 }
@@ -1065,7 +1065,7 @@ name:   > 50 chars     ==> message: "is too long (maximum is 50 characters)"
 - Creates a new `kitchenware`
   - Response: `201` Created
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > POST '/api/kitchenwares'
 
@@ -1116,7 +1116,7 @@ name:   > 50 chars     ==> message: "is too long (maximum is 50 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PUT '/api/kitchenwares/15'
 
@@ -1167,7 +1167,7 @@ name:   > 50 chars     ==> message: "is too long (maximum is 50 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PATCH '/api/kitchenwares/15'
 
@@ -1275,7 +1275,7 @@ name:   > 30 chars     ==> message: "is too long (maximum is 30 characters)"
 - Creates a new `measure`
   - Response: `201` Created
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > POST '/api/measures'
 
@@ -1323,7 +1323,7 @@ name:   > 30 chars     ==> message: "is too long (maximum is 30 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PUT '/api/measures/10'
 
@@ -1371,7 +1371,7 @@ name:   > 30 chars     ==> message: "is too long (maximum is 30 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > PATCH '/api/measures/10'
 
@@ -1747,7 +1747,7 @@ comment:  > 255 chars  ==> message: "is too long (maximum is 255 characters)"
 - Creates a new `recipe`
   - Response: `201` Created
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
   - Response: `500` Internal Server Error
     - if violation of Foreign Key `parent_id`
     - if `difficulty` is not `"easy" | "normal" | "hard"`
@@ -1961,7 +1961,7 @@ comment:  > 255 chars  ==> message: "is too long (maximum is 255 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` `Unprocessable Content`
-    - if validations fail
+    - if validation fails
   - Response: `500` Internal Server Error
     - if violation of Foreign Key `parent_id`
     - if `difficulty` is not `"easy" | "normal" | "hard"`
@@ -2124,7 +2124,7 @@ comment:  > 255 chars  ==> message: "is too long (maximum is 255 characters)"
   - Response: `200` Ok
   - Response: `404` Not Found
   - Response: `422` `Unprocessable Content`
-    - if validations fail
+    - if validation fails
   - Response: `500` Internal Server Error
     - if violation of Foreign Key `parent_id`
     - if `difficulty` is not `"easy" | "normal" | "hard"`
@@ -2330,7 +2330,7 @@ User {
 }
 ```
 
-If validations fails, the object returned has the form:
+If validation fails, the object returned has the form:
 
 ```
 {
@@ -2368,7 +2368,7 @@ If validation fails, the object returned has the form:
   - Response: `204` No Content
     - if passwords don't match
   - Response: `422` Unprocessable Content
-    - if validations fail
+    - if validation fails
 
 > POST '/api/signup'
 
