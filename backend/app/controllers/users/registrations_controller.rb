@@ -8,7 +8,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.jti = SecureRandom.uuid
     return if params[:user][:password] != params[:user][:password_confirmation]
 
-    render('show', status: :created) if @user.save
+    if @user.save
+      render 'show', status: :created
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   private

@@ -12,6 +12,11 @@ class Api::MeasuresController < ApplicationController
     @measure = Measure.new(measure_params)
 
     render('show', status: :created) if @measure.save
+    if @measure.save
+      render 'show', status: :created
+    else
+      render json: @measure.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -21,7 +26,11 @@ class Api::MeasuresController < ApplicationController
   def update
     @measure = Measure.find(params[:id])
 
-    render('show', status: :ok) if @measure.update(measure_params)
+    if @measure.update(measure_params)
+      render 'show', status: :ok
+    else
+      render json: @measure.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy

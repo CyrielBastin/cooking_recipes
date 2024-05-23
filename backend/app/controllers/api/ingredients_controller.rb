@@ -11,7 +11,11 @@ class Api::IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(ingredient_params)
 
-    render('show', status: :created) if @ingredient.save
+    if @ingredient.save
+      render 'show', status: :created
+    else
+      render json: @ingredient.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -21,7 +25,11 @@ class Api::IngredientsController < ApplicationController
   def update
     @ingredient = Ingredient.find(params[:id])
 
-    render('show', status: :ok) if @ingredient.update(ingredient_params)
+    if @ingredient.update(ingredient_params)
+      render 'show', status: :ok
+    else
+      render json: @ingredient.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy

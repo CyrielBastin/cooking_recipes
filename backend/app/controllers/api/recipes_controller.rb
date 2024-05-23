@@ -12,7 +12,11 @@ class Api::RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     set_kitchenwares
 
-    render('show', status: :created) if @recipe.save
+    if @recipe.save
+      render 'show', status: :created
+    else
+      render json: @recipe.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -23,7 +27,11 @@ class Api::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     set_kitchenwares
 
-    render('show', status: :ok) if @recipe.update(recipe_params)
+    if @recipe.update(recipe_params)
+      render 'show', status: :ok
+    else
+      render json: @recipe.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy

@@ -11,7 +11,11 @@ class Api::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
-    render('show', status: :created) if @article.save
+    if @article.save
+      render 'show', status: :created
+    else
+      render json: @article.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -21,12 +25,14 @@ class Api::ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
 
-    render('show', status: :ok) if @article.update(article_params)
+    if @article.update(article_params)
+      render 'show', status: :ok
+    else
+      render json: @article.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
-    # Article.find(params[:id]).destroy
-
     head(:no_content) if Article.find(params[:id]).destroy
   end
 

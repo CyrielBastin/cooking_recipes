@@ -11,7 +11,11 @@ class Api::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    render('show', status: :created) if @category.save
+    if @category.save
+      render 'show', status: :created
+    else
+      render json: @category.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -21,7 +25,11 @@ class Api::CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
 
-    render('show', status: :ok) if @category.update(category_params)
+    if @category.update(category_params)
+      render 'show', status: :ok
+    else
+      render json: @category.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy

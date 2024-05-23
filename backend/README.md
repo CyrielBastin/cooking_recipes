@@ -79,14 +79,30 @@ user_id: int
 }
 ```
 
+If validation fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+title:   "" | null   ==> message: "can't be blank"
+title:   > 150 chars ==> message: "is too long (maximum is 150 characters)"
+image:   "" | null   ==> message: "can't be blank"
+content: "" | null   ==> message: "can't be blank"
+user_id: 0 | string  ==> message: "must exist"
+```
+
 ## GET Articles
 ### GET `/api/articles`
 - Retrieves All `articles`
-  - Response: 200 `Ok`
+  - Response: `200` Ok
 ### GET `/api/articles/{id}`
 - Retrieves `article` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 404 `Not Found`
+  - Response: `200` Ok
+  - Response: `404` Not Found
 
 > GET '/api/articles/1'
 >
@@ -111,8 +127,9 @@ user_id: int
 ## POST Articles
 ### POST `/api/articles`
 - Creates a new `article`
-  - Response: 201 `Created`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `201` Created
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > POST '/api/articles'
 
@@ -145,11 +162,43 @@ user_id: int
 }
 ```
 
+---
+> POST '/api/articles'
+
+```json
+{
+  "article": {
+    "title": null,
+    "image": null,
+    "content": "",
+    "user_id": 1
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "image": [
+    "can't be blank"
+  ],
+  "title": [
+    "can't be blank"
+  ],
+  "content": [
+    "can't be blank"
+  ]
+}
+```
+
 ## PUT Articles
 ### PUT `/api/articles/{id}`
 - Updates `article` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PUT '/api/articles/2'
 
@@ -182,11 +231,40 @@ user_id: int
 }
 ```
 
+---
+> PUT '/api/articles/2'
+
+```json
+{
+  "article": {
+    "title": "Updated Title",
+    "image": "",
+    "content": null,
+    "user_id": 45
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "image": [
+    "can't be blank"
+  ],
+  "content": [
+    "can't be blank"
+  ]
+}
+```
+
 ## PATCH Articles
 ### PATCH `/api/articles/{id}`
 - Updates `article` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PATCH '/api/articles/2'
 
@@ -216,11 +294,32 @@ user_id: int
 }
 ```
 
+---
+> PATCH '/api/articles/2'
+
+```json
+{
+  "article": {
+    "user_id": 0
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "user": [
+    "must exist"
+  ]
+}
+```
+
 ## DELETE Articles
 ### DELETE `/api/articles/{id}`
 - Deletes `article` with id `{id}`
-  - Response: 204 `No Content` - if success
-  - Response: 404 `Not Found`
+  - Response: `204` No Content
+  - Response: `404` Not Found
 ---
 
 # Categories
@@ -243,14 +342,28 @@ Category {
 }
 ```
 
+If validation fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+name:   "" | null     ==> message: "can't be blank"
+name:   is_duplicate? ==> message: "has already been taken"
+name:   > 30 chars    ==> message: "is too long (maximum is 30 characters)"
+```
+
 ## GET Categories
 ### GET `/api/categories`
 - Retrieves All `categories`
-  - Response: 200 `Ok`
+  - Response: `200` Ok
 ### GET `/api/categories/{id}`
 - Retrieves `category` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 404 `Not Found`
+  - Response: `200` Ok
+  - Response: `404` Not Found
 
 > GET '/api/categories/6'
 >
@@ -267,8 +380,11 @@ Category {
 ## POST Categories
 ### POST `/api/categories`
 - Creates a new `category`
-  - Response: 201 `Created`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `201` Created
+  - Response: `422` Unprocessable Content
+    - if validations fail
+  - Response: `500` Internal Server Error
+    - if violation of Foreign Key `parent_id`
 
 > POST '/api/categories'
 
@@ -291,11 +407,51 @@ Category {
 }
 ```
 
+---
+> POST '/api/categories'
+
+```json
+{
+  "category": {
+    "name": "<Duplicate> name",
+    "parent_id": null
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "has already been taken"
+  ]
+}
+```
+
+---
+> POST '/api/categories'
+
+```json
+{
+  "category": {
+    "name": "Salsa Sauces",
+    "parent_id": "Wrong"
+  }
+}
+```
+
+> returns: 500
+
 ## PUT Categories
 ### PUT `/api/categories/{id}`
 - Updates `category` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
+  - Response: `500` Internal Server Error
+    - if violation of Foreign Key `parent_id`
 
 > PUT '/api/categories/10'
 
@@ -318,11 +474,51 @@ Category {
 }
 ```
 
+---
+> PUT '/api/categories/10'
+
+```json
+{
+  "category": {
+    "name": "<Duplicate> name",
+    "parent_id": null
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "has already been taken"
+  ]
+}
+```
+
+---
+> PUT '/api/categories/10'
+
+```json
+{
+  "category": {
+    "name": "Tomato Sauces",
+    "parent_id": "Wrong"
+  }
+}
+```
+
+> returns: 500
+
 ## PATCH Categories
 ### PATCH `/api/categories/{id}`
 - Updates `category` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
+  - Response: `500` Internal Server Error
+    - if violation of Foreign Key `parent_id`
 
 > PATCH '/api/categories/10'
 
@@ -344,11 +540,45 @@ Category {
 }
 ```
 
+---
+> PATCH '/api/categories/10'
+
+```json
+{
+  "category": {
+    "name": "ypvzchlytofapquymuqadithjuozddm"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "is too long (maximum is 30 characters)"
+  ]
+}
+```
+
+---
+> PATCH '/api/categories/10'
+
+```json
+{
+  "category": {
+    "parent_id": "Wrong"
+  }
+}
+```
+
+> returns: 500
+
 ## DELETE Categories
 ### DELETE `/api/categories/{id}`
 - Deletes `category` with id `{id}`
-  - Response: 204 `No Content` - if success
-  - Response: 404 `Not Found`
+  - Response: `204` No Content
+  - Response: `404` Not Found
 ---
 
 # Countries
@@ -371,14 +601,28 @@ Country {
 }
 ```
 
+If validation fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+name:   "" | null      ==> message: "can't be blank"
+name:   is_duplicate?  ==> message: "has already been taken"
+name:   > 100 chars    ==> message: "is too long (maximum is 100 characters)"
+```
+
 ## GET Countries
 ### GET `/api/countries`
 - Retrieves All `countries`
-  - Response: 200 `Ok`
+  - Response: `200` Ok
 ### GET `/api/countries/{id}`
 - Retrieves `country` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 404 `Not Found`
+  - Response: `200` Ok
+  - Response: `404` Not Found
 
 > GET '/api/countries/1'
 >
@@ -395,8 +639,9 @@ Country {
 ## POST Countries
 ### POST `/api/countries`
 - Creates a new `country`
-  - Response: 201 `Created`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `201` Created
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > POST '/api/countries'
 
@@ -419,11 +664,34 @@ Country {
 }
 ```
 
+---
+> POST '/api/countries'
+
+```json
+{
+  "country": {
+    "name": "<Duplicate> France"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "has alredy been taken"
+  ]
+}
+```
+
 ## PUT Countries
 ### PUT `/api/countries/{id}`
 - Updates `country` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PUT '/api/countries/9'
 
@@ -446,11 +714,35 @@ Country {
 }
 ```
 
+---
+> PUT '/api/countries/9'
+
+```json
+{
+  "country": {
+    "image": null,
+    "name": null
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "can't be blank"
+  ]
+}
+```
+
 ## PATCH Countries
 ### PATCH `/api/countries/{id}`
 - Updates `country` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PATCH '/api/countries/9'
 
@@ -472,11 +764,32 @@ Country {
 }
 ```
 
+---
+> PATCH '/api/countries/9'
+
+```json
+{
+  "country": {
+    "name": "zrxmatyyoaidsnqfhudafxhdbefgbteddsrydfhjxobwycakdmlbufcsoehhznwknozsndectbbptsoeqmubixewfzwybbepeaxhy"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "is too long (maximum is 100 characters)"
+  ]
+}
+```
+
 ## DELETE Countries
 ### DELETE `/api/countries/{id}`
 - Deletes `country` with id `{id}`
-  - Response: 204 `No Content` - if success
-  - Response: 404 `Not Found`
+  - Response: `204` No Content
+  - Response: `404` Not Found
 ---
 
 # Ingredients
@@ -499,14 +812,28 @@ Ingredient {
 }
 ```
 
+If validation fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+name:   "" | null      ==> message: "can't be blank"
+name:   is_duplicate?  ==> message: "has already been taken"
+name:   > 50 chars     ==> message: "is too long (maximum is 50 characters)"
+```
+
 ## GET Ingredients
 ### GET `/api/ingredients`
 - Retrieves All `ingredients`
-  - Response: 200 `Ok`
+  - Response: `200` Ok
 ### GET `/api/ingredients/{id}`
 - Retrieves `ingredient` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 404 `Not Found`
+  - Response: `200` Ok
+  - Response: `404` Not Found
 
 > GET '/api/ingredients/33'
 >
@@ -523,8 +850,9 @@ Ingredient {
 ## POST Ingredients
 ### POST `/api/ingredients`
 - Creates a new `ingredient`
-  - Response: 201 `Created`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `201` Created
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > POST '/api/ingredients'
 
@@ -547,11 +875,35 @@ Ingredient {
 }
 ```
 
+---
+> POST '/api/ingredients'
+
+```json
+{
+  "ingredient": {
+    "image": null,
+    "name": ""
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "can't be blank"
+  ]
+}
+```
+
 ## PUT Ingredients
 ### PUT `/api/ingredients/{id}`
 - Updates `ingredient` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PUT '/api/ingredients/50'
 
@@ -574,11 +926,35 @@ Ingredient {
 }
 ```
 
+---
+> PUT '/api/ingredients/50'
+
+```json
+{
+  "ingredient": {
+    "image": null,
+    "name": "<Duplicate> Cabbage"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "has already been taken"
+  ]
+}
+```
+
 ## PATCH Ingredients
 ### PATCH `/api/ingredients/{id}`
 - Updates `ingredient` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PATCH '/api/ingredients/50'
 
@@ -600,11 +976,33 @@ Ingredient {
 }
 ```
 
+---
+> PATCH '/api/ingredients/50'
+
+```json
+{
+  "ingredient": {
+    "image": null,
+    "name": "vqedsodkiiufmesjquzxwsjcepjmrmbeacenysgkstvptjdadbk"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "is too long (maximum is 50 characters)"
+  ]
+}
+```
+
 ## DELETE Ingredients
 ### DELETE `/api/ingredients/{id}`
 - Deletes `ingredient` with id `{id}`
-  - Response: 204 `No Content` - if success
-  - Response: 404 `Not Found`
+  - Response: `204` No Content
+  - Response: `404` Not Found
 ---
 
 # Kitchenwares
@@ -627,14 +1025,28 @@ Kitchenware {
 }
 ```
 
+If validation fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+name:   "" | null      ==> message: "can't be blank"
+name:   is_duplicate?  ==> message: "has already been taken"
+name:   > 50 chars     ==> message: "is too long (maximum is 50 characters)"
+```
+
 ## GET Kitchenwares
 ### GET `/api/kitchenwares`
 - Retrieves All `kitchenwares`
-  - Response: 200 `Ok`
+  - Response: `200` Ok
 ### GET `/api/kitchenwares/{id}`
 - Retrieves `kitchenware` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 404 `Not Found`
+  - Response: `200` Ok
+  - Response: `404` Not Found
 
 > GET '/api/kitchenwares/1'
 >
@@ -651,8 +1063,9 @@ Kitchenware {
 ## POST Kitchenwares
 ### POST `/api/kitchenwares`
 - Creates a new `kitchenware`
-  - Response: 201 `Created`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `201` Created
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > POST '/api/kitchenwares'
 
@@ -675,11 +1088,35 @@ Kitchenware {
 }
 ```
 
+---
+> POST '/api/kitchenwares'
+
+```json
+{
+  "kitchenware": {
+    "image": null,
+    "name": ""
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "can't be blank"
+  ]
+}
+```
+
 ## PUT Kitchenwares
 ### PUT `/api/kitchenwares/{id}`
 - Updates `kitchenware` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PUT '/api/kitchenwares/15'
 
@@ -702,11 +1139,35 @@ Kitchenware {
 }
 ```
 
+---
+> PUT '/api/kitchenwares/15'
+
+```json
+{
+  "ingredient": {
+    "image": null,
+    "name": "<Duplicate> Whisk"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "has already been taken"
+  ]
+}
+```
+
 ## PATCH Kitchenwares
 ### PATCH `/api/kitchenwares/{id}`
 - Updates `kitchenware` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PATCH '/api/kitchenwares/15'
 
@@ -728,11 +1189,33 @@ Kitchenware {
 }
 ```
 
+---
+> PATCH '/api/kitchenwares/15'
+
+```json
+{
+  "kitchenware": {
+    "image": null,
+    "name": "vqedsodkiiufmesjquzxwsjcepjmrmbeacenysgkstvptjdadbk"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "is too long (maximum is 50 characters)"
+  ]
+}
+```
+
 ## DELETE Kitchenwares
 ### DELETE `/api/kitchenwares/{id}`
 - Deletes `kitchenware` with id `{id}`
-  - Response: 204 `No Content` - if success
-  - Response: 404 `Not Found`
+  - Response: `204` No Content
+  - Response: `404` Not Found
 ---
 
 # Measures
@@ -753,14 +1236,28 @@ Measure {
 }
 ```
 
+If validation fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+name:   "" | null      ==> message: "can't be blank"
+name:   is_duplicate?  ==> message: "has already been taken"
+name:   > 30 chars     ==> message: "is too long (maximum is 30 characters)"
+```
+
 ## GET Measures
 ### GET `/api/measures`
 - Retrieves All `measures`
-  - Response: 200 `Ok`
+  - Response: `200` Ok
 ### GET `/api/measures/{id}`
 - Retrieves `measure` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 404 `Not Found`
+  - Response: `200` Ok
+  - Response: `404` Not Found
 
 > GET '/api/measures/1'
 >
@@ -776,8 +1273,9 @@ Measure {
 ## POST Measures
 ### POST `/api/measures`
 - Creates a new `measure`
-  - Response: 201 `Created`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `201` Created
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > POST '/api/measures'
 
@@ -798,11 +1296,34 @@ Measure {
 }
 ```
 
+---
+> POST '/api/measures'
+
+```json
+{
+  "measure": {
+    "name": ""
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "can't be blank"
+  ]
+}
+```
+
 ## PUT Measures
 ### PUT `/api/measures/{id}`
 - Updates `measure` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PUT '/api/measures/10'
 
@@ -823,11 +1344,34 @@ Measure {
 }
 ```
 
+---
+> PUT '/api/measures/10'
+
+```json
+{
+  "measure": {
+    "name": "<Duplicate> name"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "has already been taken"
+  ]
+}
+```
+
 ## PATCH Measures
 ### PATCH `/api/measures/{id}`
 - Updates `measure` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > PATCH '/api/measures/10'
 
@@ -848,11 +1392,32 @@ Measure {
 }
 ```
 
+---
+> PATCH '/api/measures/10'
+
+```json
+{
+  "measure": {
+    "name": "irvltycpaacwgqjjfdkerhovxbzwupu"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "name": [
+    "is too long (maximum is 30 characters)"
+  ]
+}
+```
+
 ## DELETE Measures
 ### DELETE `/api/measures/{id}`
 - Deletes `measure` with id `{id}`
-  - Response: 204 `No Content` - if success
-  - Response: 404 `Not Found`
+  - Response: `204` No Content
+  - Response: `404` Not Found
 ---
 
 # Recipes
@@ -928,12 +1493,35 @@ Recipe {
   number_of_people: int | null - [ min: 0 ]
   difficulty:       "easy" | "normal" | "hard"
   price:            "low" | "medium" | "high"
-  description:      string
+  description:      string | null
 }
 ```
 
 - `preparation_time` and `cooking_time` are in minutes (ie: 60 -> 60 minutes)
 
+If validation fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+image:             "" | null    ==> message: "can't be blank"
+name:              "" | null    ==> message: "can't be blank"
+name:              > 100 chars  ==> message: "is too long (maximum is 100 characters)"
+category_id:       0 | string   ==> message: "must exist"
+user_id:           0 | string   ==> message: "must exist"
+preparation_time:  string       ==> "is not a number"
+cooking_time:      string       ==> "is not a number"
+number_of_people:  string       ==> "is not a number"
+preparation_time:  < 0          ==> "must be greater than 0"
+cooking_time:      < 0          ==> "must be greater than 0"
+number_of_people:  < 0          ==> "must be greater than 0"
+difficulty:        "" | null    ==> "can't be blank"
+price:             "" | null    ==> "can't be blank"
+```
 
 - To add kitchenwares:
 
@@ -965,6 +1553,20 @@ Recipe {
 - the presence of `id` depends if you want to update an existing `ingredient` or create a new one
 - if `_destroy` is present and set to `"1"`, it will delete the `ingredient`
 
+If validation fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+ingredient_id:  0 | string   ==> message: "must exist"
+quantity:       string       ==> "is not a number"
+quantity:       < 0          ==> "must be greater than 0"
+comment:        > 150 chars  ==> message: "is too long (maximum is 150 characters)"
+```
 
 - To add instructions:
 
@@ -984,17 +1586,31 @@ Recipe {
 - the presence of `id` depends if you want to update an existing `ingredient` or create a new one
 - if `_destroy` is present and set to `"1"`, it will delete the `ingredient`
 
+If validation fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+step:     string       ==> "is not a number"
+step:     < 0          ==> "must be greater than 0"
+comment:  "" | null    ==> message: "can't be blank"
+comment:  > 255 chars  ==> message: "is too long (maximum is 255 characters)"
+```
 
 ## GET Recipes
 ### GET `/api/recipes`
 - Retrieves All `recipes`
   - add `?kitchenwares=1` `?ingredients=1` `?instructions=1` to route `url` to retrieve kitchenwares, ingredients, and instructions
-  - Response: 200 `Ok`
+  - Response: `200` Ok
 ### GET `/api/recipes/{id}`
 - Retrieves `recipe` with id `{id}`
   - add `?kitchenwares=1` `?ingredients=1` `?instructions=1` to route `url` to retrieve kitchenwares, ingredients, and instructions
-  - Response: 200 `Ok`
-  - Response: 404 `Not Found`
+  - Response: `200` Ok
+  - Response: `404` Not Found
 
 > GET '/api/recipes/1'
 >
@@ -1129,8 +1745,13 @@ Recipe {
 ## POST Recipes
 ### POST `/api/recipes`
 - Creates a new `recipe`
-  - Response: 201 `Created`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `201` Created
+  - Response: `422` Unprocessable Content
+    - if validations fail
+  - Response: `500` Internal Server Error
+    - if violation of Foreign Key `parent_id`
+    - if `difficulty` is not `"easy" | "normal" | "hard"`
+    - if `price` is not `"low" | "medium" | "high"`
 
 > POST '/api/recipes'
 >
@@ -1257,11 +1878,94 @@ Recipe {
 }
 ```
 
+---
+> POST '/api/recipes'
+>
+> If you add `kitchenwares=1`, `ingredients=1`, `instructions=1` to the body.
+> They will be part of the response
+
+```json
+{
+  "kitchenwares": "1",
+  "ingredients": "1",
+  "instructions": "1",
+  "recipe": {
+    "image": "bolo_123456.webp",
+    "name": "",
+    "category_id": 6,
+    "country_id": 2,
+    "user_id": 1,
+    "preparation_time": 0,
+    "cooking_time": "a",
+    "number_of_people": -1,
+    "difficulty": "",
+    "price": "",
+    "description": "My Grandma's Bolognese",
+    "kitchenware_ids": [1, 2, 3],
+    "ingredients_recipes_attributes": [
+      {
+        "ingredient_id": 1,
+        "quantity": -1,
+        "measure_id": null,
+        "comment": null
+      }
+    ],
+    "instructions_recipes_attributes": [
+      {
+        "step": "",
+        "comment": null
+      }
+    ]
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "ingredients_recipes.quantity": [
+    "must be greater than 0"
+  ],
+  "instructions_recipes.step": [
+    "can't be blank",
+    "is not a number"
+  ],
+  "instructions_recipes.comment": [
+    "can't be blank"
+  ],
+  "name": [
+    "can't be blank"
+  ],
+  "preparation_time": [
+    "must be greater than 0"
+  ],
+  "cooking_time": [
+    "is not a number"
+  ],
+  "number_of_people": [
+    "must be greater than 0"
+  ],
+  "difficulty": [
+    "can't be blank"
+  ],
+  "price": [
+    "can't be blank"
+  ]
+}
+```
+
 ## PUT Recipes
 ### PUT `/api/recipes/{id}`
 - Updates `recipe` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` `Unprocessable Content`
+    - if validations fail
+  - Response: `500` Internal Server Error
+    - if violation of Foreign Key `parent_id`
+    - if `difficulty` is not `"easy" | "normal" | "hard"`
+    - if `price` is not `"low" | "medium" | "high"`
 
 > PUT '/api/recipes/10'
 >
@@ -1354,12 +2058,77 @@ Recipe {
   ]
 }
 ```
+---
+> PUT '/api/recipes/10'
+>
+> If you add `kitchenwares=1`, `ingredients=1`, `instructions=1` to the body.
+> They will be part of the response
+
+```json
+{
+  "kitchenwares": "1",
+  "ingredients": "1",
+  "recipe": {
+    "image": "bolo_123456.webp",
+    "name": "",
+    "category_id": 6,
+    "country_id": 0,
+    "user_id": 0,
+    "preparation_time": 5,
+    "cooking_time": 5,
+    "number_of_people": -1,
+    "difficulty": "",
+    "price": "",
+    "description": "",
+    "kitchenware_ids": [1, 2, 3],
+    "ingredients_recipes_attributes": [
+      {
+        "ingredient_id": 1,
+        "quantity": -1,
+        "measure_id": null,
+        "comment": null
+      }
+    ]
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "user": [
+    "must exist"
+  ],
+  "ingredients_recipes.quantity": [
+    "must be greater than 0"
+  ],
+  "name": [
+    "can't be blank"
+  ],
+  "number_of_people": [
+    "must be greater than 0"
+  ],
+  "difficulty": [
+    "can't be blank"
+  ],
+  "price": [
+    "can't be blank"
+  ]
+}
+```
 
 ## PATCH Recipes
 ### PATCH `/api/recipes/{id}`
 - Updates `recipe` with id `{id}`
-  - Response: 200 `Ok`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `200` Ok
+  - Response: `404` Not Found
+  - Response: `422` `Unprocessable Content`
+    - if validations fail
+  - Response: `500` Internal Server Error
+    - if violation of Foreign Key `parent_id`
+    - if `difficulty` is not `"easy" | "normal" | "hard"`
+    - if `price` is not `"low" | "medium" | "high"`
 
 > PATCH '/api/recipes/10?ingredients=1&instructions=1'
 
@@ -1469,11 +2238,76 @@ Recipe {
 }
 ```
 
+---
+> PATCH '/api/recipes/10?ingredients=1&instructions=1'
+
+```json
+{
+  "recipe": {
+    "ingredients_recipes_attributes": [
+      {
+        "ingredient_id": 1,
+        "quantity": "",
+        "measure_id": 5,
+        "comment": "Finely cut"
+      },
+      {
+        "ingredient_id": 22,
+        "quantity": -1,
+        "measure_id": null,
+        "comment": "Fresh tomatoes from the market"
+      }
+    ],
+    "instructions_recipes_attributes": [
+      {
+        "step": -1,
+        "comment": ""
+      },
+      {
+        "step": "a",
+        "comment": null
+      }
+    ]
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "ingredients_recipes.quantity": [
+    "must be greater than 0"
+  ],
+  "instructions_recipes.step": [
+    "must be greater than 0",
+    "is not a number"
+  ],
+  "instructions_recipes.comment": [
+    "can't be blank"
+  ]
+}
+```
+
+---
+> PATCH '/api/recipes/4'
+
+```json
+{
+  "recipe": {
+    "difficulty": "oups",
+    "price": "wrong"
+  }
+}
+```
+
+> returns 500
+
 ## DELETE Recipes
 ### DELETE `/api/recipes/{id}`
 - Deletes `recipe` with id `{id}`
-  - Response: 204 `No Content` - if success
-  - Response: 404 `Not Found`
+  - Response: `204` No Content
+  - Response: `404` Not Found
 ---
 
 # Users
@@ -1496,6 +2330,20 @@ User {
 }
 ```
 
+If validations fails, the object returned has the form:
+
+```
+{
+  field_name: Array<error_message: string>
+}
+```
+
+```
+email:    "" | null            ==> message: "can't be blank"
+email:    doesn't contain '@'  ==> message: "is invalid"
+password: < 6 chars            ==> message: "is too short (minimum is 6 characters)"
+```
+
 When Logging in a `user` it must a have the form:
 
 ```
@@ -1505,11 +2353,22 @@ User {
 }
 ```
 
+If validation fails, the object returned has the form:
+
+```
+{
+  "error": "Invalid Email or password."
+}
+```
+
 ## User Registration
 ### POST `/api/signup`
 - Creates a new `user`
-  - Response: 201 `Created`
-  - Response: 204 `No Content` - if validations fail
+  - Response: `201` Created
+  - Response: `204` No Content
+    - if passwords don't match
+  - Response: `422` Unprocessable Content
+    - if validations fail
 
 > POST '/api/signup'
 
@@ -1532,12 +2391,76 @@ User {
 }
 ```
 
+---
+> POST '/api/signup'
+
+```json
+{
+  "user": {
+    "email": "toto@example.com",
+    "password": "123456",
+    "password_confirmation": "123"
+  }
+}
+```
+
+> returns: 204
+
+---
+> POST '/api/signup'
+
+```json
+{
+  "user": {
+    "email": "",
+    "password": "123456",
+    "password_confirmation": "123456"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "email": [
+    "can't be blank"
+  ]
+}
+```
+
+---
+> POST '/api/signup'
+
+```json
+{
+  "user": {
+    "email": "toto",
+    "password": "12345",
+    "password_confirmation": "12345"
+  }
+}
+```
+
+> returns: 422
+
+```json
+{
+  "email": [
+    "is invalid"
+  ],
+  "password": [
+    "is too short (minimum is 6 characters)"
+  ]
+}
+```
+
 ## User Login
 ### POST `/api/login`
 - Logs in a `user`
-  - Response: 200 `Ok`
-    - returns a JWT inside the header {'Authorization'}
-  - Response: 401 `Unauthorized`
+  - Response: `200` Ok
+    - returns a JWT inside the header `{'Authorization'}`
+  - Response: `401` Unauthorized
 
 > POST '/api/login'
 
@@ -1564,6 +2487,7 @@ User {
 }
 ```
 
+---
 > POST '/api/login'
 
 ```json
@@ -1585,8 +2509,8 @@ User {
 ## User Logout
 ### DELETE `/api/logout`
 - Logs out a `user`
-  - Must provide the JWT with the request (inside the header)
-  - Response: 200 `Ok`
+  - Must provide the JWT with the request (inside the header `'Authorization'`)
+  - Response: `200` Ok
 
 > DELETE '/api/logout'
 
@@ -1615,8 +2539,8 @@ User {
 - Checks Authentication/Authorization for a `user`
   - You may provide the JWT with the request (inside the header)
     - It will check whether the token is valid or not
-  - Response: 200 `Ok`
-  - Response: 401 `Unauthorized`
+  - Response: `200` Ok
+  - Response: `401` Unauthorized
 
 > GET '/api/secret'
 

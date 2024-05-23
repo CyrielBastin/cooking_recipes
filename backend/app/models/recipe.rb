@@ -36,6 +36,6 @@ class Recipe < ApplicationRecord
             allow_nil: true, numericality: { greater_than: 0 }
   enum difficulty: %i[easy normal hard], _prefix: :difficulty
   enum price: %i[low medium high], _suffix: true
-  validates_presence_of :image
+  validates_presence_of :image, :difficulty, :price
 
 end

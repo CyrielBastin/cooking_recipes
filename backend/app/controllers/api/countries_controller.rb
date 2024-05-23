@@ -11,7 +11,11 @@ class Api::CountriesController < ApplicationController
   def create
     @country = Country.new(country_params)
 
-    render('show', status: :created) if @country.save
+    if @country.save
+      render 'show', status: :created
+    else
+      render json: @country.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -21,7 +25,11 @@ class Api::CountriesController < ApplicationController
   def update
     @country = Country.find(params[:id])
 
-    render('show', status: :ok) if @country.update(country_params)
+    if @country.update(country_params)
+      render 'show', status: :ok
+    else
+      render json: @country.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy

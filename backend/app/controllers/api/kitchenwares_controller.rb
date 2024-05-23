@@ -11,7 +11,11 @@ class Api::KitchenwaresController < ApplicationController
   def create
     @kitchenware = Kitchenware.new(kitchenware_params)
 
-    render('show', status: :created) if @kitchenware.save
+    if @kitchenware.save
+      render 'show', status: :created
+    else
+      render json: @kitchenware.errors, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -21,7 +25,11 @@ class Api::KitchenwaresController < ApplicationController
   def update
     @kitchenware = Kitchenware.find(params[:id])
 
-    render('show', status: :ok) if @kitchenware.update(kitchenware_params)
+    if @kitchenware.update(kitchenware_params)
+      render 'show', status: :ok
+    else
+      render json: @kitchenware.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
