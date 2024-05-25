@@ -1,4 +1,4 @@
-import type { RecipeDifficulty, RecipePrice } from '@/entity/recipe'
+import type { RecipeDifficulty, RecipePrice } from '@/models/recipe'
 
 export default interface PostRecipeDTO {
   image: string | null

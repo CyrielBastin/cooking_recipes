@@ -1,4 +1,4 @@
-import type { RecipeDifficulty, RecipePrice } from '@/entity/recipe'
+import type { RecipeDifficulty, RecipePrice } from '@/models/recipe'
 
 export default interface GetRecipeDTO {
   id: number
@@ -42,8 +42,8 @@ export interface GetRecipeKitchenwareDTO {
 }
 
 export interface GetRecipeIngredientDTO {
-  ingredients_recipe_id: number
   id: number
+  ingredient_id: number
   image: string | null
   name: string
   quantity: number | null

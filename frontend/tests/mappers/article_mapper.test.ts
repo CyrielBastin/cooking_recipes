@@ -1,7 +1,7 @@
 import { describe, test, assert } from 'vitest'
 import GetArticleDTO from '../../src/dto/GET/article'
-import Article from '../../src/entity/article'
-import ArticleMapper from '../../src/entity/mappers/article_mapper'
+import Article from '../../src/models/article'
+import ArticleMapper from '../../src/models/mappers/article_mapper'
 
 const dummy_get_article_dto: GetArticleDTO = {
   id: 1,

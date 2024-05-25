@@ -1,6 +1,6 @@
 import { backend_url } from '@/config/backend_config'
-import type Article from '@/entity/article'
-import ArticleMapper from '@/entity/mappers/article_mapper'
+import type Article from '@/models/article'
+import ArticleMapper from '@/models/mappers/article_mapper'
 
 export default class ArticleService {
   findAll(): Array<Article> {

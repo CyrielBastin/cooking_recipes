@@ -145,10 +145,10 @@ function convert_kitchenware_from_dto(kitchenware: GetRecipeKitchenwareDTO): Kit
 
 function convert_ingredient_from_dto(ingredient: GetRecipeIngredientDTO): IngredientRecipe {
   return {
-    id: ingredient.id,
+    ingredientId: ingredient.ingredient_id,
     image: ingredient.image,
     name: ingredient.name,
-    ingredientsRecipeId: ingredient.ingredients_recipe_id,
+    id: ingredient.id,
     quantity: ingredient.quantity,
     measure: ingredient.measure ? ingredient.measure : null,
     comment: ingredient.comment
