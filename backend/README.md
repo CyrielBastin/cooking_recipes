@@ -1513,14 +1513,14 @@ name:              "" | null    ==> message: "can't be blank"
 name:              > 100 chars  ==> message: "is too long (maximum is 100 characters)"
 category_id:       0 | string   ==> message: "must exist"
 user_id:           0 | string   ==> message: "must exist"
-preparation_time:  string       ==> "is not a number"
-cooking_time:      string       ==> "is not a number"
-number_of_people:  string       ==> "is not a number"
-preparation_time:  < 0          ==> "must be greater than 0"
-cooking_time:      < 0          ==> "must be greater than 0"
-number_of_people:  < 0          ==> "must be greater than 0"
-difficulty:        "" | null    ==> "can't be blank"
-price:             "" | null    ==> "can't be blank"
+preparation_time:  string       ==> message: "is not a number"
+cooking_time:      string       ==> message: "is not a number"
+number_of_people:  string       ==> message: "is not a number"
+preparation_time:  < 0          ==> message: "must be greater than 0"
+cooking_time:      < 0          ==> message: "must be greater than 0"
+number_of_people:  < 0          ==> message: "must be greater than 0"
+difficulty:        "" | null    ==> message: "can't be blank"
+price:             "" | null    ==> message: "can't be blank"
 ```
 
 - To add kitchenwares:
@@ -1563,8 +1563,8 @@ If validation fails, the object returned has the form:
 
 ```
 ingredient_id:  0 | string   ==> message: "must exist"
-quantity:       string       ==> "is not a number"
-quantity:       < 0          ==> "must be greater than 0"
+quantity:       string       ==> message: "is not a number"
+quantity:       < 0          ==> message: "must be greater than 0"
 comment:        > 150 chars  ==> message: "is too long (maximum is 150 characters)"
 ```
 
@@ -1595,8 +1595,8 @@ If validation fails, the object returned has the form:
 ```
 
 ```
-step:     string       ==> "is not a number"
-step:     < 0          ==> "must be greater than 0"
+step:     string       ==> message: "is not a number"
+step:     < 0          ==> message: "must be greater than 0"
 comment:  "" | null    ==> message: "can't be blank"
 comment:  > 255 chars  ==> message: "is too long (maximum is 255 characters)"
 ```
