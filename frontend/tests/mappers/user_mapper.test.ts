@@ -1,6 +1,6 @@
 import { describe, test, assert } from 'vitest'
-import { CreateUser } from '../../src/entity/user'
-import UserMapper from '../../src/entity/mappers/user_mapper'
+import { CreateUser } from '../../src/models/user'
+import UserMapper from '../../src/models/mappers/user_mapper'
 
 const dummy_user: CreateUser = {
   id: 2,

@@ -1,7 +1,7 @@
 import { describe, test, assert } from 'vitest'
 import GetIngredientDTO from '../../src/dto/GET/ingredient'
-import Ingredient from '../../src/entity/ingredient'
-import IngredientMapper from '../../src/entity/mappers/ingredient_mapper'
+import Ingredient from '../../src/models/ingredient'
+import IngredientMapper from '../../src/models/mappers/ingredient_mapper'
 
 const dummy_get_ingredient_dto: GetIngredientDTO = {
   id: 1,

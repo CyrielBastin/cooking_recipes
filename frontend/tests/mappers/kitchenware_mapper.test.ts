@@ -1,7 +1,7 @@
 import { describe, test, assert } from 'vitest'
 import GetKitchenwareDTO from '../../src/dto/GET/kitchenware'
-import Kitchenware from '../../src/entity/kitchenware'
-import KitchenwareMapper from '../../src/entity/mappers/kitchenware_mapper'
+import Kitchenware from '../../src/models/kitchenware'
+import KitchenwareMapper from '../../src/models/mappers/kitchenware_mapper'
 
 const dummy_get_kitchenware_dto: GetKitchenwareDTO = {
   id: 1,

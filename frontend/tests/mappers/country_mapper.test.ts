@@ -1,7 +1,7 @@
 import { describe, test, assert } from 'vitest'
 import GetCountryDTO from '../../src/dto/GET/country'
-import Country from '../../src/entity/country'
-import CountryMapper from '../../src/entity/mappers/country_mapper'
+import Country from '../../src/models/country'
+import CountryMapper from '../../src/models/mappers/country_mapper'
 
 const dummy_get_country_dto: GetCountryDTO = {
   id: 1,

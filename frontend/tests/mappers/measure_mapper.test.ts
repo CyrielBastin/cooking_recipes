@@ -1,7 +1,7 @@
 import { describe, test, assert } from 'vitest'
 import GetMeasureDTO from '../../src/dto/GET/measure'
-import Measure from '../../src/entity/measure'
-import MeasureMapper from '../../src/entity/mappers/measure_mapper'
+import Measure from '../../src/models/measure'
+import MeasureMapper from '../../src/models/mappers/measure_mapper'
 
 const dummy_get_measure_dto: GetMeasureDTO = {
   id: 1,

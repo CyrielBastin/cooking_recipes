@@ -1,7 +1,7 @@
 import { describe, test, assert } from 'vitest'
 import GetRecipeDTO from '../../src/dto/GET/recipe'
-import Recipe from '../../src/entity/recipe'
-import RecipeMapper from '../../src/entity/mappers/recipe_mapper'
+import Recipe from '../../src/models/recipe'
+import RecipeMapper from '../../src/models/mappers/recipe_mapper'
 
 const dummy_get_recipe_dto: GetRecipeDTO = {
   id: 15,
@@ -55,8 +55,8 @@ const dummy_get_recipe_dto: GetRecipeDTO = {
   ],
   ingredients: [
     {
-      ingredients_recipe_id: 103,
-      id: 94,
+      id: 103,
+      ingredient_id: 94,
       image: 'parmesan.webp',
       name: 'Parmesan',
       quantity: 25,
@@ -64,8 +64,8 @@ const dummy_get_recipe_dto: GetRecipeDTO = {
       comment: 'grated'
     },
     {
-      ingredients_recipe_id: 104,
-      id: 20,
+      id: 104,
+      ingredient_id: 20,
       image: 'caper.webp',
       name: 'Caper',
       quantity: 2,
@@ -73,8 +73,8 @@ const dummy_get_recipe_dto: GetRecipeDTO = {
       comment: null
     },
     {
-      ingredients_recipe_id: 107,
-      id: 75,
+      id: 107,
+      ingredient_id: 75,
       image: 'lemon.webp',
       name: 'Lemon',
       quantity: null,
@@ -82,8 +82,8 @@ const dummy_get_recipe_dto: GetRecipeDTO = {
       comment: null
     },
     {
-      ingredients_recipe_id: 108,
-      id: 56,
+      id: 108,
+      ingredient_id: 56,
       image: 'garlic.webp',
       name: 'Garlic',
       quantity: 1,
@@ -91,8 +91,8 @@ const dummy_get_recipe_dto: GetRecipeDTO = {
       comment: null
     },
     {
-      ingredients_recipe_id: 109,
-      id: 146,
+      id: 109,
+      ingredient_id: 146,
       image: 'vegetable_oil.webp',
       name: 'Vegetable oil',
       quantity: 15,
@@ -100,8 +100,8 @@ const dummy_get_recipe_dto: GetRecipeDTO = {
       comment: null
     },
     {
-      ingredients_recipe_id: 112,
-      id: 51,
+      id: 112,
+      ingredient_id: 51,
       image: 'egg.webp',
       name: 'Egg',
       quantity: 1,
@@ -109,8 +109,8 @@ const dummy_get_recipe_dto: GetRecipeDTO = {
       comment: null
     },
     {
-      ingredients_recipe_id: 113,
-      id: 94,
+      id: 113,
+      ingredient_id: 94,
       image: 'parmesan.webp',
       name: 'Parmesan',
       quantity: 25,
@@ -118,8 +118,8 @@ const dummy_get_recipe_dto: GetRecipeDTO = {
       comment: 'grated'
     },
     {
-      ingredients_recipe_id: 114,
-      id: 76,
+      id: 114,
+      ingredient_id: 76,
       image: 'lettuce.webp',
       name: 'Lettuce',
       quantity: null,
@@ -127,8 +127,8 @@ const dummy_get_recipe_dto: GetRecipeDTO = {
       comment: null
     },
     {
-      ingredients_recipe_id: 115,
-      id: 16,
+      id: 115,
+      ingredient_id: 16,
       image: 'bread.webp',
       name: 'Bread',
       quantity: 4,
@@ -265,8 +265,8 @@ describe('Recipe Mapper', () => {
         const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
 
         assert.exists(recipe.ingredients)
-        assert.property(recipe.ingredients?.at(0), 'ingredientsRecipeId')
         assert.property(recipe.ingredients?.at(0), 'id')
+        assert.property(recipe.ingredients?.at(0), 'ingredientId')
         assert.property(recipe.ingredients?.at(0), 'image')
         assert.property(recipe.ingredients?.at(0), 'name')
         assert.property(recipe.ingredients?.at(0), 'quantity')
@@ -325,8 +325,8 @@ describe('Recipe Mapper', () => {
         const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
 
         assert.isArray(recipe.ingredients)
-        assert.isNumber(recipe.ingredients?.at(2)?.ingredientsRecipeId)
         assert.isNumber(recipe.ingredients?.at(2)?.id)
+        assert.isNumber(recipe.ingredients?.at(2)?.ingredientId)
         assert.isString(recipe.ingredients?.at(2)?.image)
         assert.isString(recipe.ingredients?.at(2)?.name)
         assert.isNull(recipe.ingredients?.at(2)?.quantity)
@@ -397,11 +397,11 @@ describe('Recipe Mapper', () => {
         const recipe = RecipeMapper.fromGetDTO(get_recipe_dto)
 
         assert.strictEqual(recipe.ingredients?.length, 9)
-        assert.strictEqual(
-          recipe.ingredients?.at(0)?.ingredientsRecipeId,
-          get_recipe_dto.ingredients?.at(0)?.ingredients_recipe_id
-        )
         assert.strictEqual(recipe.ingredients?.at(0)?.id, get_recipe_dto.ingredients?.at(0)?.id)
+        assert.strictEqual(
+          recipe.ingredients?.at(0)?.ingredientId,
+          get_recipe_dto.ingredients?.at(0)?.ingredient_id
+        )
         assert.strictEqual(
           recipe.ingredients?.at(0)?.image,
           get_recipe_dto.ingredients?.at(0)?.image
@@ -419,11 +419,11 @@ describe('Recipe Mapper', () => {
           recipe.ingredients?.at(0)?.comment,
           get_recipe_dto.ingredients?.at(0)?.comment
         )
-        assert.strictEqual(
-          recipe.ingredients?.at(7)?.ingredientsRecipeId,
-          get_recipe_dto.ingredients?.at(7)?.ingredients_recipe_id
-        )
         assert.strictEqual(recipe.ingredients?.at(7)?.id, get_recipe_dto.ingredients?.at(7)?.id)
+        assert.strictEqual(
+          recipe.ingredients?.at(7)?.ingredientId,
+          get_recipe_dto.ingredients?.at(7)?.ingredient_id
+        )
         assert.strictEqual(
           recipe.ingredients?.at(7)?.image,
           get_recipe_dto.ingredients?.at(7)?.image

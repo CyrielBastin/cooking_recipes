@@ -1,7 +1,7 @@
 import { describe, test, assert } from 'vitest'
 import GetCategoryDTO from '../../src/dto/GET/category'
-import Category from '../../src/entity/category'
-import CategoryMapper from '../../src/entity/mappers/category_mapper'
+import Category from '../../src/models/category'
+import CategoryMapper from '../../src/models/mappers/category_mapper'
 
 const dummy_get_category_dto: GetCategoryDTO = {
   id: 1,
