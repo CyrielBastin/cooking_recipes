@@ -1,3 +1,4 @@
+import type { Validation } from '@/validators/validation'
 import type Category from './category'
 import type Country from './country'
 import type { IngredientRecipe } from './ingredient'
@@ -31,6 +32,8 @@ export default interface Recipe {
   kitchenwareIds?: Array<number>
   ingredientsRecipesAttributes?: Array<IngredientsRecipesAttributes>
   instructionsRecipesAttributes?: Array<InstructionsRecipesAttributes>
+
+  errors?: Array<Validation.ErrorMessage>
 }
 
 export interface InstructionsRecipe {
@@ -49,6 +52,8 @@ export interface IngredientsRecipesAttributes {
   measureId: number | null
   comment: string | null
   _destroy?: '1' | true
+
+  errors?: Array<Validation.ErrorMessage>
 }
 
 export interface InstructionsRecipesAttributes {
@@ -56,4 +61,6 @@ export interface InstructionsRecipesAttributes {
   step: number
   comment: string
   _destroy?: '1' | true
+
+  errors?: Array<Validation.ErrorMessage>
 }

@@ -1,3 +1,4 @@
+import type { Validation } from '@/validators/validation'
 import type User from './user'
 
 export default interface Article {
@@ -10,4 +11,6 @@ export default interface Article {
   userId: number
 
   user?: User
+
+  errors?: Array<Validation.ErrorMessage>
 }

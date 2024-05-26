@@ -1,7 +1,11 @@
+import type { Validation } from '@/validators/validation'
+
 export default interface Ingredient {
   id: number
   image: string | null
   name: string
+
+  errors?: Array<Validation.ErrorMessage>
 }
 
 export interface IngredientRecipe extends Ingredient {
