@@ -21,7 +21,7 @@ describe('Validation', () => {
     test('returns true for value `""`', () => {
       assert.isTrue(Validation.isDefined(empty_string))
     })
-    test('returns true for value `""`', () => {
+    test('returns true for value `0`', () => {
       assert.isTrue(Validation.isDefined(number_0))
     })
     test('returns true for other values', () => {
@@ -29,6 +29,27 @@ describe('Validation', () => {
       assert.isTrue(Validation.isDefined(number_3))
       assert.isTrue(Validation.isDefined(empty_object))
       assert.isTrue(Validation.isDefined(empty_array))
+    })
+  })
+
+  describe('Validation.isNotDefined(field)', () => {
+    test('returns true for value `undefined`', () => {
+      assert.isTrue(Validation.isNotDefined(undefined_value))
+    })
+    test('returns false for value `null`', () => {
+      assert.isFalse(Validation.isNotDefined(null_value))
+    })
+    test('returns false for value `""`', () => {
+      assert.isFalse(Validation.isNotDefined(empty_string))
+    })
+    test('returns false for value `0`', () => {
+      assert.isFalse(Validation.isNotDefined(number_0))
+    })
+    test('returns false for other values', () => {
+      assert.isFalse(Validation.isNotDefined(string_hello))
+      assert.isFalse(Validation.isNotDefined(number_3))
+      assert.isFalse(Validation.isNotDefined(empty_object))
+      assert.isFalse(Validation.isNotDefined(empty_array))
     })
   })
 
@@ -47,24 +68,24 @@ describe('Validation', () => {
     })
   })
 
-  describe('Validation.isEmpty(field)', () => {
+  describe('Validation.isBlank(field)', () => {
     test('returns true if value is `""`', () => {
-      assert.isTrue(Validation.isEmpty(empty_string))
+      assert.isTrue(Validation.isBlank(empty_string))
     })
     test('returns true if value is `{}`', () => {
-      assert.isTrue(Validation.isEmpty(empty_object))
+      assert.isTrue(Validation.isBlank(empty_object))
     })
     test('returns true if value is `[]`', () => {
-      assert.isTrue(Validation.isEmpty(empty_array))
+      assert.isTrue(Validation.isBlank(empty_array))
     })
     test('returns true if value is `null`', () => {
-      assert.isTrue(Validation.isEmpty(null_value))
+      assert.isTrue(Validation.isBlank(null_value))
     })
     test('returns false for other values', () => {
-      assert.isFalse(Validation.isEmpty(undefined_value))
-      assert.isFalse(Validation.isEmpty(number_0))
-      assert.isFalse(Validation.isEmpty(number_3))
-      assert.isFalse(Validation.isEmpty(string_hello))
+      assert.isFalse(Validation.isBlank(undefined_value))
+      assert.isFalse(Validation.isBlank(number_0))
+      assert.isFalse(Validation.isBlank(number_3))
+      assert.isFalse(Validation.isBlank(string_hello))
     })
   })
 
@@ -82,6 +103,38 @@ describe('Validation', () => {
     })
   })
 
+  describe('Validation.isNotNumber(field)', () => {
+    test('returns false if value is a number', () => {
+      assert.isFalse(Validation.isNotNumber(number_0))
+      assert.isFalse(Validation.isNotNumber(number_3))
+    })
+    test('returns true for other values', () => {
+      assert.isTrue(Validation.isNotNumber(undefined_value))
+      assert.isTrue(Validation.isNotNumber(null_value))
+      assert.isTrue(Validation.isNotNumber(string_hello))
+      assert.isTrue(Validation.isNotNumber(empty_object))
+      assert.isTrue(Validation.isNotNumber(empty_array))
+    })
+  })
+
+  describe('Validation.isNotInteger(field)', () => {
+    test('returns false if value is an integer', () => {
+      assert.isFalse(Validation.isNotInteger(number_0))
+      assert.isFalse(Validation.isNotInteger(0.0))
+      assert.isFalse(Validation.isNotInteger(number_3))
+      assert.isFalse(Validation.isNotInteger(3.0))
+    })
+    test('returns true for other values', () => {
+      assert.isTrue(Validation.isNotInteger(0.1))
+      assert.isTrue(Validation.isNotInteger(3.3))
+      assert.isTrue(Validation.isNotInteger(undefined_value))
+      assert.isTrue(Validation.isNotInteger(null_value))
+      assert.isTrue(Validation.isNotInteger(string_hello))
+      assert.isTrue(Validation.isNotInteger(empty_object))
+      assert.isTrue(Validation.isNotInteger(empty_array))
+    })
+  })
+
   describe('Validation.isString(field)', () => {
     test('returns true if value is a string', () => {
       assert.isTrue(Validation.isString(empty_string))
@@ -93,6 +146,20 @@ describe('Validation', () => {
       assert.isFalse(Validation.isString(number_0))
       assert.isFalse(Validation.isString(empty_object))
       assert.isFalse(Validation.isString(empty_array))
+    })
+  })
+
+  describe('Validation.isNotString(field)', () => {
+    test('returns false if value is a string', () => {
+      assert.isFalse(Validation.isNotString(empty_string))
+      assert.isFalse(Validation.isNotString(string_hello))
+    })
+    test('returns true for other values', () => {
+      assert.isTrue(Validation.isNotString(undefined_value))
+      assert.isTrue(Validation.isNotString(null_value))
+      assert.isTrue(Validation.isNotString(number_0))
+      assert.isTrue(Validation.isNotString(empty_object))
+      assert.isTrue(Validation.isNotString(empty_array))
     })
   })
 
