@@ -187,6 +187,7 @@ describe('ArticleValidator', () => {
       // Makes sure it resets `article.errors` when we check whether it is valid or not
       _article.userId = 1
       assert.isNotTrue(ArticleValidator.isValid(_article))
+      assert.property(_article, 'errors')
       assert.isDefined(_article.errors)
       assert.strictEqual(_article.errors.length, 1)
       assert.strictEqual(_article.errors[0].property, 'title')
@@ -197,6 +198,7 @@ describe('ArticleValidator', () => {
       const _article = JSON.parse(JSON.stringify(article))
 
       assert.isTrue(ArticleValidator.isValid(_article))
+      assert.notProperty(_article, 'errors')
     })
   })
 })
