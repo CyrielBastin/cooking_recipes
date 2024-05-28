@@ -1,17 +1,13 @@
 import { describe, test, assert } from 'vitest'
+import type Article from '../../src/models/article'
 import { ArticleValidator } from '../../src/validators/article_validator'
 import { Validation } from '../../src/validators/validation'
-import { CreateOrUpdateArticle } from '../../src/models/article'
 
-const title = 'My New Article'
-const image = 'my_new_article.png'
-const content = 'Awesome Content'
-const user_id = 1
-const article: CreateOrUpdateArticle = {
-  title: title,
-  image: image,
-  content: content,
-  userId: user_id
+const article: Partial<Article> = {
+  title: 'My New Article',
+  image: 'my_new_article.png',
+  content: 'Awesome Content',
+  userId: 1
 }
 
 describe('ArticleValidator', () => {
@@ -50,7 +46,7 @@ describe('ArticleValidator', () => {
     })
 
     test('validates a string', () => {
-      const errors = ArticleValidator.validateTitle(title)
+      const errors = ArticleValidator.validateTitle(article.title)
       assert.strictEqual(errors.length, 0)
     })
   })
@@ -81,7 +77,7 @@ describe('ArticleValidator', () => {
     })
 
     test('validates a string', () => {
-      const errors = ArticleValidator.validateImage(image)
+      const errors = ArticleValidator.validateImage(article.image)
       assert.strictEqual(errors.length, 0)
     })
   })
@@ -112,7 +108,7 @@ describe('ArticleValidator', () => {
     })
 
     test('validates a string', () => {
-      const errors = ArticleValidator.validateContent(content)
+      const errors = ArticleValidator.validateContent(article.content)
       assert.strictEqual(errors.length, 0)
     })
   })
@@ -165,7 +161,7 @@ describe('ArticleValidator', () => {
     })
 
     test('validates a strictly positive integer', () => {
-      const errors = ArticleValidator.validateUserId(user_id)
+      const errors = ArticleValidator.validateUserId(article.userId)
       assert.strictEqual(errors.length, 0)
     })
   })

@@ -68,6 +68,21 @@ describe('Validation', () => {
     })
   })
 
+  describe('Validation.isNotNull(field)', () => {
+    test('returns false for value `null`', () => {
+      assert.isFalse(Validation.isNotNull(null_value))
+    })
+    test('returns true for other values', () => {
+      assert.isTrue(Validation.isNotNull(undefined_value))
+      assert.isTrue(Validation.isNotNull(empty_object))
+      assert.isTrue(Validation.isNotNull(empty_array))
+      assert.isTrue(Validation.isNotNull(empty_string))
+      assert.isTrue(Validation.isNotNull(string_hello))
+      assert.isTrue(Validation.isNotNull(number_0))
+      assert.isTrue(Validation.isNotNull(number_3))
+    })
+  })
+
   describe('Validation.isBlank(field)', () => {
     test('returns true if value is `""`', () => {
       assert.isTrue(Validation.isBlank(empty_string))

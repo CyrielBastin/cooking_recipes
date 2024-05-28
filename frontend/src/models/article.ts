@@ -11,13 +11,6 @@ export default interface Article {
   userId: number
 
   user?: User
-}
-
-export interface CreateOrUpdateArticle {
-  image: string
-  title: string
-  content: string
-  userId: number
 
   errors?: Array<Validation.ErrorMessage>
 }

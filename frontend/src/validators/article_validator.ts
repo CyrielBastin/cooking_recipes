@@ -1,11 +1,11 @@
-import type { CreateOrUpdateArticle } from '@/models/article'
+import type Article from '@/models/article'
 import { Validation } from './validation'
 
 export namespace ArticleValidator {
   // If not valid, we append an array errors to object `article`
   // article.errors
   //   ==> [{ property: string, message: string }, { property: string, message: string}]
-  export function isValid(article: CreateOrUpdateArticle): boolean {
+  export function isValid(article: Partial<Article>): boolean {
     delete article.errors
     let errors: Array<Validation.ErrorMessage> = []
 

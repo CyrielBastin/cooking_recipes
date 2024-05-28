@@ -39,6 +39,10 @@ export namespace Validation {
     return field === null
   }
 
+  export function isNotNull(field: any): boolean {
+    return !isNull(field)
+  }
+
   // Returns true if field is "" | {} | [] | null
   // else Returns false
   export function isBlank(field: any): boolean {
