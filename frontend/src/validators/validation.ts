@@ -17,11 +17,9 @@ export namespace Validation {
     minimum: function (number: number) {
       return `must be greater than ${number}`
     },
-    invalidEmail: function (email: string) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      return !re.test(email)
-    },
-    invalidPassword: 'is too short (minimum is 6 characters)'
+    invalidEmail: "must contain only 1 '@'",
+    passwordLength: 'is too short (minimum is 6 characters)',
+    passwordNotMatch: "the 2 passwords don't match"
   }
 
   // =============================================================================
@@ -88,5 +86,12 @@ export namespace Validation {
 
   export function isTooLow(field: number, minimum: number): boolean {
     return field < minimum
+  }
+
+  // Ensures that the email address has the form `test@test.com`
+  // Only 1 `@` and before a `.`
+  export function isInvalidEmail(field: string): boolean {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return !re.test(field)
   }
 }

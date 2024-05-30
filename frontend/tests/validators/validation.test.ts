@@ -201,4 +201,28 @@ describe('Validation', () => {
       assert.isFalse(Validation.isTooLow(number_3, 0))
     })
   })
+
+  describe('Validation.isInvalidEmail(field)', () => {
+    test('returns true if no `@`', () => {
+      assert.isTrue(Validation.isInvalidEmail('abcdef'))
+    })
+    test('returns true if more than 1 `@`', () => {
+      assert.isTrue(Validation.isInvalidEmail('invalid@email@test.com'))
+    })
+    test('returns true if starts with `@`', () => {
+      assert.isTrue(Validation.isInvalidEmail('@test.com'))
+    })
+    test('returns true if ends with `@`', () => {
+      assert.isTrue(Validation.isInvalidEmail('test.com@'))
+    })
+    test('returns true if no `.`', () => {
+      assert.isTrue(Validation.isInvalidEmail('abcdef@test'))
+    })
+    test('returns true if `@` after a `.`', () => {
+      assert.isTrue(Validation.isInvalidEmail('test.test@com'))
+    })
+    test('returns false if `@` is in the middle', () => {
+      assert.isFalse(Validation.isInvalidEmail('test@test.com'))
+    })
+  })
 })
