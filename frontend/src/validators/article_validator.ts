@@ -10,11 +10,11 @@ export namespace ArticleValidator {
     let errors: Array<Validation.ErrorMessage> = []
 
     const title_errors = validateTitle(article.title)
-    const image_erros = validateImage(article.image)
+    const image_errors = validateImage(article.image)
     const content_errors = validateContent(article.content)
     const user_id_errors = validateUserId(article.userId)
 
-    errors = errors.concat(title_errors, image_erros, content_errors, user_id_errors)
+    errors = errors.concat(title_errors, image_errors, content_errors, user_id_errors)
     if (errors.length > 0) article.errors = errors
     return errors.length === 0
   }

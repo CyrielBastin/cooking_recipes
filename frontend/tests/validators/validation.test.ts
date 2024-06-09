@@ -225,4 +225,51 @@ describe('Validation', () => {
       assert.isFalse(Validation.isInvalidEmail('test@test.com'))
     })
   })
+
+  describe('Validation.isArray(field)', () => {
+    test('returns true if value is an array', () => {
+      assert.isTrue(Validation.isArray(empty_array))
+      assert.isTrue(Validation.isArray([1, 2, 3]))
+      assert.isTrue(Validation.isArray(['a', [], {}]))
+    })
+    test('returns false for other values', () => {
+      assert.isFalse(Validation.isArray(undefined_value))
+      assert.isFalse(Validation.isArray(null_value))
+      assert.isFalse(Validation.isArray(number_0))
+      assert.isFalse(Validation.isArray(empty_object))
+      assert.isFalse(Validation.isArray(empty_string))
+    })
+  })
+
+  describe('Validation.isNotArray(field)', () => {
+    test('returns false if value is an array', () => {
+      assert.isFalse(Validation.isNotArray(empty_array))
+      assert.isFalse(Validation.isNotArray([1, 'abc', {}]))
+    })
+    test('returns true for other values', () => {
+      assert.isTrue(Validation.isNotArray(undefined_value))
+      assert.isTrue(Validation.isNotArray(null_value))
+      assert.isTrue(Validation.isNotArray(number_0))
+      assert.isTrue(Validation.isNotArray(empty_object))
+      assert.isTrue(Validation.isNotArray(empty_string))
+    })
+  })
+
+  describe('Validation.isNotArrayOfInt(field)', () => {
+    test('returns false if value is array of positive integer', () => {
+      assert.isFalse(Validation.isNotArrayOfPositiveInt([1, 2, 3]))
+    })
+    test('returns true if value is array of number (positive and negative)', () => {
+      assert.isTrue(Validation.isNotArrayOfPositiveInt([0]))
+      assert.isTrue(Validation.isNotArrayOfPositiveInt([-1, -2]))
+      assert.isTrue(Validation.isNotArrayOfPositiveInt([-1, 0, 1]))
+    })
+    test('returns true for other values', () => {
+      assert.isTrue(Validation.isNotArrayOfPositiveInt([undefined_value]))
+      assert.isTrue(Validation.isNotArrayOfPositiveInt([null, null]))
+      assert.isTrue(Validation.isNotArrayOfPositiveInt([1.1, 3.3]))
+      assert.isTrue(Validation.isNotArrayOfPositiveInt([[], '']))
+      assert.isTrue(Validation.isNotArrayOfPositiveInt([{}, {}]))
+    })
+  })
 })

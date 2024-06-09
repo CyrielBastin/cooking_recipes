@@ -19,7 +19,8 @@ export namespace Validation {
     },
     invalidEmail: "must contain only 1 '@'",
     passwordLength: 'is too short (minimum is 6 characters)',
-    passwordNotMatch: "the 2 passwords don't match"
+    passwordNotMatch: "the 2 passwords don't match",
+    notArray: 'must be an array'
   }
 
   // =============================================================================
@@ -93,5 +94,23 @@ export namespace Validation {
   export function isInvalidEmail(field: string): boolean {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return !re.test(field)
+  }
+
+  export function isArray(field: any): boolean {
+    return Array.isArray(field)
+  }
+
+  export function isNotArray(field: any): boolean {
+    return !isArray(field)
+  }
+
+  export function isNotArrayOfPositiveInt(field: Array<any>): boolean {
+    let is_pos_int = true
+    field.forEach((value) => {
+      if (!Number.isInteger(value)) is_pos_int = false
+      if (value < 1) is_pos_int = false
+    })
+
+    return !is_pos_int
   }
 }
