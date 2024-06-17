@@ -30,8 +30,8 @@ export default interface Recipe {
   instructions?: InstructionsRecipe[]
   // Create or update a recipe
   kitchenwareIds?: Array<number>
-  ingredientsRecipesAttributes?: Array<IngredientsRecipesAttributes>
-  instructionsRecipesAttributes?: Array<InstructionsRecipesAttributes>
+  ingredientsRecipesAttributes?: Array<Partial<IngredientsRecipesAttributes>>
+  instructionsRecipesAttributes?: Array<Partial<InstructionsRecipesAttributes>>
 
   errors?: Array<Validation.ErrorMessage>
 }

@@ -333,29 +333,44 @@ export namespace RecipeValidator {
 
   // ============================================================================================
   export function validateIngredients(
-    ingredients: Array<IngredientsRecipesAttributes> | undefined
+    ingredients: Array<Partial<IngredientsRecipesAttributes>> | undefined
   ): boolean {
     let is_valid = true
 
     if (Validation.isDefined(ingredients)) {
+      // We Refresh errors everytime we call the function
+      ingredients?.forEach((ingredient) => {
+        delete ingredient.errors
+      })
+
       ingredients?.forEach((ingredient) => {
         let errors: Array<Validation.ErrorMessage> = []
-        const ingredient_id_errros = validateIngredientId(ingredient.ingredientId)
-        const ingredient_quantity_errors = validateIngredientQuantity(ingredient.quantity)
-        const ingredient_measure_id_errors = validateIngredientMeasureId(ingredient.measureId)
-        const ingredient_comment_errors = validateIngredientComment(ingredient.comment)
+        let ingredient_id_errors: Array<Validation.ErrorMessage> = []
+        let ingredient_quantity_errors: Array<Validation.ErrorMessage> = []
+        let ingredient_measure_id_errors: Array<Validation.ErrorMessage> = []
+        let ingredient_comment_errors: Array<Validation.ErrorMessage> = []
+
         const ingredient_destroy_errors = validateIngredientDestroy(ingredient._destroy)
+        // If _destroy is present and '1', we don't validate the rest of the fields
+        if (ingredient_destroy_errors.length > 0 || Validation.isNotDefined(ingredient._destroy)) {
+          ingredient_id_errors = validateIngredientId(ingredient.ingredientId)
+          ingredient_quantity_errors = validateIngredientQuantity(ingredient.quantity)
+          ingredient_measure_id_errors = validateIngredientMeasureId(ingredient.measureId)
+          ingredient_comment_errors = validateIngredientComment(ingredient.comment)
+        }
 
         errors = errors.concat(
-          ingredient_id_errros,
+          ingredient_destroy_errors,
+          ingredient_id_errors,
           ingredient_quantity_errors,
           ingredient_measure_id_errors,
-          ingredient_comment_errors,
-          ingredient_destroy_errors
+          ingredient_comment_errors
         )
 
-        ingredient.errors = errors
-        if (ingredient.errors.length > 0) is_valid = false
+        if (errors.length > 0) {
+          ingredient.errors = errors
+          is_valid = false
+        }
       })
     }
 
@@ -464,10 +479,10 @@ export namespace RecipeValidator {
     const errors = []
 
     if (Validation.isDefined(destroy)) {
-      if (destroy != 1) {
+      if (destroy != '1') {
         errors.push({
           property: property,
-          message: 'must have value 1'
+          message: 'must have value `1`'
         })
       }
     }
@@ -477,25 +492,41 @@ export namespace RecipeValidator {
 
   // ============================================================================================
   export function validateInstructions(
-    instructions: Array<InstructionsRecipesAttributes> | undefined
+    instructions: Array<Partial<InstructionsRecipesAttributes>> | undefined
   ): boolean {
     let is_valid = true
 
     if (Validation.isDefined(instructions)) {
+      // We Refresh errors everytime we call the function
+      instructions?.forEach((instruction) => {
+        delete instruction.errors
+      })
+
       instructions?.forEach((instruction) => {
         let errors: Array<Validation.ErrorMessage> = []
-        const instruction_step_errors = validateInstructionStep(instruction.step)
-        const instruction_comment_errors = validateInstructionComment(instruction.comment)
+        let instruction_step_errors: Array<Validation.ErrorMessage> = []
+        let instruction_comment_errors: Array<Validation.ErrorMessage> = []
+
         const instruction_destroy_errors = validateInstructionDestroy(instruction._destroy)
+        // If _destroy is present and '1', we don't validate the rest of the fields
+        if (
+          instruction_destroy_errors.length > 0 ||
+          Validation.isNotDefined(instruction._destroy)
+        ) {
+          instruction_step_errors = validateInstructionStep(instruction.step)
+          instruction_comment_errors = validateInstructionComment(instruction.comment)
+        }
 
         errors = errors.concat(
+          instruction_destroy_errors,
           instruction_step_errors,
-          instruction_comment_errors,
-          instruction_destroy_errors
+          instruction_comment_errors
         )
 
-        instruction.errors = errors
-        if (instruction.errors.length > 0) is_valid = false
+        if (errors.length > 0) {
+          instruction.errors = errors
+          is_valid = false
+        }
       })
     }
 
@@ -560,10 +591,10 @@ export namespace RecipeValidator {
     const errors = []
 
     if (Validation.isDefined(destroy)) {
-      if (destroy != 1) {
+      if (destroy != '1') {
         errors.push({
           property: property,
-          message: 'must have value 1'
+          message: 'must have value `1`'
         })
       }
     }
