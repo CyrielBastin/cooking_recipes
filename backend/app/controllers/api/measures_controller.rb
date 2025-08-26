@@ -11,7 +11,6 @@ class Api::MeasuresController < ApplicationController
   def create
     @measure = Measure.new(measure_params)
 
-    render('show', status: :created) if @measure.save
     if @measure.save
       render 'show', status: :created
     else
