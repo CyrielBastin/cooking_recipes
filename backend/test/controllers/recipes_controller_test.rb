@@ -26,7 +26,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
               number_of_people: 2,
               difficulty: 'easy',
               price: 'low',
-              description: 'Best Carbo Ever' } }
+              description: 'Best Carbo Ever' } },
+           as: :json
     end
 
     assert_response :created
@@ -67,7 +68,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     patch api_recipe_url(@recipe), params:
       { recipe:
           { name: 'Godlike Tartiflette',
-            price: 'high' } }
+            price: 'high' } },
+          as: :json
 
     assert_response :success
 
@@ -89,7 +91,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     patch api_recipe_url(@recipe), params:
       { kitchenwares: '1',
         recipe:
-          { kitchenware_ids: [kitchenwares(:oven)[:id], kitchenwares(:pan)[:id]] } }
+          { kitchenware_ids: [kitchenwares(:oven)[:id], kitchenwares(:pan)[:id]] } },
+          as: :json
 
     assert_response :success
     json_response = ActiveSupport::JSON.decode @response.body
@@ -113,7 +116,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
               measure_id: measures(:unit)[:id],
               comment: 'Bintje or Yukon Gold' },
             { ingredient_id: ingredients(:salt)[:id] }
-          ] } }
+          ] } },
+          as: :json
 
     assert_response :success
     json_response = ActiveSupport::JSON.decode @response.body
@@ -124,27 +128,29 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert(json_response['ingredients'].any? { |i| i['name'] == 'Salt' })
   end
 
-  # test 'updates `bolognese` ingredients' do
-  #   patch api_recipe_url(recipes(:bolognese)[:id]), params:
-  #     { recipe:
-  #         { ingredients_recipes_attributes: [
-  #           { id: ingredients_recipes(:bolo_onion)[:id],
-  #             quantity: 3,
-  #             comment: 'We add 1 extra onion' },
-  #           { id: ingredients_recipes(:bolo_tomato)[:id],
-  #             _destroy: 1 },
-  #           { ingredient_id: ingredients(:salt)[:id] }
-  #         ] } }
-  #
-  #   assert_response :success
-  #   json_response = ActiveSupport::JSON.decode @response.body
-  #   assert_equal 'Bolognese', json_response['name']
-  #   assert_equal 3, json_response['ingredients'].size
-  #   assert(json_response['ingredients'].any? { |i| i['name'] == 'Onion' })
-  #   assert_not(json_response['ingredients'].any? { |i| i['name'] == 'Tomato' })
-  #   assert(json_response['ingredients'].any? { |i| i['name'] == 'Parsley' })
-  #   assert(json_response['ingredients'].any? { |i| i['name'] == 'Salt' })
-  # end
+  test 'updates `bolognese` ingredients' do
+    patch api_recipe_url(recipes(:bolognese)[:id]), params:
+      { recipe:
+          { ingredients_recipes_attributes: [
+            { id: ingredients_recipes(:bolo_onion)[:id],
+              quantity: 3,
+              comment: 'We add 1 extra onion' },
+            { id: ingredients_recipes(:bolo_tomato)[:id],
+              _destroy: 1 },
+            { ingredient_id: ingredients(:salt)[:id] }
+          ] },
+        ingredients: '1'},
+        as: :json
+
+    assert_response :success
+    json_response = ActiveSupport::JSON.decode @response.body
+    assert_equal 'Bolognese', json_response['name']
+    assert_equal 3, json_response['ingredients'].size
+    assert(json_response['ingredients'].any? { |i| i['name'] == 'Onion' })
+    assert_not(json_response['ingredients'].any? { |i| i['name'] == 'Tomato' })
+    assert(json_response['ingredients'].any? { |i| i['name'] == 'Parsley' })
+    assert(json_response['ingredients'].any? { |i| i['name'] == 'Salt' })
+  end
 
   test 'adds `blanquette` instructions' do
     patch api_recipe_url(@recipe), params:
@@ -157,7 +163,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
               comment: 'Cut the potatoes.' },
             { step: 3,
               comment: 'Cut the onions.' }
-          ] } }
+          ] } },
+          as: :json
 
     assert_response :success
     json_response = ActiveSupport::JSON.decode @response.body
@@ -168,83 +175,89 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Cut the onions.', json_response['instructions'].at(2)['comment']
   end
 
-  # test 'updates `bolognese` instructions' do
-  #   patch api_recipe_url(recipes(:bolognese)[:id]), params:
-  #     { recipe:
-  #         { instructions_recipes_attributes: [
-  #           { id: instructions_recipes(:bolo_step_one)[:id],
-  #             _destroy: 1 },
-  #           { id: instructions_recipes(:bolo_step_two)[:id],
-  #             step: 1,
-  #             comment: 'Wash your hands, please!' }
-  #         ] } }
-  #
-  #   assert_response :success
-  #   json_response = ActiveSupport::JSON.decode @response.body
-  #   assert_equal 'Bolognese', json_response['name']
-  #   assert_equal 1, json_response['instructions'].size
-  #   assert_equal 'Wash your hands, please!', json_response['instructions'].at(0)['comment']
-  # end
-  #
-  # test 'updates a recipe fully' do
-  #   put api_recipe_url(recipes(:bolognese)[:id]), params:
-  #     { recipe:
-  #         { image: 'recipes/bolognese.png',
-  #           name: 'Tomatoless Bolognese',
-  #           category_id: categories(:main_course)[:id],
-  #           country_id: countries(:italy)[:id],
-  #           user_id: users(:grimm)[:id],
-  #           preparation_time: 35,
-  #           cooking_time: 15,
-  #           number_of_people: 5,
-  #           difficulty: 'hard',
-  #           price: 'high',
-  #           description: 'Yes a Bolognese without tomatoes. What you gonna do about it',
-  #           kitchenware_ids: [kitchenwares(:pan)[:id]],
-  #           ingredients_recipes_attributes: [
-  #             { id: ingredients_recipes(:bolo_onion)[:id],
-  #               ingredient_id: ingredients(:onion)[:id],
-  #               quantity: 2,
-  #               measure_id: measures(:unit)[:id],
-  #               comment: 'Just 2 Onions' },
-  #             { id: ingredients_recipes(:bolo_tomato)[:id],
-  #               _destroy: 1 },
-  #             { id: ingredients_recipes(:bolo_parsley)[:id],
-  #               _destroy: 1 }
-  #           ],
-  #           instructions_recipes_attributes: [
-  #             { id: instructions_recipes(:bolo_step_one)[:id],
-  #               step: 1,
-  #               comment: 'Step 1' },
-  #             { id: instructions_recipes(:bolo_step_two)[:id],
-  #               step: 2,
-  #               comment: 'Step 2' }
-  #           ] } }
-  #
-  #   assert_response :success
-  #
-  #   json_response = ActiveSupport::JSON.decode @response.body
-  #   assert_equal 'recipes/bolognese.png', json_response['image']
-  #   assert_equal 'Tomatoless Bolognese', json_response['name']
-  #   assert_equal 'Main Course', json_response['category']['name']
-  #   assert_equal 'Italy', json_response['country']['name']
-  #   assert_equal 'grimm@grimm.com', json_response['user']['email']
-  #   assert_equal 35, json_response['preparation_time']
-  #   assert_equal 15, json_response['cooking_time']
-  #   assert_equal 5, json_response['number_of_people']
-  #   assert_equal 'hard', json_response['difficulty']
-  #   assert_equal 'high', json_response['price']
-  #   assert_equal 'Yes a Bolognese without tomatoes. What you gonna do about it', json_response['description']
-  #   assert_equal 1, json_response['kitchenwares'].size
-  #   assert(json_response['kitchenwares'].any? { |k| k['name'] == 'Pan' })
-  #   # assert_equal 1, json_response['ingredients'].size
-  #   # assert(json_response['ingredients'].any? { |i| i['name'] == 'Onion' })
-  #   # onion = json_response['ingredients'].filter { |i| i['name'] == 'Onion' }
-  #   # assert_equal 2, onion.at(0)['quantity']
-  #   assert_equal 2, json_response['instructions'].size
-  #   assert_equal 'Step 1', json_response['instructions'].at(0)['comment']
-  #   assert_equal 'Step 2', json_response['instructions'].at(1)['comment']
-  # end
+  test 'updates `bolognese` instructions' do
+    patch api_recipe_url(recipes(:bolognese)[:id]), params:
+      { recipe:
+          { instructions_recipes_attributes: [
+            { id: instructions_recipes(:bolo_step_one)[:id],
+              _destroy: '1' },
+            { id: instructions_recipes(:bolo_step_two)[:id],
+              step: 1,
+              comment: 'Wash your hands, please!' }
+          ] },
+        'instructions': '1'},
+          as: :json
+
+    assert_response :success
+    json_response = ActiveSupport::JSON.decode @response.body
+    assert_equal 'Bolognese', json_response['name']
+    assert_equal 1, json_response['instructions'].size
+    assert_equal 'Wash your hands, please!', json_response['instructions'].at(0)['comment']
+  end
+
+  test 'updates a recipe fully' do
+    put api_recipe_url(recipes(:bolognese)[:id]), params:
+      { recipe:
+          { image: 'recipes/bolognese.png',
+            name: 'Tomatoless Bolognese',
+            category_id: categories(:main_course)[:id],
+            country_id: countries(:italy)[:id],
+            user_id: users(:grimm)[:id],
+            preparation_time: 35,
+            cooking_time: 15,
+            number_of_people: 5,
+            difficulty: 'hard',
+            price: 'high',
+            description: 'Yes a Bolognese without tomatoes. What you gonna do about it',
+            kitchenware_ids: [kitchenwares(:pan)[:id]],
+            ingredients_recipes_attributes: [
+              { id: ingredients_recipes(:bolo_onion)[:id],
+                ingredient_id: ingredients(:onion)[:id],
+                quantity: 2,
+                measure_id: measures(:unit)[:id],
+                comment: 'Just 2 Onions' },
+              { id: ingredients_recipes(:bolo_tomato)[:id],
+                _destroy: 1 },
+              { id: ingredients_recipes(:bolo_parsley)[:id],
+                _destroy: 1 }
+            ],
+            instructions_recipes_attributes: [
+              { id: instructions_recipes(:bolo_step_one)[:id],
+                step: 1,
+                comment: 'Step 1' },
+              { id: instructions_recipes(:bolo_step_two)[:id],
+                step: 2,
+                comment: 'Step 2' }
+            ] },
+        'ingredients': '1',
+        'instructions': '1',
+        'kitchenwares': '1'},
+        as: :json
+
+    assert_response :success
+
+    json_response = ActiveSupport::JSON.decode @response.body
+    assert_equal 'recipes/bolognese.png', json_response['image']
+    assert_equal 'Tomatoless Bolognese', json_response['name']
+    assert_equal 'Main Course', json_response['category']['name']
+    assert_equal 'Italy', json_response['country']['name']
+    assert_equal 'grimm@grimm.com', json_response['user']['email']
+    assert_equal 35, json_response['preparation_time']
+    assert_equal 15, json_response['cooking_time']
+    assert_equal 5, json_response['number_of_people']
+    assert_equal 'hard', json_response['difficulty']
+    assert_equal 'high', json_response['price']
+    assert_equal 'Yes a Bolognese without tomatoes. What you gonna do about it', json_response['description']
+    assert_equal 1, json_response['kitchenwares'].size
+    assert(json_response['kitchenwares'].any? { |k| k['name'] == 'Pan' })
+    assert_equal 1, json_response['ingredients'].size
+    assert(json_response['ingredients'].any? { |i| i['name'] == 'Onion' })
+    onion = json_response['ingredients'].filter { |i| i['name'] == 'Onion' }
+    assert_equal 2, onion.at(0)['quantity']
+    assert_equal 2, json_response['instructions'].size
+    assert_equal 'Step 1', json_response['instructions'].at(0)['comment']
+    assert_equal 'Step 2', json_response['instructions'].at(1)['comment']
+  end
 
   test 'destroys a recipe' do
     assert_difference('Recipe.count', -1) do
