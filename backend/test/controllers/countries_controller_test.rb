@@ -17,7 +17,8 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
       post api_countries_url, params:
         { country:
             { image: 'countries/belgium.png',
-              name: 'Belgium' } }
+              name: 'Belgium' } },
+        as: :json
     end
 
     assert_response :created
@@ -39,7 +40,8 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
   test 'updates a country partially' do
     patch api_country_url(@country), params:
       { country:
-          { name: 'Francia' } }
+          { name: 'Francia' } },
+      as: :json
 
     assert_response :success
 
@@ -52,7 +54,8 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
     put api_country_url(@country), params:
       { country:
           { image: 'countries/francia.png',
-            name: 'Francia' } }
+            name: 'Francia' } },
+      as: :json
 
     assert_response :success
 
