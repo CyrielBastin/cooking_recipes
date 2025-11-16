@@ -17,7 +17,8 @@ class KitchenwaresControllerTest < ActionDispatch::IntegrationTest
       post api_kitchenwares_url, params:
         { kitchenware:
             { image: 'kitchenwares/spatula.png',
-              name: 'Spatula' } }
+              name: 'Spatula' } },
+        as: :json
     end
 
     assert_response :created
@@ -39,7 +40,8 @@ class KitchenwaresControllerTest < ActionDispatch::IntegrationTest
   test 'updates a kitchenware partially' do
     patch api_kitchenware_url(@kitchenware), params:
       { kitchenware:
-          { name: 'Skillet Pan' } }
+          { name: 'Skillet Pan' } },
+      as: :json
 
     assert_response :success
 
@@ -52,7 +54,8 @@ class KitchenwaresControllerTest < ActionDispatch::IntegrationTest
     put api_kitchenware_url(@kitchenware), params:
       { kitchenware:
           { image: 'kitchenwares/skillet_pan.png',
-            name: 'Skillet Pan' } }
+            name: 'Skillet Pan' } },
+      as: :json
 
     assert_response :success
 
