@@ -17,7 +17,8 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
       post api_ingredients_url, params:
         { ingredient:
             { image: 'ingredients/rutabaga.png',
-              name: 'Rutabaga' } }
+              name: 'Rutabaga' } },
+        as: :json
     end
 
     assert_response :created
@@ -39,7 +40,8 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
   test 'updates an ingredient partially' do
     patch api_ingredient_url(@ingredient), params:
       { ingredient:
-          { name: 'Dry Onion' } }
+          { name: 'Dry Onion' } },
+      as: :json
 
     assert_response :success
 
@@ -52,7 +54,8 @@ class IngredientsControllerTest < ActionDispatch::IntegrationTest
     put api_ingredient_url(@ingredient), params:
       { ingredient:
           { image: 'ingredients/dry_onion.png',
-            name: 'Dry Onion' } }
+            name: 'Dry Onion' } },
+      as: :json
 
     assert_response :success
 
