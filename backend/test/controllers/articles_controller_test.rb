@@ -19,7 +19,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
             { image: 'article_3.png',
               title: 'My new Article',
               content: 'This is my new article. Please, read',
-              user_id: users(:grimm)[:id] } }
+              user_id: users(:grimm)[:id] } },
+        as: :json
     end
 
     assert_response :created
@@ -45,7 +46,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   test 'updates an article partially' do
     patch api_article_url(@article), params:
       { article:
-          { title: 'Fixed title' } }
+          { title: 'Fixed title' } },
+      as: :json
 
     assert_response :success
 
@@ -62,7 +64,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
           { image: 'path/to/image.png',
             title: 'Fixed title',
             content: 'Whole new content',
-            user_id: users(:grimm)[:id] } }
+            user_id: users(:grimm)[:id] } },
+      as: :json
 
     assert_response :success
 
