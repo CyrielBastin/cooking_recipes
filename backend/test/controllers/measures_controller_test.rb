@@ -16,7 +16,8 @@ class MeasuresControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Measure.count') do
       post api_measures_url, params:
         { measure:
-            { name: 'tablespoon' } }
+            { name: 'tablespoon' } },
+        as: :json
     end
 
     assert_response :created
@@ -36,7 +37,8 @@ class MeasuresControllerTest < ActionDispatch::IntegrationTest
   test 'updates a measure partially' do
     patch api_measure_url(@measure), params:
       { measure:
-          { name: 'tablespoon' } }
+          { name: 'tablespoon' } },
+      as: :json
 
     assert_response :success
 
@@ -47,7 +49,8 @@ class MeasuresControllerTest < ActionDispatch::IntegrationTest
   test 'updates a measure fully' do
     put api_measure_url(@measure), params:
       { measure:
-          { name: 'tablespoon' } }
+          { name: 'tablespoon' } },
+      as: :json
 
     assert_response :success
 
