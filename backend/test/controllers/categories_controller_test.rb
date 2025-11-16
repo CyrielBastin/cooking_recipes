@@ -17,7 +17,8 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       post api_categories_url, params:
         { category:
             { name: 'Cold Sauces',
-              parent_id: categories(:sauce)[:id] } }
+              parent_id: categories(:sauce)[:id] } },
+        as: :json
     end
 
     assert_response :created
@@ -39,7 +40,8 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   test 'updates a category partially' do
     patch api_category_url(@category), params:
       { category:
-          { name: 'Smoked Lamb' } }
+          { name: 'Smoked Lamb' } },
+      as: :json
 
     assert_response :success
 
@@ -52,7 +54,8 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     put api_category_url(@category), params:
       { category:
           { name: 'Smoked Lamb',
-            parent_id: categories(:meat)[:id] } }
+            parent_id: categories(:meat)[:id] } },
+      as: :json
 
     assert_response :success
 
@@ -70,4 +73,3 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
 end
-
