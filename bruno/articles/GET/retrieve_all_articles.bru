@@ -1,5 +1,5 @@
 meta {
-  name: get_articles
+  name: retrieve_all_articles
   type: http
   seq: 1
 }
@@ -17,4 +17,12 @@ assert {
 settings {
   encodeUrl: true
   timeout: 0
+}
+
+docs {
+  ## GET Articles
+  ### GET `/api/articles`
+  - Retrieves All `articles`
+    - Response: `200` Ok
+  
 }

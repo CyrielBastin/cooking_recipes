@@ -1,0 +1,85 @@
+meta {
+  name: validations_fail
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{host}}/api/articles
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "article": {
+      "title": null,
+      "image": null,
+      "content": "",
+      "user_id": 1
+    }
+  }
+}
+
+assert {
+  res.status: eq 422
+}
+
+tests {
+  test("is_not_created", function(){
+    expect(res.getStatus()).to.equal(422);
+  });
+  
+  test("returns errors", function(){
+    const res_body = res.getBody();
+    expect(res_body).to.be.an("object");
+    expect(res_body).to.include.all.keys("image", "title", "content");
+    expect(res_body).to.have.deep.property("image", ["can't be blank"]);
+    expect(res_body).to.have.deep.property("title", ["can't be blank"]);
+    expect(res_body).to.have.deep.property("content", ["can't be blank"]);
+  });
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  ### POST `/api/articles`
+  - Creates a new `article`
+    - Response: `201` Created
+    - Response: `422` Unprocessable Content
+      - if validation fails
+  
+  ---
+  > POST '/api/articles'
+  
+  ```json
+  {
+    "article": {
+      "title": null,
+      "image": null,
+      "content": "",
+      "user_id": 1
+    }
+  }
+  ```
+  
+  > returns: 422
+  
+  ```json
+  {
+    "image": [
+      "can't be blank"
+    ],
+    "title": [
+      "can't be blank"
+    ],
+    "content": [
+      "can't be blank"
+    ]
+  }
+  ```
+  
+}

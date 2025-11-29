@@ -1,0 +1,87 @@
+meta {
+  name: success
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{host}}/api/articles/{{new_article_id}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "article": {
+      "content": "Updated content"
+    }
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("is_updated", function(){
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("response_is_ok", function(){
+    const res_body = res.getBody();
+    expect(res_body).to.be.an("object");
+    expect(res_body).to.include.all.keys("id","title", "image", "content",
+                                         "user_id", "created_at", "updated_at",
+                                         "user");
+    expect(res_body).to.have.deep.property("content", "Updated content");
+  });
+  
+  test("returns_user_object", function(){
+    const res_body = res.getBody();
+    expect(res_body).to.have.property("user");
+    expect(res_body).to.have.nested.property("user.id");
+    expect(res_body).to.have.nested.property("user.email");
+  })
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  ### PATCH `/api/articles/{id}`
+  - Updates `article` with id `{id}`
+    - Response: `200` Ok
+    - Response: `404` Not Found
+    - Response: `422` Unprocessable Content
+      - if validation fails
+  
+  > PATCH '/api/articles/2'
+  
+  ```json
+  {
+    "article": {
+      "content": "Updated content"
+    }
+  }
+  ```
+  
+  > returns: 200
+  
+  ```json
+  {
+    "id": 2,
+    "title": "Updated Title",
+    "image": "new_article_123456.png",
+    "content": "Updated content",
+    "user_id": 45,
+    "created_at": "2024-05-18 23:34:45",
+    "updated_at": "2024-05-30 00:00:12",
+    "user": {
+      "id": 45,
+      "email": "jane@doe.net"
+    }
+  }
+  ```
+}

@@ -6,3 +6,279 @@ meta {
 auth {
   mode: inherit
 }
+
+docs {
+  # Articles
+  `Articles` returned will have the form:
+  
+  ```
+  Article {
+  id:         int
+  title:      string
+  image:      string
+  content:    string
+  user_id:    int
+  created_at: string
+  updated_at: string
+  user: {
+    id:       int
+    email:    string
+    }
+  }
+  ```
+  
+  When creating or updating an `article` it must a have the form:
+  
+  ```
+  Article {
+  title:   string - [max: 150 chars]
+  image:   string
+  content: string
+  user_id: int
+  }
+  ```
+  
+  If validation fails, the object returned has the form:
+  
+  ```
+  {
+    field_name: Array<error_message: string>
+  }
+  ```
+  
+  ```
+  title:   "" | null   ==> message: "can't be blank"
+  title:   > 150 chars ==> message: "is too long (maximum is 150 characters)"
+  image:   "" | null   ==> message: "can't be blank"
+  content: "" | null   ==> message: "can't be blank"
+  user_id: 0 | string  ==> message: "must exist"
+  ```
+  
+  ## GET Articles
+  ### GET `/api/articles`
+  - Retrieves All `articles`
+    - Response: `200` Ok
+  ### GET `/api/articles/{id}`
+  - Retrieves `article` with id `{id}`
+    - Response: `200` Ok
+    - Response: `404` Not Found
+  
+  > GET '/api/articles/1'
+  >
+  > returns: 200
+  
+  ```json
+  {
+    "id": 1,
+    "title": "My first Article",
+    "image": "corndog_and_chips.png",
+    "content": "Corndogs and Chips",
+    "user_id": 1,
+    "created_at": "2024-05-17 14:00:00",
+    "updated_at": "2024-05-17 14:00:00",
+    "user": {
+      "id": 1,
+      "email": "toto@example.com"
+    }
+  }
+  ```
+  
+  ## POST Articles
+  ### POST `/api/articles`
+  - Creates a new `article`
+    - Response: `201` Created
+    - Response: `422` Unprocessable Content
+      - if validation fails
+  
+  > POST '/api/articles'
+  
+  ```json
+  {
+    "article": {
+      "title": "Awesome Title",
+      "image": "new_article_123456.png",
+      "content": "My new Awesome Article",
+      "user_id": 45
+    }
+  }
+  ```
+  
+  > returns: 201
+  
+  ```json
+  {
+    "id": 2,
+    "title": "Awesome Title",
+    "image": "new_article_123456.png",
+    "content": "My new Awesome Article",
+    "user_id": 45,
+    "created_at": "2024-05-18 23:34:45",
+    "updated_at": "2024-05-18 23:34:45",
+    "user": {
+      "id": 45,
+      "email": "jane@doe.net"
+    }
+  }
+  ```
+  
+  ---
+  > POST '/api/articles'
+  
+  ```json
+  {
+    "article": {
+      "title": null,
+      "image": null,
+      "content": "",
+      "user_id": 1
+    }
+  }
+  ```
+  
+  > returns: 422
+  
+  ```json
+  {
+    "image": [
+      "can't be blank"
+    ],
+    "title": [
+      "can't be blank"
+    ],
+    "content": [
+      "can't be blank"
+    ]
+  }
+  ```
+  
+  ## PUT Articles
+  ### PUT `/api/articles/{id}`
+  - Updates `article` with id `{id}`
+    - Response: `200` Ok
+    - Response: `404` Not Found
+    - Response: `422` Unprocessable Content
+      - if validation fails
+  
+  > PUT '/api/articles/2'
+  
+  ```json
+  {
+    "article": {
+      "title": "Updated Title",
+      "image": "new_article_123456.png",
+      "content": "My new Awesome Article",
+      "user_id": 45
+    }
+  }
+  ```
+  
+  > returns: 200
+  
+  ```json
+  {
+    "id": 2,
+    "title": "Updated Title",
+    "image": "new_article_123456.png",
+    "content": "My new Awesome Article",
+    "user_id": 45,
+    "created_at": "2024-05-18 23:34:45",
+    "updated_at": "2024-05-29 15:37:21",
+    "user": {
+      "id": 45,
+      "email": "jane@doe.net"
+    }
+  }
+  ```
+  
+  ---
+  > PUT '/api/articles/2'
+  
+  ```json
+  {
+    "article": {
+      "title": "Updated Title",
+      "image": "",
+      "content": null,
+      "user_id": 45
+    }
+  }
+  ```
+  
+  > returns: 422
+  
+  ```json
+  {
+    "image": [
+      "can't be blank"
+    ],
+    "content": [
+      "can't be blank"
+    ]
+  }
+  ```
+  
+  ## PATCH Articles
+  ### PATCH `/api/articles/{id}`
+  - Updates `article` with id `{id}`
+    - Response: `200` Ok
+    - Response: `404` Not Found
+    - Response: `422` Unprocessable Content
+      - if validation fails
+  
+  > PATCH '/api/articles/2'
+  
+  ```json
+  {
+    "article": {
+      "content": "Updated content"
+    }
+  }
+  ```
+  
+  > returns: 200
+  
+  ```json
+  {
+    "id": 2,
+    "title": "Updated Title",
+    "image": "new_article_123456.png",
+    "content": "Updated content",
+    "user_id": 45,
+    "created_at": "2024-05-18 23:34:45",
+    "updated_at": "2024-05-30 00:00:12",
+    "user": {
+      "id": 45,
+      "email": "jane@doe.net"
+    }
+  }
+  ```
+  
+  ---
+  > PATCH '/api/articles/2'
+  
+  ```json
+  {
+    "article": {
+      "user_id": 0
+    }
+  }
+  ```
+  
+  > returns: 422
+  
+  ```json
+  {
+    "user": [
+      "must exist"
+    ]
+  }
+  ```
+  
+  ## DELETE Articles
+  ### DELETE `/api/articles/{id}`
+  - Deletes `article` with id `{id}`
+    - Response: `204` No Content
+    - Response: `404` Not Found
+  ---
+  
+}

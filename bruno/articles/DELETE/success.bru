@@ -1,0 +1,32 @@
+meta {
+  name: success
+  type: http
+  seq: 1
+}
+
+delete {
+  url: {{host}}/api/articles/{{new_article_id}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}
+
+script:post-response {
+  bru.deleteVar("new_article_id")
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  ### DELETE `/api/articles/{id}`
+  - Deletes `article` with id `{id}`
+    - Response: `204` No Content
+    - Response: `404` Not Found
+  ---
+}

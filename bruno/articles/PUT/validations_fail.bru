@@ -1,0 +1,81 @@
+meta {
+  name: validations_fail
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{host}}/api/articles/{{new_article_id}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "article": {
+      "title": "Updated Title",
+      "image": "",
+      "content": null,
+      "user_id": 45
+    }
+  }
+}
+
+assert {
+  res.status: eq 422
+}
+
+tests {
+  test("is_not_updated", function(){
+    expect(res.getStatus()).to.equal(422);
+  });
+  
+  test("returns errors", function(){
+    const res_body = res.getBody();
+    expect(res_body).to.be.an("object");
+    expect(res_body).to.include.all.keys("image", "content");
+    expect(res_body).to.have.deep.property("image", ["can't be blank"]);
+    expect(res_body).to.have.deep.property("content", ["can't be blank"]);
+  });
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  ### PUT `/api/articles/{id}`
+  - Updates `article` with id `{id}`
+    - Response: `200` Ok
+    - Response: `404` Not Found
+    - Response: `422` Unprocessable Content
+      - if validation fails
+  
+  ---
+  > PUT '/api/articles/2'
+  
+  ```json
+  {
+    "article": {
+      "title": "Updated Title",
+      "image": "",
+      "content": null,
+      "user_id": 45
+    }
+  }
+  ```
+  
+  > returns: 422
+  
+  ```json
+  {
+    "image": [
+      "can't be blank"
+    ],
+    "content": [
+      "can't be blank"
+    ]
+  }
+  ```
+}

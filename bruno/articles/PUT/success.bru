@@ -1,0 +1,96 @@
+meta {
+  name: success
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{host}}/api/articles/{{new_article_id}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "article": {
+      "title": "Updated Title",
+      "image": "new_article_123456.png",
+      "content": "My new Awesome Article",
+      "user_id": 2
+    }
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("is_updated", function(){
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("response_is_ok", function(){
+    const res_body = res.getBody();
+    expect(res_body).to.be.an("object");
+    expect(res_body).to.include.all.keys("id","title", "image", "content",
+                                         "user_id", "created_at", "updated_at",
+                                         "user");
+    expect(res_body).to.have.deep.property("title", "Updated Title");
+    expect(res_body).to.have.deep.property("image", "new_article_123456.png");
+    expect(res_body).to.have.deep.property("content", "My new Awesome Article");
+    expect(res_body).to.have.deep.property("user_id", 2);
+  });
+  
+  test("returns_user_object", function(){
+    const res_body = res.getBody();
+    expect(res_body).to.have.property("user");
+    expect(res_body).to.have.nested.property("user.id");
+    expect(res_body).to.have.nested.property("user.email");
+  })
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  ### PUT `/api/articles/{id}`
+  - Updates `article` with id `{id}`
+    - Response: `200` Ok
+    - Response: `404` Not Found
+    - Response: `422` Unprocessable Content
+      - if validation fails
+  
+  > PUT '/api/articles/2'
+  
+  ```json
+  {
+    "article": {
+      "title": "Updated Title",
+      "image": "new_article_123456.png",
+      "content": "My new Awesome Article",
+      "user_id": 45
+    }
+  }
+  ```
+  
+  > returns: 200
+  
+  ```json
+  {
+    "id": 2,
+    "title": "Updated Title",
+    "image": "new_article_123456.png",
+    "content": "My new Awesome Article",
+    "user_id": 45,
+    "created_at": "2024-05-18 23:34:45",
+    "updated_at": "2024-05-29 15:37:21",
+    "user": {
+      "id": 45,
+      "email": "jane@doe.net"
+    }
+  }
+  ```
+}
