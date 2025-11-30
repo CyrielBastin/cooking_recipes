@@ -25,6 +25,10 @@ assert {
   res.status: eq 422
 }
 
+script:pre-request {
+  console.log(bru.getCollectionVar("host"))
+}
+
 tests {
   test("is_not_created", function(){
     expect(res.getStatus()).to.equal(422);
